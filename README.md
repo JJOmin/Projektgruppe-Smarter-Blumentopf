@@ -2,6 +2,7 @@
 
 ## [Android App](Android%20App) (Folder)
 - Beinhaltet Testcode für eine Alternative zu Blynk (Leo testet noch, ist aber komplizierter als erwartet, aber nicht unmöglich)
+- [Android App Test](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/14737b30d330373db46e7607d85614b0cc66ab5a/Android%20App/Blumentopf%20App) (Folder)
 
 ## [ESP32 Code](ESP32%20Code) (Folder)
 #### Beinhaltet alles, was wir auf den ESP32 laden wollen. 
