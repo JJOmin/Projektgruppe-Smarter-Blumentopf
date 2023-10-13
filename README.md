@@ -1,7 +1,8 @@
 # Projektgruppe-Smarter-Blumentopf
 
 ## [Blumentopf Companion App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App) (Folder)
-- Beinhaltet Testcode für eine Alternative zu Blynk (Leo testet noch, ist aber komplizierter als erwartet, aber nicht unmöglich)
+- Beinhaltet Testcode für eine Alternative zu Blynk ([@Leo](https://github.com/JJOmin)
+ testet noch, ist aber komplizierter als erwartet, aber nicht unmöglich)
 - [Android App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/Android%20App) (Folder)
   - [BlumentopfTest](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/Android%20App/BlumentopfTest) (Projekt)
 - [iOS App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/iOS%20App) (leer)
