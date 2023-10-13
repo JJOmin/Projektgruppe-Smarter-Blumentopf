@@ -2,6 +2,7 @@
 Projektbeschreibeung:<br>
 Ziel:<br>
 Rahmenbedingungen:<br>
+Gruppenmitglieder: [@Leo](https://github.com/JJOmin), [@Anna](https://github.com/Discovery1701A), [@Enis](https://github.com/NisVision)
 <br>
 
 ## [Blumentopf Companion App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App) (Folder)
