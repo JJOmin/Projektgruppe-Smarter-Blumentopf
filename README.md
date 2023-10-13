@@ -1,6 +1,6 @@
 # Projektgruppe-Smarter-Blumentopf
 
-## [Android App]([Android App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/dfe73254495c5e6c495cc0af2439aa655f04b2ac/Android%20App))
+## [Android App](Android%20App)
 - Beinhaltet Testcode für eine Alternative zu Blynk (Leo testet noch, ist aber komplizierter als erwartet, aber nicht unmöglich)
 
 ## ESP32 Code
