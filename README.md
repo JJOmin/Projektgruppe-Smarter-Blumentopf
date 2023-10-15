@@ -9,7 +9,7 @@
 **Gruppenmitglieder:** 
 - [@Leo](https://github.com/JJOmin)
 - [@Anna](https://github.com/Discovery1701A)
-- [@Enis](https://github.com/NisVsion)
+- [@Enis](https://github.com/NisVison)
 - [@David](https://github.com/)
 - [@Sam](https://github.com/)
 
