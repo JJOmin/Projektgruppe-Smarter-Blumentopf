@@ -4,4 +4,5 @@
 ### Bearbeitung und Sicherung
 - Jeder wird auf der Wokwi Seite ein eigenes Projekt, basieren auf dem [Wokwi für ESP32 microPython](https://wokwi.com/projects/334090875207418452) Projekt erstellen.
 - Diese Eigenen Projekte werden dann nach dem Bearbeiten Herruntergeladen und u.a. als "diagram.json", "main.py" & "wokwi-project.txt" in den jeweilige Ordner hier Abgelegt, damit jeder jeden Code einsehen und übernehmen kann.
+- Später werden dann alle einzelnen implementerungen der Sensoren, Displays usw. in dem Ordner [Alles]() zusammengeführt.
   
