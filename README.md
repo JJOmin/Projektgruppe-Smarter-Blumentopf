@@ -21,7 +21,7 @@
 ## [ESP32 Code](ESP32%20Code) (Folder)
 - Möglichkeit zur Simulation des ESP32 und virtueller Tests von Sensoren.[Wokwi für ESP32 microPython](https://wokwi.com/projects/334090875207418452)
 - [Wokwi Simulation von Sensoren](ESP32%20Code/Wokwi%20Simulation%20von%20Sensoren) (Folder)
-  - Temperatur DS18B20
+  - Temperatursensor DS18B20 (Leo)
 
 ## [Webserver + Datenbank](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/aed2a25c9ff63fdec2233deccf49d416775c6123/WebServer%20%2B%20Datenbank) (Folder)
 Hier sollte alles für den Webserver und die dort verwendete Datenbank für den Blumentopf sein.
