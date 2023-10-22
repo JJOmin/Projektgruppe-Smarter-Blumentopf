@@ -19,7 +19,7 @@
 - [iOS App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/iOS%20App) (leer)
 
 ## [ESP32 Code](ESP32%20Code) (Folder)
-- [Wokwi für ESP32 microPython](https://wokwi.com/projects/new/esp32-s2): Möglichkeit zur Simulation des ESP32 und virtueller Tests von Sensoren.
+- [Wokwi für ESP32 microPython](https://wokwi.com/projects/334090875207418452): Möglichkeit zur Simulation des ESP32 und virtueller Tests von Sensoren.
 - [Wokwi Simulation von Sensoren](ESP32%20Code/Wokwi%20Simulation%20von%20Sensoren) (Folder)
   - [Temperatur DS18B20](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/89ccd61c8002471cf6e16f53fad336b4e990cdff/ESP32%20Code/Wokwi%20Simulation%20von%20Sensoren/Wokwi%20Temperatur%20DS18B20) (Projekt)
 
