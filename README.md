@@ -20,6 +20,9 @@
 
 ## [ESP32 Code](ESP32%20Code) (Folder)
 - Möglichkeit zur Simulation des ESP32 und virtueller Tests von Sensoren.[Wokwi für ESP32 microPython](https://wokwi.com/projects/334090875207418452)
+- Firmaware mycroPython für ESP32 [hier](https://micropython.org/download/#esp32)
+- Tool zum aufspielen der Firmware auf den ESP32 [hier](https://github.com/espressif/esptool/releases/tag/v4.6.2)
+- -
 - [Wokwi Simulation von Sensoren](ESP32%20Code/Wokwi%20Simulation%20von%20Sensoren) (Folder)
   - Temperatursensor DS18B20 (Leo)
 
