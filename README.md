@@ -15,7 +15,7 @@
 
 ## [ESP32 Code](ESP32%20Code) (Folder)
 - Beste IDE für mycroPython und ESP32, zum Firmware aufspielen und Programmieren [Thonny](https://thonny.org/)
-  - Guide zum Flashen des ESP32 mit mycropython [hier](https://www.aranacorp.com/en/program-an-esp32-with-micropython/#:~:text=Install%20MicroPython%20with%20Thonny%20IDE,upload%20it%20to%20the%20board.)
+  - Guide zum Flashen des ESP32 mit mycropython [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/blob/e6a7ef5d4c26ad102f9acae272b84cae4df6abd6/ESP32-Code/README.md)
 - Simulation des ESP32.[Wokwi](https://wokwi.com/projects/334090875207418452)
 
 - [Code für Sensoren](ESP32%20Code/Wokwi%20Simulation%20von%20Sensoren) (Folder)
