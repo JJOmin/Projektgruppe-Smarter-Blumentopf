@@ -30,7 +30,7 @@
 
 
 ## Guids
-- [ESP32 How to start Guide ](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/blob/7776283af5e6aa7da025caa86bea87168177771c/ESP32-Code/README.md)
+- [ESP32 How to start Guide ](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/blob/7776283af5e6aa7da025caa86bea87168177771c/ESP32-Code/README.md) [Quelle](https://www.aranacorp.com/en/program-an-esp32-with-micropython/#:~:text=Install%20MicroPython%20with%20Thonny%20IDE,upload%20it%20to%20the%20board.)
 
 
   
