@@ -13,11 +13,6 @@
 - [@David](https://github.com/)
 - [@Sam](https://github.com/)
 
-## [Blumentopf Companion App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App) (Folder)
-- [Android App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/Android%20App) (Folder)
-  - [BlumentopfTest](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/Android%20App/BlumentopfTest) (Projekt)
-- [iOS App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/iOS%20App) (leer)
-
 ## [ESP32 Code](ESP32%20Code) (Folder)
 - Möglichkeit zur Simulation des ESP32 und virtueller Tests von Sensoren.[Wokwi für ESP32 microPython](https://wokwi.com/projects/334090875207418452)
 - Firmaware mycroPython für ESP32 [hier](https://micropython.org/download/#esp32)
@@ -25,6 +20,11 @@
 - -
 - [Wokwi Simulation von Sensoren](ESP32%20Code/Wokwi%20Simulation%20von%20Sensoren) (Folder)
   - Temperatursensor DS18B20 (Leo)
+
+## [Blumentopf Companion App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App) (Folder)
+- [Android App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/Android%20App) (Folder)
+  - [BlumentopfTest](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/Android%20App/BlumentopfTest) (Projekt)
+- [iOS App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/iOS%20App) (leer)
 
 ## [Webserver + Datenbank](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/aed2a25c9ff63fdec2233deccf49d416775c6123/WebServer%20%2B%20Datenbank) (Folder)
 Hier sollte alles für den Webserver und die dort verwendete Datenbank für den Blumentopf sein.
