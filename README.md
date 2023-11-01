@@ -15,7 +15,7 @@
 
 ## [ESP32 Code](ESP32%20Code) (Folder)
 - Beste IDE für mycroPython und ESP32, zum Firmware aufspielen und Programmieren [Thonny](https://thonny.org/)
-  - Guide zum Flashen des ESP32 mit mycropython [hier](https://www.aranacorp.com/en/program-an-esp32-with-micropython/#:~:text=Install%20MicroPython%20with%20Thonny%20IDE,upload%20it%20to%20the%20board.)
+  - Guide zum Flashen des ESP32 mit mycropython [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/blob/e6a7ef5d4c26ad102f9acae272b84cae4df6abd6/ESP32-Code/README.md)
 - Simulation des ESP32.[Wokwi](https://wokwi.com/projects/334090875207418452)
 
 - [Code für Sensoren](ESP32%20Code/Wokwi%20Simulation%20von%20Sensoren) (Folder)
@@ -27,11 +27,13 @@
 
 
 
-## [Blumentopf Companion App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App) (Folder)
-- [Android App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/Android%20App) (Folder)
-  - [BlumentopfTest](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/Android%20App/BlumentopfTest) (Projekt)
-- [iOS App](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/13669f39525ed7bec02224b15fcb15a624a73cc2/Blumentopf%20Companion%20App/iOS%20App) (leer)
 
-## [Webserver + Datenbank](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/aed2a25c9ff63fdec2233deccf49d416775c6123/WebServer%20%2B%20Datenbank) (Folder)
-Hier sollte alles für den Webserver und die dort verwendete Datenbank für den Blumentopf sein.
-- Work in progress...
+
+## Guids
+- [ESP32 How to start Guide ](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/blob/7776283af5e6aa7da025caa86bea87168177771c/ESP32-Code/README.md)
+
+
+  
+
+
+

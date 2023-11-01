@@ -12,7 +12,7 @@
       
   ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/f0019266-0c56-4a28-a169-756cbfef6d9c)
 
-- richtigen COM Port auswählen (welcher ist der richtige? [hier]())
+- richtigen COM Port auswählen (welcher ist der richtige? [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/blob/42d86eff00d4ad49dd1e11dd36ada3a8d2ca3a8d/findingComPort.md))
 
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/fad50f41-2ce6-48c6-8888-26386a93a186)
 
