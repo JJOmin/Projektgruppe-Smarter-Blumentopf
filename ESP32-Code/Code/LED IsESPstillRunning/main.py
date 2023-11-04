@@ -2,8 +2,8 @@ import machine
 import time
 
 # Definiere die Pins für die LED (hier: Pin 2) und den Button (hier: Pin 4)
-led_pin = machine.Pin(25, machine.Pin.OUT)
-button_pin = machine.Pin(34, machine.Pin.IN, machine.Pin.PULL_UP)  # PULL_UP aktiviert den internen Pull-Up Widerstand
+led_pin = machine.Pin(26, machine.Pin.OUT)
+button_pin = machine.Pin(33, machine.Pin.IN, machine.Pin.PULL_UP)  # PULL_UP aktiviert den internen Pull-Up Widerstand
 #led_pin.off()
 
 # Heartbeat-Funktion mit Button-Erkennung
