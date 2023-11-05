@@ -52,7 +52,7 @@ def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
             rawValueArray.append(sensor_value)
             last_moisture_read_time = current_time
         
-        print("Avg Percentage: {:.2f}%".format(average(percentageArray))," Avg Raw Sensor Data:",average(rawValueArray))
+        print("Avg of ",numValuesAveraged,"Measurments: Percentage: {:.2f}%".format(average(percentageArray))," Raw Sensor Data:",average(rawValueArray))
         print("")
     
         #Clears the list
