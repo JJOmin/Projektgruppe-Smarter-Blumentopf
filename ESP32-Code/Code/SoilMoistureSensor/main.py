@@ -62,7 +62,7 @@ def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
        
 
 ##Function that is used to calibrate Soil Moisture Sensores and define the Wet Value
-def moistureSensorKalibration(numKalibrationValues, adc):
+def moistureSensorKalibration(numKalibrationValues, adc, numValuesAveraged, measureDuration):
     global last_moisture_read_time
     global kalibrationLoops
     global wet
@@ -76,6 +76,8 @@ def moistureSensorKalibration(numKalibrationValues, adc):
             kalibrationLoops += 1
             print("Kalibration Running for",kalibrationLoops, "Seconds and",numKalibrationValues - kalibrationLoops,"Seconds left.")
             last_moisture_read_time = current_time
+    elif numKalibrationValues == -1:
+        print("Achtung die für die Kalibrierung muss der Sensor direkt ins wasser gestellt werden")
             
     elif kalibrationLoops == numKalibrationValues:
         wetMin = min(rawValueArray)
@@ -96,7 +98,7 @@ def moistureSensorKalibration(numKalibrationValues, adc):
         kalibrationLoops += 1
         
     else:
-        moistureSensor(adc,dry,wet, 10, 1000)
+        moistureSensor(adc,dry,wet, numValuesAveraged, measureDuration)
         
 #-------------------------------------------------------#
             
@@ -114,7 +116,7 @@ def average(array):
 #--------------------------Main--------------------------#
 def main(adc, led_pin, button_pin):
     while True:
-        moistureSensorKalibration(50, adc)
+        moistureSensorKalibration(50, adc, 10, 1000) #Number of Values for Kalibration, Analog to Digital Converter, Number of Measurments for one Average Measurment, Duration of the Number of Measurments in ms
         button(led_pin, button_pin)
         
 #--------------------------------------------------------#
