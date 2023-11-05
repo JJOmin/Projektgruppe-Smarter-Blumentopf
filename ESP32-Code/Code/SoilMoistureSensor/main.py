@@ -9,20 +9,21 @@ pinSoilMoisture = 35  # pin for Soil Moisture Sensor
 led_pin = machine.Pin(26, machine.Pin.OUT)
 button_pin = machine.Pin(33, machine.Pin.IN, machine.Pin.PULL_UP)  # PULL_UP activates the internal Pull-Up resistor
 
+
+#-----------------------Globals-----------------------#
 adc = ADC(Pin(pinSoilMoisture))  # Initialize ADC (Analog to Digital Converter) on the sensor pin
-
-# Constants for The calculation
-
-
 percentageArray = []
 rawValueArray = []
 durchschnitt = 0
 dry = 4095
 wet = 0
-
 last_moisture_read_time = 0
 kalibrationLoops = 0
 
+#---------------------------------------------------#
+
+
+#-----------------------Functions-----------------------#
 # Heartbeat-Funktion mit Button-Erkennung
 def button(led_pin, button_pin):
     # Wenn der Button gedrückt wird (niedriger Pegel), schalte die LED ein
@@ -57,13 +58,10 @@ def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
         #Clears the list
         percentageArray.clear()
         rawValueArray.clear()
-        
-        
-        
         last_moisture_read_time = current_time
        
-        
-        
+
+##Function that is used to calibrate Soil Moisture Sensores and define the Wet Value
 def moistureSensorKalibration(numKalibrationValues, adc):
     global last_moisture_read_time
     global kalibrationLoops
@@ -71,8 +69,6 @@ def moistureSensorKalibration(numKalibrationValues, adc):
     global dry
     current_time = utime.ticks_ms()
     
-
-
     if kalibrationLoops < numKalibrationValues:
         if current_time - last_moisture_read_time >= 1000:  # 1 second in milliseconds
             sensor_value = adc.read()
@@ -85,7 +81,6 @@ def moistureSensorKalibration(numKalibrationValues, adc):
         wetMin = min(rawValueArray)
         wetMax = max(rawValueArray)
         wet = max(rawValueArray)
-        #dry = max(rawValueArray)
         print("")
         print("Kalibration is over")
         print("Wet Average Value: ",average(rawValueArray))
@@ -101,8 +96,9 @@ def moistureSensorKalibration(numKalibrationValues, adc):
         kalibrationLoops += 1
         
     else:
-    
         moistureSensor(adc,dry,wet, 10, 1000)
+        
+#-------------------------------------------------------#
             
         
     
