@@ -79,7 +79,7 @@ def moistureSensorKalibration(numKalibrationValues, adc, numValuesAveraged, meas
             sensor_value = adc.read()
             rawValueArray.append(sensor_value)
             kalibrationLoops += 1
-            print("Kalibration Running for",kalibrationLoops, "Seconds and",numKalibrationValues - kalibrationLoops,"Seconds left.")
+            print("Kalibration Running! ",numKalibrationValues - kalibrationLoops,"Values left.")
             last_moisture_read_time = current_time
             
     elif kalibrationLoops == 0:
