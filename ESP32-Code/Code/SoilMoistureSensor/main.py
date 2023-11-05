@@ -60,7 +60,12 @@ def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
         rawValueArray.clear()
         last_moisture_read_time = current_time
        
-
+def print_rechteck(text):
+    print('*' * (len(text) + 4))  # Oberer Rand des Rechtecks
+    print('* ' + text + ' *')      # Text mit seitlichem Rand
+    print('*' * (len(text) + 4))  # Unterer Rand des Rechtecks
+    
+    
 ##Function that is used to calibrate Soil Moisture Sensores and define the Wet Value
 def moistureSensorKalibration(numKalibrationValues, adc, numValuesAveraged, measureDuration):
     global last_moisture_read_time
@@ -69,15 +74,17 @@ def moistureSensorKalibration(numKalibrationValues, adc, numValuesAveraged, meas
     global dry
     current_time = utime.ticks_ms()
     
-    if kalibrationLoops < numKalibrationValues:
+    if 0 < kalibrationLoops < numKalibrationValues:
         if current_time - last_moisture_read_time >= 1000:  # 1 second in milliseconds
             sensor_value = adc.read()
             rawValueArray.append(sensor_value)
             kalibrationLoops += 1
             print("Kalibration Running for",kalibrationLoops, "Seconds and",numKalibrationValues - kalibrationLoops,"Seconds left.")
             last_moisture_read_time = current_time
-    elif numKalibrationValues == -1:
-        print("Achtung die für die Kalibrierung muss der Sensor direkt ins wasser gestellt werden")
+            
+    elif kalibrationLoops == 0:
+        print_rechteck("Achtung die für die Kalibrierung muss der Sensor direkt ins Wasser gestellt werden!!!")
+        kalibrationLoops += 1
             
     elif kalibrationLoops == numKalibrationValues:
         wetMin = min(rawValueArray)
@@ -99,6 +106,7 @@ def moistureSensorKalibration(numKalibrationValues, adc, numValuesAveraged, meas
         
     else:
         moistureSensor(adc,dry,wet, numValuesAveraged, measureDuration)
+        
         
 #-------------------------------------------------------#
             
