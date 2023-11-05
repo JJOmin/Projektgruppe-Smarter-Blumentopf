@@ -53,6 +53,13 @@ def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
         
         print("Avg Percentage: {:.2f}%".format(average(percentageArray))," Avg Raw Sensor Data:",average(rawValueArray))
         print("")
+    
+        #Clears the list
+        percentageArray.clear()
+        rawValueArray.clear()
+        
+        
+        
         last_moisture_read_time = current_time
        
         
@@ -88,6 +95,8 @@ def moistureSensorKalibration(numKalibrationValues, adc):
         print("Wet Value:",wet)
         print("Maximum Wet Differenz: ",max(rawValueArray) - min(rawValueArray))
         print("")
+        percentageArray.clear()
+        rawValueArray.clear()
         
         kalibrationLoops += 1
         
@@ -109,7 +118,7 @@ def average(array):
 #--------------------------Main--------------------------#
 def main(adc, led_pin, button_pin):
     while True:
-        moistureSensorKalibration(30, adc)
+        moistureSensorKalibration(50, adc)
         button(led_pin, button_pin)
         
 #--------------------------------------------------------#
