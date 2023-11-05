@@ -39,20 +39,22 @@ def map_range(value, from_min, from_max, to_max, to_min):
     mapped_value = to_min + (scaled_value * to_range)
     return mapped_value
 
-def moistureSensor(adc, dry, wet):
+def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
     global last_moisture_read_time
     current_time = utime.ticks_ms()
     # Read analog value from the sensor every 10 seconds
-    if current_time - last_moisture_read_time >= 1000:  # 10 seconds in milliseconds
-        sensor_value = adc.read()
-        moisture_percentage = map_range(sensor_value, wet, dry, 0, 100)
-        #print(moisture_percentage, dry, wet, sensor_value)
-        print("Moisture Percentage: {:.2f}%".format(moisture_percentage),"  Raw Sensor Data:",sensor_value)
+    if current_time - last_moisture_read_time >= measureDuration:  # 10 seconds in milliseconds
+        for i in range(0,numValuesAveraged):
+            sensor_value = adc.read()
+            moisture_percentage = map_range(sensor_value, wet, dry, 0, 100)
+            percentageArray.append(moisture_percentage)
+            rawValueArray.append(sensor_value)
+            last_moisture_read_time = current_time
+        
+        print("Avg Percentage: {:.2f}%".format(average(percentageArray))," Avg Raw Sensor Data:",average(rawValueArray))
+        print("")
         last_moisture_read_time = current_time
-        
-        #print(map_range(3700, 3700, 4095, 0, 100))
-        
-        #print(map_range(4095, 3700, 4095, 0, 100))
+       
         
         
 def moistureSensorKalibration(numKalibrationValues, adc):
@@ -69,10 +71,9 @@ def moistureSensorKalibration(numKalibrationValues, adc):
             sensor_value = adc.read()
             rawValueArray.append(sensor_value)
             kalibrationLoops += 1
-            #print("Raw: [Avg, Min, Max, Diff, numValues]")
-            #print([average(rawValueArray),min(rawValueArray),max(rawValueArray),max(rawValueArray) - min(rawValueArray), kalibrationLoops])
             print("Kalibration Running for",kalibrationLoops, "Seconds and",numKalibrationValues - kalibrationLoops,"Seconds left.")
             last_moisture_read_time = current_time
+            
     elif kalibrationLoops == numKalibrationValues:
         wetMin = min(rawValueArray)
         wetMax = max(rawValueArray)
@@ -92,7 +93,7 @@ def moistureSensorKalibration(numKalibrationValues, adc):
         
     else:
     
-        moistureSensor(adc,dry,wet)
+        moistureSensor(adc,dry,wet, 10, 1000)
             
         
     
@@ -108,8 +109,7 @@ def average(array):
 #--------------------------Main--------------------------#
 def main(adc, led_pin, button_pin):
     while True:
-        #moistureSensor(adc)
-        moistureSensorKalibration(100, adc)
+        moistureSensorKalibration(30, adc)
         button(led_pin, button_pin)
         
 #--------------------------------------------------------#
