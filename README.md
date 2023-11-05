@@ -22,7 +22,7 @@
   - Temperatursensor DS18B20 (Leo)
   - Display
   - Helligkeit
-  - Bodenfeuchtigkeit
+  - Bodenfeuchtigkeit (Hier wichtig, der Sensor MUSS Kalibriert werden.)
 
 
 
