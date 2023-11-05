@@ -6,7 +6,7 @@ import utime
 
 # GPIO pins used:
 pinSoilMoisture = 35  # pin for Soil Moisture Sensor
-led_pin = machine.Pin(26, machine.Pin.OUT)
+led_pin = machine.Pin(26, machine.Pin.OUT) #Pin for the LED
 button_pin = machine.Pin(33, machine.Pin.IN, machine.Pin.PULL_UP)  # PULL_UP activates the internal Pull-Up resistor
 
 
@@ -24,14 +24,15 @@ kalibrationLoops = 0
 
 
 #-----------------------Functions-----------------------#
-# Heartbeat-Funktion mit Button-Erkennung
+##Button der mittels Software die LED ansteuert, um Überprüfen zu können ob der ESP32 noch Läuft
 def button(led_pin, button_pin):
     # Wenn der Button gedrückt wird (niedriger Pegel), schalte die LED ein
     if button_pin.value() != 1:
         led_pin.on()
     else:
         led_pin.off()
-
+        
+##Funktion die die Gemessenen werte des Soil Sensors in Prozente umrechnet
 def map_range(value, from_min, from_max, to_max, to_min):
     # Translates a range of numbers into another range of numbers
     from_range = from_max - from_min
@@ -40,6 +41,7 @@ def map_range(value, from_min, from_max, to_max, to_min):
     mapped_value = to_min + (scaled_value * to_range)
     return mapped_value
 
+##Funktion die Auf basis der angeggebenen Parameter den Soil Sensor ausliest und einen Durchschnittswert(momentanter von meist 10) wiedergibt
 def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
     global last_moisture_read_time
     current_time = utime.ticks_ms()
@@ -59,7 +61,9 @@ def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
         percentageArray.clear()
         rawValueArray.clear()
         last_moisture_read_time = current_time
-       
+
+
+##Macht ein rechtecjk um Text
 def print_rechteck(text):
     print('*' * (len(text) + 4))  # Oberer Rand des Rechtecks
     print('* ' + text + ' *')      # Text mit seitlichem Rand
@@ -111,9 +115,7 @@ def moistureSensorKalibration(numKalibrationValues, adc, numValuesAveraged, meas
 #-------------------------------------------------------#
             
         
-    
-    
-        
+
 #-----------------------Math Stuff-----------------------#
 def average(array):
     sumArray = sum(array)
