@@ -1,6 +1,7 @@
 # Projektgruppe-Smarter-Blumentopf
 
 **Projektbeschreibung:** Dieses Projekt konzentriert sich auf die Entwicklung eines intelligenten Blumentopfes, der durch eine Begleit-App gesteuert wird. Das Ziel ist es, eine nachhaltige und effiziente Bewässerung für Pflanzen zu ermöglichen, während gleichzeitig verschiedene Sensoren die Bedingungen der Pflanze überwachen.
+
 **Gruppenmitglieder:** 
 - [@Leo](https://github.com/JJOmin)
 - [@Anna](https://github.com/Discovery1701A)
@@ -8,15 +9,15 @@
 - [@David](https://github.com/)
 - [@Sam](https://github.com/)
   
-## Guids
-- [ESP32 How to start](ESP32-Code/README.md)
+## Anleitungen
+- ESP32 in betrieb nehmen [hier](ESP32-Code/README.md)
   
-## [ESP32 Code](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/a8409ad9291b6a8903f337fcbdf5361550c7ab84/ESP32-Code) (Folder)
-- Beste IDE für mycroPython und ESP32, zum Firmware aufspielen und Programmieren [Thonny](https://thonny.org/)
-  - Guide zum Flashen des ESP32 mit mycropython [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/blob/e6a7ef5d4c26ad102f9acae272b84cae4df6abd6/ESP32-Code/README.md)
-- Simulation des ESP32.[Wokwi](https://wokwi.com/projects/334090875207418452)
+## Programme
+- Thonny IDE für mycroPython und ESP32 [hier](https://thonny.org/)
+- Wokwi Simulation des ESP32 [hier](https://wokwi.com/projects/334090875207418452)
+- Silicon Labs Treiber für USB to UART [hier](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads)
 
-### [Code für Sensoren](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/3822ea178ae5fbc811629c5bb44fdb18724cdfae/ESP32-Code/Wokwi%20Simulation%20von%20Sensoren) (Folder)
+### Simulation der Sensoren
   - Temperatursensor DS18B20 (Leo)
   - Display
   - Helligkeit
