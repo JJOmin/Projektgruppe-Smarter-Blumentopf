@@ -1,4 +1,7 @@
 # ESP32 How to start Guid
+## Hinweise:
+- Achtung, Code nicht direkt auf dem ESP Speichern!!! (begrenbzte Anzahl an Schreibzyklen)
+- Wenn der ESP32 nicht vom PC erkannt wird: anderes Kabel Testen, Silicon Labs Treiber installieren, PC neustarten
 
  ## 1. ESP32 mit (Win/Mac) verbinden
  - Thonny IDE installieren [hier](https://thonny.org/)
