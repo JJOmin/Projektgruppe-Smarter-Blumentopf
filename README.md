@@ -9,7 +9,7 @@
 - [@Sam](https://github.com/)
   
 ## Guids
-- [ESP32 How to start](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/blob/7776283af5e6aa7da025caa86bea87168177771c/ESP32-Code/README.md)
+- [ESP32 How to start](ESP32-Code/README.md)
   
 ## [ESP32 Code](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/a8409ad9291b6a8903f337fcbdf5361550c7ab84/ESP32-Code) (Folder)
 - Beste IDE für mycroPython und ESP32, zum Firmware aufspielen und Programmieren [Thonny](https://thonny.org/)
