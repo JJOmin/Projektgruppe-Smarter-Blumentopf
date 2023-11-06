@@ -1,13 +1,37 @@
 # ESP32 How to start Guid
 
- ## Firmware aufspielen
- - Thonny installieren [hier](https://thonny.org/)
+ ## 1. ESP32 mit (Win/Mac) verbinden
+ - Thonny IDE installieren [hier](https://thonny.org/)
+ - Silicon Labs Treiber installieren [hier](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads)
+
+   ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/b1af9ed0-bb50-43a1-85e9-ba0140373011)
+ - Rechner neustarten!!!
+ - Überprüfen ob Rechner ESP32 erkennt
+   - Windows:
+     - "[Win]()" + "[r]()" drücken, "[cmd]()" eintippen und "[OK]()"
+     - Dann "[mode]()" eingeben und auf die ausgabe warten
+
+       ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/f541a113-cfec-4f25-9071-4551b5f7e185)
+     - Jetzt ESP32 per USB Kabel mit Rechner verbinden und noch einmal "[mode]()" 
+     - Darauf achten welcher COM Port Neu ist (wie im Beispielbild)
+      
+       ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/c32a8f13-f5c1-4815-816f-7b3c1ea1dca4)
+       
+    - MacOS:
+     - ESP32 per USB Kabel mit Rechner verbinden
+     - Thonny IDE Öffnen
+     - 
+    
+
+
+ ## 2. Firmware aufspielen/ ESP32 Flashen
+
  - ESP32 an PC anschließen
  - In Thonny "Run"->"Select interpreter"
        
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/fe69f5f6-1801-44ac-aba3-85ee5202965d)
 
-### Thonny options
+### 2.1 Thonny options
 - "MicroPython (ESP32)" Auswählen
       
   ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/f0019266-0c56-4a28-a169-756cbfef6d9c)
@@ -20,7 +44,7 @@
 
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/1a3f6be3-98ae-44cf-bb0c-289f55ded117)
 
-### Install MicrtoPython (esptool)
+### 2.2 Install MicrtoPython (esptool)
 - Com Port auswählen und Kontroller auswählen wie im Bild
 
   ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/f3427dad-2f69-4a4c-b670-c22812ea8407)
@@ -29,7 +53,7 @@
 
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/9292c96b-0d6f-4ba6-8632-83c8f3f52903)
 
-  ### Pyrhon auf ESP32 spielen und ausführen
+  ### 2.3 Pyrhon auf ESP32 spielen und ausführen
 - Eine main.py erstellen "File"->"New"
 - MicroPython Interpreter für ESP32 Auswählen
 
