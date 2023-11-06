@@ -17,26 +17,25 @@
       
        ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/c32a8f13-f5c1-4815-816f-7b3c1ea1dca4)
        
-    - MacOS:
+   - MacOS:
      - ESP32 per USB Kabel mit Rechner verbinden
      - Thonny IDE Öffnen
-     - 
+     - Weiter zu 2. Firmware aufspielen/ ESP32 Flashen
     
 
 
  ## 2. Firmware aufspielen/ ESP32 Flashen
-
- - ESP32 an PC anschließen
+ ### 2.1 Thonny Options
  - In Thonny "Run"->"Select interpreter"
        
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/fe69f5f6-1801-44ac-aba3-85ee5202965d)
 
-### 2.1 Thonny options
 - "MicroPython (ESP32)" Auswählen
       
   ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/f0019266-0c56-4a28-a169-756cbfef6d9c)
 
-- richtigen COM Port auswählen (welcher ist der richtige? [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/blob/42d86eff00d4ad49dd1e11dd36ada3a8d2ca3a8d/findingComPort.md))
+### 2.2 Richtigen COM Port auswählen/ 
+ -
 
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/fad50f41-2ce6-48c6-8888-26386a93a186)
 
