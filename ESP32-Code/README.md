@@ -35,24 +35,30 @@
   ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/f0019266-0c56-4a28-a169-756cbfef6d9c)
 
 ### 2.2 Richtigen COM Port auswählen/ 
- -
+ - Windows: Hier den oben erfassten COM Port auswählen
+
 
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/fad50f41-2ce6-48c6-8888-26386a93a186)
+   
+ - MacOS: Hier den "CP2102N USB to UART Bridge Controller" auswählen
+    <img width="728" alt="Bildschirmfoto 2023-11-06 um 10 46 52" src="https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/b6ccc460-451d-4763-b89e-727f258a4fe6">
 
-- "Install or update MicroPython"
+
+- Für Win/Mac "Install or update MicroPython"
 
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/1a3f6be3-98ae-44cf-bb0c-289f55ded117)
 
-### 2.2 Install MicrtoPython (esptool)
-- Com Port auswählen und Kontroller auswählen wie im Bild
+### 2.3 Install MicrtoPython (esptool)
+- Com Port/"CP2102N USB to UART Bridge Controller" auswählen und Kontrollerspezifikationen auswählen wie im Bild
 
   ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/f3427dad-2f69-4a4c-b670-c22812ea8407)
 
-- "Install" klicken & Boot Button des ESP32 kurz drücken, danach "close"
+- "Install" klicken
+- Wenn Error, Boot Button des ESP32 kurz vor "Install" drücken
 
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/9292c96b-0d6f-4ba6-8632-83c8f3f52903)
 
-  ### 2.3 Pyrhon auf ESP32 spielen und ausführen
+### 2.4 Pyrhon auf ESP32 spielen und ausführen
 - Eine main.py erstellen "File"->"New"
 - MicroPython Interpreter für ESP32 Auswählen
 
