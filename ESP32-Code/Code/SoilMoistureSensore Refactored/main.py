@@ -54,7 +54,7 @@ class SoilMoistureSensor:
             self.kalibration_loops += 1
 
         else:
-            if self.wet > 4000:
+            if self.wet > 4016:
                 print("")
                 print("Error, wet value is too high, recalibration required")
                 print("")
