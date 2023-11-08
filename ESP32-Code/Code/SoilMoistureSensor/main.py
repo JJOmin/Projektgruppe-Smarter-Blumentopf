@@ -34,12 +34,17 @@ def button(led_pin, button_pin):
         
 ##Funktion die die Gemessenen werte des Soil Sensors in Prozente umrechnet
 def map_range(value, from_min, from_max, to_max, to_min):
+    # Überprüfen, ob from_range null ist, um eine Division durch Null zu vermeiden
+    if from_max - from_min == 0:
+        return 0
+    
     # Translates a range of numbers into another range of numbers
     from_range = from_max - from_min
     to_range = to_max - to_min
     scaled_value = (value - from_min) / from_range
     mapped_value = to_min + (scaled_value * to_range)
     return mapped_value
+
 
 ##Funktion die Auf basis der angeggebenen Parameter den Soil Sensor ausliest und einen Durchschnittswert(momentanter von meist 10) wiedergibt
 def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
