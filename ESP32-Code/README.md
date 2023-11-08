@@ -1,35 +1,67 @@
 # ESP32 How to start Guid
+## Hinweise:
+- Achtung, Code nicht direkt auf dem ESP Speichern!!! (begrenbzte Anzahl an Schreibzyklen)
+- Wenn der ESP32 nicht vom PC erkannt wird: anderes Kabel Testen, Silicon Labs Treiber installieren, PC neustarten
 
- ## Firmware aufspielen
- - Thonny installieren [hier](https://thonny.org/)
- - ESP32 an PC anschließen
+ ## 1. ESP32 mit (Win/Mac) verbinden
+ - Thonny IDE installieren [hier](https://thonny.org/)
+ - Silicon Labs Treiber installieren [hier](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads)
+
+   ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/b1af9ed0-bb50-43a1-85e9-ba0140373011)
+ - Rechner neustarten!!!
+ - Überprüfen ob Rechner ESP32 erkennt
+   - Windows:
+     - "[Win]()" + "[r]()" drücken, "[cmd]()" eintippen und "[OK]()"
+     - Dann "[mode]()" eingeben und auf die ausgabe warten
+
+       ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/f541a113-cfec-4f25-9071-4551b5f7e185)
+     - Jetzt ESP32 per USB Kabel mit Rechner verbinden und noch einmal "[mode]()" 
+     - Darauf achten welcher COM Port Neu ist (wie im Beispielbild)
+      
+       ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/c32a8f13-f5c1-4815-816f-7b3c1ea1dca4)
+       
+   - MacOS:
+     - ESP32 per USB Kabel mit Rechner verbinden
+     - Thonny IDE Öffnen
+     - Weiter zu 2. Firmware aufspielen/ ESP32 Flashen
+    
+
+
+ ## 2. Firmware aufspielen/ ESP32 Flashen
+ ### 2.1 Thonny Options
  - In Thonny "Run"->"Select interpreter"
        
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/fe69f5f6-1801-44ac-aba3-85ee5202965d)
 
-### Thonny options
 - "MicroPython (ESP32)" Auswählen
       
   ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/f0019266-0c56-4a28-a169-756cbfef6d9c)
 
-- richtigen COM Port auswählen (welcher ist der richtige? [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/blob/42d86eff00d4ad49dd1e11dd36ada3a8d2ca3a8d/findingComPort.md))
+### 2.2 Richtigen COM Port auswählen/ 
+ - Windows: Hier den oben erfassten COM Port auswählen
+
 
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/fad50f41-2ce6-48c6-8888-26386a93a186)
+   
+ - MacOS: Hier den "CP2102N USB to UART Bridge Controller" auswählen
+    <img width="728" alt="Bildschirmfoto 2023-11-06 um 10 46 52" src="https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/b6ccc460-451d-4763-b89e-727f258a4fe6">
 
-- "Install or update MicroPython"
+
+- Für Win/Mac "Install or update MicroPython"
 
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/1a3f6be3-98ae-44cf-bb0c-289f55ded117)
 
-### Install MicrtoPython (esptool)
-- Com Port auswählen und Kontroller auswählen wie im Bild
+### 2.3 Install MicrtoPython (esptool)
+- Com Port/"CP2102N USB to UART Bridge Controller" auswählen und Kontrollerspezifikationen auswählen wie im Bild
 
   ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/f3427dad-2f69-4a4c-b670-c22812ea8407)
 
-- "Install" klicken & Boot Button des ESP32 kurz drücken, danach "close"
+- "Install" klicken
+- Wenn Error, Boot Button des ESP32 kurz vor "Install" drücken
 
     ![image](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/assets/104137706/9292c96b-0d6f-4ba6-8632-83c8f3f52903)
 
-  ### Pyrhon auf ESP32 spielen und ausführen
+### 2.4 Pyrhon auf ESP32 spielen und ausführen
 - Eine main.py erstellen "File"->"New"
 - MicroPython Interpreter für ESP32 Auswählen
 
