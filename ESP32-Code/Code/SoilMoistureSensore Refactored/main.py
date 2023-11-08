@@ -95,7 +95,7 @@ def main():
     dry = 4095
     wet = 0
     num_values_averaged = 10
-    measure_duration = 10000  # 10 seconds in milliseconds
+    measure_duration = 5000  # 10 seconds in milliseconds
     numberOfCalibrationValues = 10
     numberOfCalibrations = 4
     
