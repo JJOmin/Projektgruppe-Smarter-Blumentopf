@@ -40,7 +40,7 @@ class SoilMoistureSensor:
         elif self.kalibration_loops == num_calibration_values:
             wet_min = min(self.sensor_values)
             wet_max = max(self.sensor_values)
-            self.wet = max(self.sensor_values)
+            self.wet = sum(self.sensor_values)/len(self.sensor_values)
             print("")
             print("Calibration is over")
             print("Wet Average Value: {:.2f}".format(sum(self.sensor_values)/len(self.sensor_values)))
