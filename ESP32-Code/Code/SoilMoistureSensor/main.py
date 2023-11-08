@@ -54,7 +54,7 @@ def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
             rawValueArray.append(sensor_value)
             last_moisture_read_time = current_time
         
-        print("Avg of ",numValuesAveraged,"Measurments: Percentage: {:.2f}%".format(average(percentageArray))," Raw Sensor Data:",average(rawValueArray))
+        print("Avg of",numValuesAveraged,"Measurments: Percentage: {:.2f}%".format(average(percentageArray))," Raw Sensor Data:",average(rawValueArray))
         print("")
     
         #Clears the list
@@ -93,7 +93,7 @@ def moistureSensorKalibration(numKalibrationValues, adc, numValuesAveraged, meas
     elif kalibrationLoops == numKalibrationValues:
         wetMin = min(rawValueArray)
         wetMax = max(rawValueArray)
-        wet = average(rawValueArray)
+        wet = max(rawValueArray)
         print("")
         print("Kalibration is over")
         print("Wet Average Value: ",average(rawValueArray))
@@ -101,7 +101,7 @@ def moistureSensorKalibration(numKalibrationValues, adc, numValuesAveraged, meas
         print("Max Wet Value:",wetMax)
         print("Dry Value:",dry)
         print("Wet Value:",wet)
-        print("Maximum Wet Differenz: ",max(rawValueArray) - min(rawValueArray))
+        print("Maximum Wet to Dry Differenz: ",max(rawValueArray) - min(rawValueArray))
         print("")
         percentageArray.clear()
         rawValueArray.clear()
@@ -109,7 +109,16 @@ def moistureSensorKalibration(numKalibrationValues, adc, numValuesAveraged, meas
         kalibrationLoops += 1
         
     else:
-        moistureSensor(adc,dry,wet, numValuesAveraged, measureDuration)
+        if wet > 4000:
+            print("")
+            print("Fehler, wert führ Wet ist zu hoch, Rekalibrierung notwendig")
+            print("")
+            print("Automatische Rekalibrierung Startet")
+            print("")
+            kalibrationLoops = 1
+            
+        if wet < 4000:
+            moistureSensor(adc,dry,wet, numValuesAveraged, measureDuration)
         
         
 #-------------------------------------------------------#
@@ -126,7 +135,7 @@ def average(array):
 #--------------------------Main--------------------------#
 def main(adc, led_pin, button_pin):
     while True:
-        moistureSensorKalibration(30, adc, 10, 1000) #Number of Values for Kalibration, Analog to Digital Converter, Number of Measurments for one Average Measurment, Duration of the Number of Measurments in ms
+        moistureSensorKalibration(50, adc, 10, 1000) #Number of Values for Kalibration, Analog to Digital Converter, Number of Measurments for one Average Measurment, Duration of the Number of Measurments in ms
         button(led_pin, button_pin)
         
 #--------------------------------------------------------#
