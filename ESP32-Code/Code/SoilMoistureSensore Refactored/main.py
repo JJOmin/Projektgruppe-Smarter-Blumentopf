@@ -79,6 +79,7 @@ class SoilMoistureSensor:
             avg_percentage = sum( self.moisture_percentage) / len( self.moisture_percentage)
             avg_sensor_value = sum(self.sensor_values) / len(self.sensor_values)
             self.sensor_values.clear()
+            self.moisture_percentage.clear()
             self.last_measure_time = current_time
             return avg_percentage, avg_sensor_value
         return None, None
@@ -96,7 +97,7 @@ def main():
     num_values_averaged = 10
     measure_duration = 10000  # 10 seconds in milliseconds
     numberOfCalibrationValues = 10
-    numberOfCalibrations = 40
+    numberOfCalibrations = 4
     
     led_pin = machine.Pin(26, machine.Pin.OUT)
     button_pin = machine.Pin(33, machine.Pin.IN, machine.Pin.PULL_UP)
