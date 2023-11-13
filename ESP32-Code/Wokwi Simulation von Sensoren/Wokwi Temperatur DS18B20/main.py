@@ -4,7 +4,7 @@ import ds18x20
 import utime
 
 #Variable definition
-ds18DataPin = machine.Pin(36)  # Pin 36 verbunden mit DQ pin des DS18B20 Sensors
+ds18DataPin = machine.Pin(22)  # Pin 36 verbunden mit DQ pin des DS18B20 Sensors
 ds18Sensor = ds18x20.DS18X20(onewire.OneWire(ds18DataPin))
 
 
