@@ -15,7 +15,7 @@ while not sta_if.isconnected():
 print(" Connected!")
 
 # URL zur Datei auf dem entfernten Webserver
-url = 'https://cloudleo.duckdns.org/Blumentopf/daten.json'
+url = 'https://cloudleo.duckdns.org/Blumentopf/Database/daten.json'
 
 # Benutzername und Passwort für die Basic-Authentifizierung
 username = b'Blumentopf'
