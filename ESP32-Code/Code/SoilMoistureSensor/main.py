@@ -2,13 +2,15 @@
 from machine import Pin, ADC
 import machine
 import utime
+from Display import Display
+
 
 
 # GPIO pins used:
 pinSoilMoisture = 35  # pin for Soil Moisture Sensor
 led_pin = machine.Pin(26, machine.Pin.OUT) #Pin for the LED
 button_pin = machine.Pin(33, machine.Pin.IN, machine.Pin.PULL_UP)  # PULL_UP activates the internal Pull-Up resistor
-
+display = Display()
 
 #-----------------------Globals-----------------------#
 adc = ADC(Pin(pinSoilMoisture))  # Initialize ADC (Analog to Digital Converter) on the sensor pin
@@ -24,6 +26,7 @@ kalibrationLoops = 0
 
 
 #-----------------------Functions-----------------------#
+
 ##Button der mittels Software die LED ansteuert, um Überprüfen zu können ob der ESP32 noch Läuft
 def button(led_pin, button_pin):
     # Wenn der Button gedrückt wird (niedriger Pegel), schalte die LED ein
@@ -60,6 +63,7 @@ def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
             last_moisture_read_time = current_time
         
         print("Avg of",numValuesAveraged,"Measurments: Percentage: {:.2f}%".format(average(percentageArray))," Raw Sensor Data:",average(rawValueArray))
+        display.displayausgabe("Bodenfeuchtigkeit: {:.2f}%".format(average(percentageArray)))
         print("")
     
         #Clears the list
