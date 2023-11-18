@@ -2,6 +2,22 @@
 from machine import Pin, ADC
 import machine
 import utime
+from machine import Pin, SoftI2C # fürs Display
+from lcd_api import LcdApi
+from i2c_lcd import I2cLcd
+from time import sleep
+
+I2C_ADDR = 0x27     # fürs Display
+totalRows = 2
+totalColumns = 16
+
+
+try:
+    i2c = SoftI2C(scl=Pin(22), sda=Pin(21), freq=10000)  
+   
+    lcd = I2cLcd(i2c, I2C_ADDR, totalRows, totalColumns)
+except Exception as e:
+    print("Fehler beim Initialisieren des LCDs:", e)
 
 
 # GPIO pins used:
@@ -24,6 +40,20 @@ kalibrationLoops = 0
 
 
 #-----------------------Functions-----------------------#
+def displayausgabe(text):
+    
+    try:
+        lcd.clear()
+        lcd.putstr(str(text))
+        sleep(1)
+           
+        
+        
+    except Exception as e:
+        print("Fehler beim Schreiben auf das LCD:", e)
+
+
+
 ##Button der mittels Software die LED ansteuert, um Überprüfen zu können ob der ESP32 noch Läuft
 def button(led_pin, button_pin):
     # Wenn der Button gedrückt wird (niedriger Pegel), schalte die LED ein
@@ -60,6 +90,7 @@ def moistureSensor(adc, dry, wet, numValuesAveraged, measureDuration):
             last_moisture_read_time = current_time
         
         print("Avg of",numValuesAveraged,"Measurments: Percentage: {:.2f}%".format(average(percentageArray))," Raw Sensor Data:",average(rawValueArray))
+        displayausgabe("Bodenfeuchtigkeit: {:.2f}%".format(average(percentageArray)))
         print("")
     
         #Clears the list
