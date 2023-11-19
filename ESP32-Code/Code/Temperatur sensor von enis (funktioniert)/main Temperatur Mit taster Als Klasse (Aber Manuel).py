@@ -28,5 +28,9 @@ class Temperatur:
 temperatur_sensor = Temperatur(ds_pin=22, btn_pin=34) #wichtig geht nur mit Pin22
 
 while True:
-    temperatur_sensor.start_by_press()
-    time.sleep(2)
+    #temperatur_sensor.start_by_press()
+    #time.sleep(2)
+    if temperatur_sensor.btnYellow.value():
+        temperatur_sensor.read_temperature()
+    
+    
