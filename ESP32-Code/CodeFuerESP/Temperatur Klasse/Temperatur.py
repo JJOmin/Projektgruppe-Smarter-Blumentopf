@@ -1,5 +1,7 @@
 import machine, onewire, ds18x20, time
 
+from Controller import Controller
+
 class Temperatur:
     def __init__(self, ds_pin, btn_pin): 
         self.ds_pin = machine.Pin(ds_pin) # pin für Sensor
@@ -18,7 +20,7 @@ class Temperatur:
 
     def start_by_press(self): # die schleife wird ausgeführt wenn der taster gedrückt wird
         self.running = True # S
-        while self.running: #endloschschleife solange 
+        while self.running: # endloschschleife solange 
             self.read_temperature()
             if self.btnYellow.value() == 0: #
                 self.running = False
@@ -29,6 +31,6 @@ class Temperatur:
 # Instanzierung der Klasse. Instanzierung in die Main??? 
 temperatur_sensor = Temperatur(ds_pin=22, btn_pin=34) #wichtig geht nur mit Pin22
 
-while True: # Endlosschleife die darauf wartet das Btn gedrückt wird
+while True: # Endlosschleife die darauf wartet das Btn gedrückt wird und dann Methoden istanziert
     if temperatur_sensor.btnYellow.value(): # wenn der wert vom btn True ist
         temperatur_sensor.read_temperature() # startet diese Methode

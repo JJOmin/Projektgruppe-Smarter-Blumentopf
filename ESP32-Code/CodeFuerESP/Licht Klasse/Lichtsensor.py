@@ -1,9 +1,13 @@
-#Lichtsescor
 import machine
 
+
 class Lichtsensor:
-    def __init__():
-        
-        
-    def lies_lichtstaerke():
-        print("hier das ist nur eine hilfe stellung nach UML diagramm") #Kannst du wenn du codest Löschen
+    def __init__(self):
+        pass
+
+    def lies_lichtstaerke(self):
+        print("Hier, das ist nur eine Hilfestellung nach dem UML-Diagramm. Kannst du beim Coden löschen.")
+        pass
+
+#Instanzierung
+objekt_Lichtsensor = Lichtsensor()
