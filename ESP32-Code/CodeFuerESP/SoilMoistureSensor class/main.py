@@ -1,6 +1,7 @@
 from machine import Pin, ADC
 import machine
 import utime
+from SoilMoistureSensor import SoilMoistureSensor
 
 def button(led_pin, button_pin):
     if button_pin.value() != 1:
