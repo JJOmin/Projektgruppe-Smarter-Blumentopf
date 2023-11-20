@@ -19,7 +19,7 @@ def main():
     
     led_pin = machine.Pin(26, machine.Pin.OUT)
     button_pin = machine.Pin(33, machine.Pin.IN, machine.Pin.PULL_UP)
-    soil_sensor = SoilMoistureSensor(pin_soil_moisture, dry, wet, num_values_averaged, measure_duration, numberOfCalibrationValues)
+    soil_sensor = Bodenfeuchtigkeitsensor(pin_soil_moisture, dry, wet, num_values_averaged, measure_duration, numberOfCalibrationValues)
     
     calibrated = 0
     

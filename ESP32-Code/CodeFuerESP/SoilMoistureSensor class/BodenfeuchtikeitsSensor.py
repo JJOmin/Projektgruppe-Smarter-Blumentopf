@@ -2,7 +2,7 @@ from machine import Pin, ADC
 import machine
 import utime
 
-class SoilMoistureSensor:
+class Bodenfeuchtigkeitsensor:
     def __init__(self, pin, dry, wet, num_values_averaged, measure_duration, numberOfCalibrationValues):
         self.adc = ADC(Pin(pin))
         self.dry = dry
