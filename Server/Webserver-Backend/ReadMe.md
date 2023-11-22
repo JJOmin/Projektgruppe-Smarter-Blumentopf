@@ -13,19 +13,33 @@ gunicorn -w 4 -b 192.168.178.59:5000 app:app
 3. Beenden über Control + C
 
 4. Verlassen von venv:
-
 ```bash
 bash:
 deactivate
 ```
-6. Auf app.py zugreifen im venv:
+
+5. gucken was auf port 5000 so läuft:
+
+```bash
+bash:
+sudo lsof -i :5000
+```
+
+6. alle prozesse auf port 5000 töten:
+
+```bash
+bash:
+sudo killall gunicorn
+```
+
+7. Auf app.py zugreifen im venv:
 ```bash
 bash
 nano app.py
 ```
 (Speichern in Nano mit Control + X und dann Y, Enter)
 
-7. Code der app.py für Flask auf dem Server:
+8. Code der app.py für Flask auf dem Server:
 ```python
 Python:
 from flask import Flask, request
