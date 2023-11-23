@@ -3,6 +3,7 @@ import time
 import urequests
 import machine
 import ubinascii
+import json
 
 print("Connecting to WiFi", end="")
 sta_if = network.WLAN(network.STA_IF)
@@ -14,7 +15,7 @@ while not sta_if.isconnected():
 print(" Connected!")
 
 # URL zur Datei auf dem entfernten Webserver
-url = 'https://cloudleo.duckdns.org/Blumentopf/daten.txt'
+url = 'https://cloudleo.duckdns.org/Blumentopf/daten.json'
 
 # Benutzername und Passwort für die Basic-Authentifizierung
 username = b'Blumentopf'
@@ -42,7 +43,10 @@ def main():
         print('Inhalt der Datei aus', url)
         print(file_content)
         print("")
+        print("Ausgabe als convertiertes Array: ")
+        print(json.loads(file_content)) #Konvertierung Json in Python array
+        #print(json.loads(file_content).keys())
     else:
         print('Fehler beim Abrufen der Datei.')
-
+        
 main()
