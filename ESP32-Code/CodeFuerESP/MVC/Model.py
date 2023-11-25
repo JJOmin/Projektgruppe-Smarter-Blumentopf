@@ -9,7 +9,10 @@ class Model(Controller):
         
     def beispielNeu_methode(self):
         print(self.beispielNeu)
-        self.beispiel_methode() # ruft hier die vererbte methode Vom controller auf 
+        self.beispiel_methode() # ruft hier die vererbte methode Vom controller auf
+        
+    def get_sesor_data(self):
+        pass
         
 model_instanz = Model(10,20)
 model_instanz.beispielNeu_methode()
