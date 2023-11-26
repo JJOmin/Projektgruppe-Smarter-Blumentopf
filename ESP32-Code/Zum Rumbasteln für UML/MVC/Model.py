@@ -1,21 +1,32 @@
 # Modell
 
-from Controller import Controller
+#from Controller import Controller
 
-class Model(Controller):
-    def __init__(self, beispiel, beispielNeu):
-        super().__init__(beispiel) # Aufruf der klasse controller
-        self.beispielNeu = beispielNeu
+class Model:
+    def __init__(self):
+        self.ssid = "0"
+        self.WifiPw = "0"
+        self.remoteUrl = 'https://www.tilly.cloud/Blumentopf/Database/plantData.json'
+        self.uploadUrl = 'https://blumentopfupload.tilly.cloud/Blumentopf/upload_data'
+        self.webUser = b'Blumentopf'
+        self.webPw = b'Blumentopf_123'
         
-    def beispielNeu_methode(self):
-        print(self.beispielNeu)
-        self.beispiel_methode() # ruft hier die vererbte methode Vom controller auf
+    def set(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+        print("Variables updated successfully")
         
-    def get_sesor_data(self):
-        pass
+    def get(self, *args):
+        if not args:
+            return {attr: getattr(self, attr) for attr in dir(self) if not attr.startswith("__") and not callable(getattr(self, attr))}
+        else:
+            return {attr: getattr(self, attr) for attr in args if hasattr(self, attr)}
         
-model_instanz = Model(10,20)
-model_instanz.beispielNeu_methode()
-# der obere code ist nur ein Beispiel wie vererbung auf dem ESP32 funktionieren kann
-# Beachte hierbei das die klasse Controller.py auf dem Controller gespeichert werden muss!!!  
-    
+# model_instanz = Model()
+# # Abrufen der Werte von allen Attributen
+# print("")
+# print(model_instanz.get())
+# print("")
+# 
+# # Abrufen der Werte von spezifischen Attributen
+# print(model_instanz.get('ssid'))

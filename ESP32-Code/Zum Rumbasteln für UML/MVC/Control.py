@@ -1,14 +1,21 @@
-#Control
 from Server import Server
-ssid = 'Flat mars society 5G death laser'
-password = '5G power'
-remote_url = 'https://www.tilly.cloud/Blumentopf/Database/daten.json'  # falls fehler auftrete auf "https://cloudleo.duckdns.org/Blumentopf/Database/daten.json" setzen
-upload_url = 'https://blumentopfupload.tilly.cloud/Blumentopf/upload_data'  # falls fehler auftreten auf "http://31.19.90.130:5000/Blumentopf/upload_data" setzen
-username = b'Blumentopf'
-password_b = b'Blumentopf_123'
+from Model import Model
 
-Server = Server(ssid, password, remote_url, upload_url, username, password_b)
-Server.connectWifi()
-print(Server.getRemote())
-print(Server.setTestDataToServer())
-print(Server.getRemote())
+class Control:
+    def __init__(self):
+        self.beispiel = "beispiel"
+        self.model = Model()
+        
+        
+    def serverTest(self):
+        Server = Server(self.model.ssid, self.model.wifiPw, self.model.remoteUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
+        Server.connectWifi()
+        print(Server.getRemote())
+        print(Server.setTestDataToServer())
+        print(Server.getRemote())
+        
+        
+        
+#Instanzierung
+#control = Control()
+#control.serverTest

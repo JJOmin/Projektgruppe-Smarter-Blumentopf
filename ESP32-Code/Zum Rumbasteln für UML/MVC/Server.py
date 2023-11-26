@@ -63,10 +63,13 @@ class Server:
             return f"Fehler beim Senden der Daten: {response.status_code}"
         
     def setUpload(self, content):
+        date_time = self.get_date()
         data = {
             "Temperatur": content[0],
             "Bodenfeuchtigkeit": content[1],
             "Helligkeit": content[2],
+            "Datum": date_time[0],
+            "Uhrzeit": date_time[1],
             
         }
         response = requests.post(self.upload_url, json=data)
@@ -74,18 +77,3 @@ class Server:
             return "Daten erfolgreich gesendet und gespeichert."
         else:
             return f"Fehler beim Senden der Daten: {response.status_code}"
-
-# Informationen die benötigt werden um die Klasse zu initialisieren
-# ssid = 'Flat mars society 5G death laser'
-# password = '5G power'
-# remote_url = 'https://www.tilly.cloud/Blumentopf/Database/daten.json'  # falls fehler auftrete auf "https://cloudleo.duckdns.org/Blumentopf/Database/daten.json" setzen
-# upload_url = 'https://blumentopfupload.tilly.cloud/Blumentopf/upload_data'  # falls fehler auftreten auf "http://31.19.90.130:5000/Blumentopf/upload_data" setzen
-# username = b'Blumentopf'
-# password_b = b'Blumentopf_123'
-# 
-# connection = Server(ssid, password, remote_url, upload_url, username, password_b)
-# connection.connectWifi()
-# print(connection.getRemote())
-# print(connection.setTestDataToServer())
-# print(connection.getRemote())
-
