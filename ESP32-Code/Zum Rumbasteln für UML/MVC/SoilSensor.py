@@ -6,8 +6,7 @@ import utime
 
 class SoilSensor:
     def __init__(self, soilData): #, pin, dry, wet, numValuesAvg, measureDuration, numCalibrations
-        
-        self.adc = ADC(Pin(soilData['pin']))
+        self.adc = ADC(Pin(soilData['dpin']))
         self.dry = soilData['dry']
         self.wet =  soilData['wet']
         self.numValuesAvg =  soilData['numValuesAvg']
@@ -27,7 +26,7 @@ class SoilSensor:
         mapped_value = to_min + (scaled_value * to_range)
         return mapped_value
     
-    def calibration(self, self.numCalibrations):
+    def calibration(self):
         current_time = utime.ticks_ms()
 
         if 0 < self.kalibration_loops < self.numCalibrations:
@@ -73,7 +72,7 @@ class SoilSensor:
                 
                 
 
-    def read_moisture(self):
+    def readMoisture(self):
         current_time = utime.ticks_ms()
         if current_time - self.last_measure_time >= self.measureDuration:
             for _ in range(self.numValuesAvg):

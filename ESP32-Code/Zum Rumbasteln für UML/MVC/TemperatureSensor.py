@@ -1,12 +1,12 @@
 import machine, onewire, ds18x20, time
 
-class Temperature:
-    def __init__(self, ds_pin): #btn_pin
-        self.ds_pin = machine.Pin(ds_pin) # pin für Sensor
+class TemperatureSensor:
+    def __init__(self, tempData): #btn_pin
+        self.ds_pin = machine.Pin(tempData['dpin']) # pin für Sensor
         self.ds_sensor = ds18x20.DS18X20(onewire.OneWire(self.ds_pin)) # Kominikation mit Sensor
         #self.btnColor = machine.Pin(btn_pin, machine.Pin.IN) # Taster
         self.roms = self.ds_sensor.scan() #Suche nach DS18B20-Sensoren
-        print('Found DS devices: ', self.roms) #Ausgabe der gefundenen Adressen:
+        #print('Found DS devices: ', self.roms) #Ausgabe der gefundenen Adressen:
         self.running = False # Maybe muss das true sein(noch nicht sicher)
 
     def readTemperature(self): #Funktion ließ die Temperatur 
