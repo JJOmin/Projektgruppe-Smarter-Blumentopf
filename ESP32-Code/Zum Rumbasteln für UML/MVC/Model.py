@@ -4,29 +4,19 @@
 
 class Model:
     def __init__(self):
-        self.ssid = "0"
-        self.WifiPw = "0"
-        self.remoteUrl = 'https://www.tilly.cloud/Blumentopf/Database/plantData.json'
-        self.uploadUrl = 'https://blumentopfupload.tilly.cloud/Blumentopf/upload_data'
+        self.ssid = "Flat mars society 5G death laser"
+        self.wifiPw = "5G power"
+        self.remoteUrl = 'https://www.tilly.cloud/Blumentopf/Database/plantData.json'  # falls fehler auftrete auf "https://cloudleo.duckdns.org/Blumentopf/Database/daten.json" setzen
+        self.uploadUrl = 'https://blumentopfupload.tilly.cloud/Blumentopf/upload_data' # falls fehler auftreten auf "http://31.19.90.130:5000/Blumentopf/upload_data" setzen
         self.webUser = b'Blumentopf'
         self.webPw = b'Blumentopf_123'
         
-    def set(self, **kwargs):
+        self.soilData = {'dpin':35, 'wet': 4095, 'dry': 0, 'numValuesAvg': 2, 'measureDuration':5000 , 'numCalibrations':  4}
+        self.tempData = {'dpin':22}
+        
+    def set(self, **kwargs): #sets new values into attributes
         for key, value in kwargs.items():
             setattr(self, key, value)
-        print("Variables updated successfully")
         
-    def get(self, *args):
-        if not args:
-            return {attr: getattr(self, attr) for attr in dir(self) if not attr.startswith("__") and not callable(getattr(self, attr))}
-        else:
-            return {attr: getattr(self, attr) for attr in args if hasattr(self, attr)}
-        
-# model_instanz = Model()
-# # Abrufen der Werte von allen Attributen
-# print("")
-# print(model_instanz.get())
-# print("")
-# 
-# # Abrufen der Werte von spezifischen Attributen
-# print(model_instanz.get('ssid'))
+    def get(self, attr_name): #Etwas überflüssig, aber eventuell wegen vererbung noch notwendig
+        return getattr(self, attr_name)
