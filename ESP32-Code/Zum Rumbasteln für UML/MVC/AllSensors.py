@@ -1,17 +1,19 @@
 from SoilSensor import SoilSensor
 from TemperatureSensor import TemperatureSensor
+from LightSensor import LightSensor# der hat gefehlt
 
 
 
 class AllSensors: #Class that holds instances of every sensor to get measurments
     def __init__(self, soilData, tempData, lightData):
-        self.soilData = soilData
-        self.tempData = tempData
-        self.lightData = lightData
+        self.soilData = soilData # datenvariable fuer den Bodensensor
+        self.tempData = tempData #datenvariable fuer den Temperatursensor
+        self.lightData = lightData #datenvariable fuer den Lichtsensor
         
+        #Instanzierung der Klassen???
         self.soilSensor = SoilSensor(soilData)
         self.temperatureSensor = TemperatureSensor(tempData)
-        self.lightSensor = LightSensor(lightData)
+        self.lightSensor = LightSensor(lightData) 
         
         self.soilSensorValue = 'no data'
         self.lightSensorValue = 'no data'
