@@ -10,14 +10,14 @@ class SoilSensor:
         self.dry = soilData['dry']
         self.wet =  soilData['wet']
         self.numValuesAvg =  soilData['numValuesAvg']
-        self.measureDuration = soilData['measureDuration'] 
+        self.measureDuration = soilData['measureDuration']  # milliseconds
         self.numCalibrations = soilData['numCalibrations']
         
         self.sensor_values = []
         self.moisture_percentage = []
         self.last_measure_time = 0
         self.kalibration_loops = 0
-        self.calibrated = False
+        self.calibrated = True
 
     def map_range(self, value, from_min, from_max, to_max, to_min):
         from_range = from_max - from_min
@@ -73,7 +73,9 @@ class SoilSensor:
                 
 
     def readMoisture(self):
+        #print(self.last_measure_time)
         current_time = utime.ticks_ms()
+        #print(current_time)
         if current_time - self.last_measure_time >= self.measureDuration:
             for _ in range(self.numValuesAvg):
                 sensor_value = self.adc.read()
@@ -85,4 +87,4 @@ class SoilSensor:
             self.moisture_percentage.clear()
             self.last_measure_time = current_time
             return avg_percentage, avg_sensor_value
-        return None, None
+        return None

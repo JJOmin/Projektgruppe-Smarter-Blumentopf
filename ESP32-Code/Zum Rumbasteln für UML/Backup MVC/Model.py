@@ -11,7 +11,7 @@ class Model:
         self.webUser = b'Blumentopf'
         self.webPw = b'Blumentopf_123'
         
-        self.soilData = {'dpin':35, 'wet': 3842.04, 'dry': 4095, 'numValuesAvg': 2, 'measureDuration':5000 , 'numCalibrations':  4}
+        self.soilData = {'dpin':35, 'wet': 3842.04, 'dry': 4095, 'numValuesAvg': 2, 'measureDuration': 5000, 'numCalibrations':  4}
         self.tempData = {'dpin':22}
         self.lightData = {'scl':22, 'sda': 21}
         
