@@ -6,6 +6,15 @@ class Control:
     def __init__(self):
         self.model = Model()
         
+                
+    def mainProcess(self):
+        pass
+    
+    
+    
+    
+    
+    #-------------Tests-----------------#
     def serverTest(self): #method to send Test Data to server and pulls data from the server
         self.server = Server(self.model.ssid, self.model.wifiPw, self.model.remoteUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
         self.server.connectWifi()
