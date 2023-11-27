@@ -35,3 +35,5 @@ class LightSensor:
             return("Too bright to measure")
 
         time.sleep_ms(1000)
+        
+        

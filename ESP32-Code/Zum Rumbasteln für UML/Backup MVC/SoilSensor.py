@@ -10,7 +10,7 @@ class SoilSensor:
         self.dry = soilData['dry']
         self.wet =  soilData['wet']
         self.numValuesAvg =  soilData['numValuesAvg']
-        self.measureDuration = soilData['measureDuration']  # milliseconds
+        self.measureDuration = soilData['measureDuration'] 
         self.numCalibrations = soilData['numCalibrations']
         
         self.sensor_values = []
