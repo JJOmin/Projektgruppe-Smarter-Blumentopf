@@ -2,7 +2,7 @@ from machine import Pin, ADC
 import machine
 import utime
 from Bodenfeuchtigkeitsensor import Bodenfeuchtigkeitsensor
-from Display import Display
+#from Display import Display
 
 
 def button(led_pin, button_pin):
@@ -15,15 +15,15 @@ def main():
     pin_soil_moisture = 35
     dry = 4095
     wet = 0
-    num_values_averaged = 2
+    num_values_averaged = 4
     measure_duration = 5000  # 10 seconds in milliseconds
     numberOfCalibrationValues = 10
-    numberOfCalibrations = 4
+    numberOfCalibrations = 300
     
     led_pin = machine.Pin(26, machine.Pin.OUT)
     button_pin = machine.Pin(33, machine.Pin.IN, machine.Pin.PULL_UP)
     soil_sensor = Bodenfeuchtigkeitsensor(pin_soil_moisture, dry, wet, num_values_averaged, measure_duration, numberOfCalibrationValues)
-    display = Display()
+    #display = Display()
     
     calibrated = 0
     
@@ -36,8 +36,8 @@ def main():
         elif calibrated == 1:
             avg_moisture, avg_sensor_value = soil_sensor.read_moisture()
             if avg_moisture is not None:
-                print("Avg of", num_values_averaged, "Measurements: Percentage: {:.2f}%".format(avg_moisture * 2), " Raw Sensor Data:", avg_sensor_value)
-                display.displayausgabe("Bodenfeuchtigkeit: {:.2f}%".format(avg_moisture * 2))
+                print("Avg of", num_values_averaged, "Measurements: Percentage: {:.2f}%".format(avg_moisture), " Raw Sensor Data:", avg_sensor_value)
+                #display.displayausgabe("Bodenfeuchtigkeit: {:.2f}%".format(avg_moisture * 2))
         button(led_pin, button_pin)
 
 if __name__ == "__main__":
