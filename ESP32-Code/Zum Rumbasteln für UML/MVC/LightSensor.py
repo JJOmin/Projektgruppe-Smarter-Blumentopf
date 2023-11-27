@@ -36,11 +36,3 @@ class LightSensor:
             return("Too bright to measure")
 
         time.sleep_ms(1000)
-        
-        
-#scl= Pin(22, Pin.OUT)
-#sda= Pin(21, Pin.OUT)
-#sensor = LichtSensor(22, 21)
-    
-#while True:
-    #sensor.auslesen()
