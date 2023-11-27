@@ -15,7 +15,7 @@ class Model:
         self.tempData = {'dpin':22}
         self.lightData = {'scl':22, 'sda': 21}
 
-        self.plantValues = {'plantName': 0}
+        self.plantData = {'plantName': 0}
         
         
     def set(self, **kwargs): #sets new values into attributes

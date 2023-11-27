@@ -10,9 +10,14 @@ class Control:
         self.server.connectWifi()
 
     def processingLogic(self): #Methode die die Hauptlogik des Programms beinhaltet
-        pass    
+        pass
+        if self.model.plantData['plantName'] == 0:    #Wenn noch kein Inhalt in der Eigenschaft im Model Herruntergeladen wurde, dann wird der Inhalt vom Server geladen
+            self.model.plantData = self.server.getRemote() #Sentzt den inhalt auf dem Server gleich der Eigenschaft plantData im Model
+            #Hier müsste dann die Datenstrukltur der JSON auf dem Server fertig sein!
+
         # 1. Herrunterladen und aktualisieren des Models mit den Daten vom Server
-        #   -
+        #   -self.model.plantData = self.server.getRemote() #Sentzt den inhalt auf dem Server gleich der Eigenschaft plantData im Model
+
         # 2. Schleife die im definierten abstand von 5 Sekunden 
         #   -die Sensoren ausließt 
         #   -die Daten in das Model schreibt? 
