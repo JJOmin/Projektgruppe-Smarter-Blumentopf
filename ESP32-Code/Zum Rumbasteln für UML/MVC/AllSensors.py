@@ -21,8 +21,8 @@ class AllSensors: #Class that holds instances of every sensor to get measurments
     def readSoilSensor(self):
         self.soilSensorValue = self.soilSensor.readMoisture()
         
-    def readTemperature(self):
+    def readTemperatureSensor(self):
         self.temperaturSensorValue = self.temperatureSensor.readTemperature()
         
-    def readLight(self):
+    def readLightSensor(self):
         self.lightSensorValue = self.lightSensor.readLightSensor()
