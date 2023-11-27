@@ -13,4 +13,4 @@ control = Control()
 #temperature_sensor_instance = TemperatureSensor(tempData)
 
 #Für Sam zum Testen
-#control.sensorLightTest() #Tests the LightSensor on Pins {'scl':22, 'sda': 21}
+control.sensorLightTest() #Tests the LightSensor on Pins {'scl':22, 'sda': 21}
