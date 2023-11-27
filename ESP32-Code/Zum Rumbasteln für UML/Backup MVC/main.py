@@ -1,5 +1,3 @@
-#main
-#from Server import Server
 from Control import Control
 from TemperatureSensor import TemperatureSensor
 
