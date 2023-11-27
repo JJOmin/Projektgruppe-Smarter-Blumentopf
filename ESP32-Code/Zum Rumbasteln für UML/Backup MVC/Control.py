@@ -6,16 +6,26 @@ class Control:
     def __init__(self):
         self.model = Model()
         self.allSensors = AllSensors(self.model.soilData, self.model.tempData, self.model.lightData) #Instanziert der Sensor-Klasse die wiederum die Sensoren Instanziert
+        self.server = Server(self.model.ssid, self.model.wifiPw, self.model.remoteUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
+        self.server.connectWifi()
 
     def processingLogic(self): #Methode die die Hauptlogik des Programms beinhaltet
-        pass
+        pass    
+        # 1. Herrunterladen und aktualisieren des Models mit den Daten vom Server
+        #   -
+        # 2. Schleife die im definierten abstand von 5 Sekunden 
+        #   -die Sensoren ausließt 
+        #   -die Daten in das Model schreibt? 
+        #   -auf den Server schreibt? alle 5 Sekunden???
+        # 3. Schleife zur abfrage nach veränderten daten auf dem, Server alle 5 Minuten (zum Testen)
+        # 4.  
 
 
     #Testmethoden um zu überprüfen ob die Sensoren richtig angeschlossen sind und fuinktionieren
 
     def serverTest(self): #method to send Test Data to server and pulls data from the server
-        self.server = Server(self.model.ssid, self.model.wifiPw, self.model.remoteUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
-        self.server.connectWifi()
+        #self.server = Server(self.model.ssid, self.model.wifiPw, self.model.remoteUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
+        #self.server.connectWifi()
         print(self.server.getRemote())
         print(self.server.setTestDataToServer())
         print(self.server.getRemote())
