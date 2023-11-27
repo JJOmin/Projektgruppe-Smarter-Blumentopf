@@ -1,3 +1,5 @@
+#main
+#from Server import Server
 from Control import Control
 from TemperatureSensor import TemperatureSensor
 
@@ -5,8 +7,10 @@ control = Control()
 #control.serverTest() #Tests the server Connection (on the Hotspot of Leos Phone)
 #control.sensorSoilTest() #funktioniert
 
-while True:
-    control.sensorSoilTest()
+#while True: # Endlosschleife die darauf wartet das Btn gedrückt wird und dann Methoden istanziert
+    #if temperatur_sensor.btnColor.value(): # wenn der wert vom btn True ist
+     #   temperatur_sensor.read_temperature() # Startet diese Methode
+
 
 #Für Enis zum Testen
 #control.sensorTemperatureTest() #Tests the Temp Sensor, on Pin 22
