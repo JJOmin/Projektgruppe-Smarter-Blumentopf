@@ -36,8 +36,8 @@ def main():
         elif calibrated == 1:
             avg_moisture, avg_sensor_value = soil_sensor.read_moisture()
             if avg_moisture is not None:
-                print("Avg of", num_values_averaged, "Measurements: Percentage: {:.2f}%".format(avg_moisture * 2), " Raw Sensor Data:", avg_sensor_value)
-                display.displayausgabe("Bodenfeuchtigkeit: {:.2f}%".format(avg_moisture * 2))
+                print("Avg of", num_values_averaged, "Measurements: Percentage: {:.2f}%".format(avg_moisture), " Raw Sensor Data:", avg_sensor_value)
+                display.displayausgabe("Bodenfeuchtigkeit: {:.2f}%".format(avg_moisture))
         button(led_pin, button_pin)
 
 if __name__ == "__main__":
