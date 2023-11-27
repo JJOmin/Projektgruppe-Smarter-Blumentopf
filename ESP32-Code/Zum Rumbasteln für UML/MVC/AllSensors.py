@@ -1,6 +1,6 @@
 from SoilSensor import SoilSensor
 from TemperatureSensor import TemperatureSensor
-from LightSensor import LightSensor# der hat gefehlt
+from LightSensor import LightSensor
 
 
 
