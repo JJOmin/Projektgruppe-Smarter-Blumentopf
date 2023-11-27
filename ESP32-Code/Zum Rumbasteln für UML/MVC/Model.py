@@ -13,6 +13,8 @@ class Model:
         
         self.soilData = {'dpin':35, 'wet': 4095, 'dry': 0, 'numValuesAvg': 2, 'measureDuration':5000 , 'numCalibrations':  4}
         self.tempData = {'dpin':22}
+        self.tempData = {'scl':22, 'sda': 21}
+        
         
     def set(self, **kwargs): #sets new values into attributes
         for key, value in kwargs.items():
