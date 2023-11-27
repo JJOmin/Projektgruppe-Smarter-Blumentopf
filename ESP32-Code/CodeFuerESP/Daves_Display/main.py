@@ -2,10 +2,11 @@ import time
 from machine import Pin, SoftI2C
 
 #import ssd1306
+# hier (z. 7-173) direkt eingefügt, um nicht auf ESP schreiben zu müssen
 
 #MicroPython SSD1306 OLED driver, I2C and SPI interfaces created by Adafruit
 
-#import time
+#import time --> auskommentiert, da bereits importiert
 import framebuf
 
 # register definitions
@@ -171,7 +172,7 @@ class SSD1306_SPI(SSD1306):
         time.sleep_ms(10)
         self.res.high()
 
-
+# Anzahl der Programmdurchläufe pro sekunde
 frameRate = 60
 
 # Button & LED Setup
@@ -186,10 +187,12 @@ led = Pin(ledPin, Pin.OUT)
 
 i2c = SoftI2C(scl=Pin(22), sda=Pin(21))
 
+# Auflösung des Displays
 oled_width = 128
 oled_height = 64
-#oled = ssd1306.SSD1306_I2C(oled_width, oled_height, i2c)
-oled = SSD1306_I2C(oled_width, oled_height, i2c)
+
+#oled = ssd1306.SSD1306_I2C(oled_width, oled_height, i2c) ---> nutzen wenn externe library
+oled = SSD1306_I2C(oled_width, oled_height, i2c) # ---> nutzen wenn library in dieser Datei
 
 # Program Loop
 
