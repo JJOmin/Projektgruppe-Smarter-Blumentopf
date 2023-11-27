@@ -1,7 +1,7 @@
 import machine, onewire, ds18x20, time
 
 class TemperatureSensor:
-    def __init__(self, tempData): #btn_pin
+    def __init__(self, tempData): 
         self.ds_pin = machine.Pin(tempData['dpin']) # pin für Sensor
         self.ds_sensor = ds18x20.DS18X20(onewire.OneWire(self.ds_pin)) # Kominikation mit Sensor
         self.roms = self.ds_sensor.scan() #Suche nach DS18B20-Sensoren
