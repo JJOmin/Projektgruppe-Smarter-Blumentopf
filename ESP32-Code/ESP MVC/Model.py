@@ -14,8 +14,6 @@ class Model:
         self.soilData = {'dpin':35, 'wet': 3842.04, 'dry': 4095, 'numValuesAvg': 2, 'measureDuration': 5000, 'numCalibrations':  4}
         self.tempData = {'dpin':22}
         self.lightData = {'scl':22, 'sda': 21}
-
-        self.plantData = {'plantName': 0}
         
         
     def set(self, **kwargs): #sets new values into attributes

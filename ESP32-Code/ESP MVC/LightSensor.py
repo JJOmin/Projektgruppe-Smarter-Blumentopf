@@ -21,8 +21,7 @@ class LightSensor:
         return light_level
     
         
-        
-    def getTemperature(self):
+    def readLightSensor(self):
         analog_value = self.readValues
         voltage = analog_value / 1024 * 5
         resistance = 2000.0 * voltage / (1 - voltage / 5)

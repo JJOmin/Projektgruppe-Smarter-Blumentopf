@@ -3,13 +3,12 @@
 from Control import Control
 from TemperatureSensor import TemperatureSensor
 
-control = Control() #Instanziert die Control-Klasse
+control = Control()
+while True:
+    control.serverTest() #Tests the server Connection (on the Hotspot of Leos Phone)
+    #control.sensorSoilTest() #funktioniert
 
-while True: #Schleife die Andauernd die Programme darinn aufruft
-    #control.serverTest() #Tests the server Connection (on the Hotspot of Leos Phone)
-    control.sensorSoilTest() #funktioniert
-
-#Für Enis zum Testen
+ #Für Enis zum Testen
 #control.sensorTemperatureTest() #Tests the Temp Sensor, on Pin 22
 #control.sensorTemperatureTest()
 #tempData = {'dpin': 22}  # Beispiel-Pin, ersetze dies durch den tatsächlichen Pin

@@ -5,6 +5,9 @@ from AllSensors import AllSensors
 class Control:
     def __init__(self):
         self.model = Model()
+        self.allSensors = AllSensors(self.model.soilData, self.model.tempData, self.model.lightData)
+        
+    
         
     def serverTest(self): #method to send Test Data to server and pulls data from the server
         self.server = Server(self.model.ssid, self.model.wifiPw, self.model.remoteUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
@@ -28,9 +31,9 @@ class Control:
         print(self.allSensors.lightSensorValue)
         
     def sensorSoilTest(self): #method to test the readings of SoilSensor
-        print("Angeschlossen an: ",self.model.soilData)
-        self.allSensors = AllSensors(self.model.soilData, self.model.tempData, self.model.lightData)
-        print(self.allSensors.soilSensorValue)
-        self.allSensors.readSoilSensor()
-        print(self.allSensors.soilSensorValue)
+        self.allSensors.readSoilSensor() #setzt neuen wert in var der Classe AllSensors alle measureDuration im abstand
+        
+        if self.allSensors.soilSensorValue != None: #wenn nicht None returnt wird (passiert wenn die letzte Messung nicht mindestens measureDuration (z.b. 5000 ms) her ist)
+            #print("Auslesen des Sensores alle", self.model.soilData['measureDuration'], "ms")
+            print(self.allSensors.soilSensorValue)
         
