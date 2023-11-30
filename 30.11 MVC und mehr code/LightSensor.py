@@ -15,7 +15,7 @@ class LightSensor:
         
         
     def readValues(self):# Convert raw data to make it readible for esp
-        data = self.sda_pin.readfrom(0x23, 2)
+        data = self.sda_pin.readfrom(0x23)
         light_level = (data[0] << 8 | data[1]) / 1.2 #data vom sensor
         #time.sleep_ms(1000)
         return light_level
@@ -34,4 +34,4 @@ class LightSensor:
         else:
             return("Too bright to measure")
 
-        time.sleep_ms(1000)
+        #time.sleep_ms(1000)

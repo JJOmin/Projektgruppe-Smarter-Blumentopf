@@ -44,9 +44,10 @@ class Control:
          self.running = True # Start variable die abgefragt wird um start_by_press zu beenden.
          while self.running: # endloschschleife solange 
              
-             #self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
+             
              #self.allSensors.readSoilSensor()
              if self.btnColor.value() == 1: #Wenn sich der Wert vom knopf ändert
                  self.allSensors.readTemperatureSensor()
+                 self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
                  self.running = False # Setze die Prüf variable auf false damit die funktion start_by_press nicht mehr ausgeführt wird
                  #break
