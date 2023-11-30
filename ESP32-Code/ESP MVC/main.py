@@ -10,7 +10,6 @@ while True:
 
  #Für Enis zum Testen
 #control.sensorTemperatureTest() #Tests the Temp Sensor, on Pin 22
-#control.sensorTemperatureTest()
 #tempData = {'dpin': 22}  # Beispiel-Pin, ersetze dies durch den tatsächlichen Pin
 #temperature_sensor_instance = TemperatureSensor(tempData)
 
