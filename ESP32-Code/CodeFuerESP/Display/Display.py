@@ -10,7 +10,7 @@ class Display:
     def __init__(self):
         self.I2C_ADDR = 0x27
         self.totalRows = 2
-        self.totalColumns = 16
+    
         self.last_measure_time = 0
         self.totalColumns = 16
 
