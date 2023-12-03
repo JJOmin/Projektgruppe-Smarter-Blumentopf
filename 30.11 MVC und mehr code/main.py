@@ -3,7 +3,7 @@ from Control import Control
 
 
 control = Control()
-while True:
+hile True:
     control.startByPress()
     #control.serverTest()#Tests the server Connection (on the Hotspot of Leos Phone)
 

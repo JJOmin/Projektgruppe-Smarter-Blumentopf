@@ -11,8 +11,7 @@ class Control:
         self.running = False # brauchen wir nur für deu methode startByPress()
         self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN)
         #self.btnpress = 
-        
-        
+         
     def serverTest(self): #method to send Test Data to server and pulls data from the server
         self.server.connectWifi()
         print(self.server.getRemote())
@@ -35,7 +34,6 @@ class Control:
         
     def sensorSoilTest(self): #method to test the readings of SoilSensor
         self.allSensors.readSoilSensor() #setzt neuen wert in var der Classe AllSensors alle measureDuration im abstand
-        
         if self.allSensors.soilSensorValue != None: #wenn nicht None returnt wird (passiert wenn die letzte Messung nicht mindestens measureDuration (z.b. 5000 ms) her ist)
             #print("Auslesen des Sensores alle", self.model.soilData['measureDuration'], "ms")
             print(self.allSensors.soilSensorValue)
@@ -43,11 +41,9 @@ class Control:
     def startByPress(self): # die schleife wird ausgeführt wenn der taster gedrückt wird
          self.running = True # Start variable die abgefragt wird um start_by_press zu beenden.
          while self.running: # endloschschleife solange 
-             
-             
-             #self.allSensors.readSoilSensor()
              if self.btnColor.value() == 1: #Wenn sich der Wert vom knopf ändert
                  self.allSensors.readTemperatureSensor()
-                 self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
+                 self.allSensors.readSoilSensor()
+                 #self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
                  self.running = False # Setze die Prüf variable auf false damit die funktion start_by_press nicht mehr ausgeführt wird
                  #break

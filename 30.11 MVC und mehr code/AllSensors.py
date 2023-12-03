@@ -3,7 +3,6 @@ from TemperatureSensor import TemperatureSensor
 from LightSensor import LightSensor
 
 
-
 class AllSensors: #Class that holds instances of every sensor to get measurments
     def __init__(self, soilData, tempData, lightData):
         self.soilData = soilData # datenvariable fuer den Bodensensor
