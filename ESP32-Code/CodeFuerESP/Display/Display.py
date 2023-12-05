@@ -81,7 +81,7 @@ class Display:
                     if len(lines[idx])>=16:
                         if idx % 2 == 0:
                             if len(centered_lines) > idx +2:
-                                print("id",idx)
+                                #print("id",idx)
                                 self.lcd.move_to(0, 1)
                                 self.lcd.putstr(centered_lines[idx+1])
                             self.lcd.move_to(0, 0)
@@ -93,7 +93,7 @@ class Display:
                     idx = (idx + 1) % len(centered_lines)
                     
                     current_time = utime.ticks_ms()
-                    print(idx)
+                    #print(idx)
                     if idx == 0:
                         break
 
