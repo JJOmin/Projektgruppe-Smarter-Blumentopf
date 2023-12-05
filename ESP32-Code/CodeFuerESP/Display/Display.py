@@ -75,10 +75,23 @@ class Display:
 
             while idx < len(centered_lines):
                 if utime.ticks_ms() - current_time >= delay_ms:
+                    print(lines)
                     if idx % 2 == 0:
                         self.lcd.clear()
-                    self.lcd.putstr(centered_lines[idx])
+                    if len(lines[idx])>=16:
+                        if idx % 2 == 0:
+                            if len(centered_lines) > idx +2:
+                                print("id",idx)
+                                self.lcd.move_to(0, 1)
+                                self.lcd.putstr(centered_lines[idx+1])
+                            self.lcd.move_to(0, 0)
+                            self.scroll_text(lines[idx], 100)
+                            idx = (idx + 1) % len(centered_lines)
+                        
+                    else:
+                        self.lcd.putstr(centered_lines[idx])
                     idx = (idx + 1) % len(centered_lines)
+                    
                     current_time = utime.ticks_ms()
                     print(idx)
                     if idx == 0:
@@ -93,15 +106,27 @@ class Display:
 
     def display_updated_text(self):
         self.display_centered_text(self.current_display_text)
+        
+    def scroll_text(self, text, scroll_speed=100):
+        text_length = len(text)
+        display_text = text + " " + text  # Add extra spaces for smooth scrolling
+        for i in range(text_length+1):
+            self.lcd.move_to(0, 0)
+            self.lcd.putstr(display_text[i:i + self.totalColumns])
+            # Implement your own timing logic here (without sleep)
+            start_time = utime.ticks_ms()
+            while utime.ticks_diff(utime.ticks_ms(), start_time) < scroll_speed:
+                pass
 
 # Beispielaufruf
-#display = Display()
-#x = 0
-#current_time = utime.ticks_ms()
+display = Display()
+x = 0
+current_time = utime.ticks_ms()
 
-#while True:
-    #print(x)
-    #display_text = "Feuchtigkeit:" + str(x) + "%:Temperatur:" + str(x) + ":Licht:" + str(x)+":"
-    #display.update_display_text(display_text)
-    #display.display_updated_text()
-    #x += 1      
+while True:
+    print(x)
+    display_text = "Bodenfreuchtigkeit:" + str(x) + "%:Temperatur:" + str(x) + ":Licht:" + str(x)+":"
+    #display.scroll_text(display_text, 500)
+    display.update_display_text(display_text)
+    display.display_updated_text()
+    x += 1      
