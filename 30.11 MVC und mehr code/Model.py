@@ -4,7 +4,7 @@
 
 class Model:
     def __init__(self):
-        self.ssid = "RausMitDeViecher!" #Wlan name
+        self.ssid = "" #Wlan name
         self.wifiPw = "Regenbogenkuelschrank3!"
         self.remoteUrl = 'https://www.tilly.cloud/Blumentopf/Database/plantData.json'  # falls fehler auftrete auf "https://cloudleo.duckdns.org/Blumentopf/Database/daten.json" setzen
         self.uploadUrl = 'https://blumentopfupload.tilly.cloud/Blumentopf/upload_data' # falls fehler auftreten auf "http://31.19.90.130:5000/Blumentopf/upload_data" setzen
