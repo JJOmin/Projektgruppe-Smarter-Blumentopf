@@ -1,0 +1,53 @@
+{
+    "basil": {
+        "name": "Basilikum",
+        "boundaries": {
+            "temperature": {
+                "min": 15,
+                "max": 20
+            },
+            "light": {
+                "min": 1000,
+                "max": 5000
+            },
+            "moisture": {
+                "min": 80,
+                "max": 100
+            }
+        }
+    },
+    "monstera": {
+        "name": "Monstera",
+        "boundaries": {
+            "temperature": {
+                "min": 20,
+                "max": 30
+            },
+            "light": {
+                "min": 500,
+                "max": 1000
+            },
+            "moisture": {
+                "min": 30,
+                "max": 60
+            }
+        }
+    },
+    "dragonTree": {
+        "name": "Drachenbaum",
+        "boundaries": {
+            "temperature": {
+                "min": 15,
+                "max": 40
+            },
+            "light": {
+                "min": 1000,
+                "max": 8000
+            },
+            "moisture": {
+                "min": 10,
+                "max": 50
+            }
+        }
+    }
+}
