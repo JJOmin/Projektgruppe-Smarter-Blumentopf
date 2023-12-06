@@ -64,9 +64,9 @@ class LightSensor():
         #print(i2c.scan())
         i2c = machine.I2C(scl=machine.Pin(22), sda=machine.Pin(21))
         s = BH1750(i2c)
-        lightData = s.luminance(BH1750.CONT_LOWRES)
-        
+       
         while True :
+            lightData = s.luminance(BH1750.CONT_LOWRES)
             time.sleep_ms(500)
             print(lightData," lx")
         return lightData
