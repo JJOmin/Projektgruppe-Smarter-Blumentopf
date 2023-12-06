@@ -3,7 +3,7 @@ from Model import Model
 from AllSensors import AllSensors
 import machine 
 
-class Control:
+lass Control:
     def __init__(self):
         self.model = Model()
         self.allSensors = AllSensors(self.model.soilData, self.model.tempData, self.model.lightData) # Instanzierung der Atribute von den jeweili
@@ -32,21 +32,14 @@ class Control:
         self.allSensors.readLightSensor()
         print(self.allSensors.lightSensorValue)
         
-    #def sensorSoilTest(self): #method to test the readings of SoilSensor
+    def sensorSoilTest(self): #method to test the readings of SoilSensor
         #self.allSensors.readSoilSensor() #setzt neuen wert in var der Classe AllSensors alle measureDuration im abstand
-        #if self.allSensors.soilSensorValue != None:#wenn nicht None returnt wird (passiert wenn die letzte Messung nicht mindestens measureDuration (z.b. 5000 ms) her ist)
-            #self.allSensors.readSoilSensor()
-            #print("Auslesen des Sensores alle", self.model.soilData['measureDuration'], "ms")
-            #print(self.allSensors.soilSensorValue)
-            #print("Auslesen des Sensores alle", self.model.soilData['measureDuration'], "ms")
-            #print(self.allSensors.soilSensorValue)
-            
-    def sensorSoilTest(self):
-        self.allSensors.readSoilSensor()
-       # time.sleep(5)  # Wartezeit in Sekunden
-        if self.allSensors.soilSensorValue is not None:
+        if self.allSensors.soilSensorValue != None:
             self.allSensors.readSoilSensor()
-            print(self.allSensors.soilSensorValue)
+            print("Auslesen des Sensores alle", self.model.soilData['measureDuration'], "ms")
+        #if self.allSensors.soilSensorValue != None: #wenn nicht None returnt wird (passiert wenn die letzte Messung nicht mindestens measureDuration (z.b. 5000 ms) her ist)
+            #print("Auslesen des Sensores alle", self.model.soilData['measureDuration'], "ms")
+            #print(self.allSensors.soilSensorValue)
             
     def improvmentPump(self):
         #if
