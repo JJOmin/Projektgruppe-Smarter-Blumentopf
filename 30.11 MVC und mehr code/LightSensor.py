@@ -1,37 +1,73 @@
-#lightsensor
+from utime import sleep_ms
 
-import machine
-import math, time
-from machine import SoftI2C, Pin
-#from Controller import Controller
+class LightSensor():
+    """Micropython BH1750 ambient light sensor driver."""
 
-class LightSensor:
-    def __init__(self, lightData):
-        self.scl = Pin(lightData['scl'], Pin.OUT)
-        self.sda = Pin(lightData['sda'], Pin.OUT)
-        self.scl_pin = machine.Pin(self.scl)
-        self.sda_pin = machine.Pin(self.sda)
-        self.i2c = SoftI2C(scl=Pin(self.scl), sda=Pin(self.sda))
-        
-        
-    def readValues(self):# Convert raw data to make it readible for esp
-        data = self.sda_pin.readfrom(0x23)
-        light_level = (data[0] << 8 | data[1]) / 1.2 #data vom sensor
-        #time.sleep_ms(1000)
-        return light_level
+    PWR_OFF = 0x00
+    PWR_ON = 0x01
+    RESET = 0x07
+
+    # modes
+    CONT_LOWRES = 0x13
+    CONT_HIRES_1 = 0x10
+    CONT_HIRES_2 = 0x11
+    ONCE_HIRES_1 = 0x20
+    ONCE_HIRES_2 = 0x21
+    ONCE_LOWRES = 0x23
+
+    # default addr=0x23 if addr pin floating or pulled to ground
+    # addr=0x5c if addr pin pulled high
+
     
+    def __init__(self, bus, addr=0x23):
+        self.bus = bus
+        self.addr = addr
+        self.off()
+        self.reset()
+        self.i2c = i2c
         
-    def readLightSensor(self):
-        analog_value = self.readValues
-        voltage = analog_value / 1024 * 5
-        resistance = 2000.0 * voltage / (1 - voltage / 5)
-        lux = (50.0 * 1e3 * pow(10.0, 0.7) / resistance) ** (1.0 / 0.7) #standard umrechnung lt 
+    def off(self):
+        """Turn sensor off."""
+        self.set_mode(self.PWR_OFF)
 
-        print(analog_value, lux)
+    def on(self):
+        """Turn sensor on."""
+        self.set_mode(self.PWR_ON)
 
-        if math.isfinite(lux):
-            return("The brightness is {:.2f} lx".format(lux))
-        else:
-            return("Too bright to measure")
+    def reset(self):
+        """Reset sensor, turn on first if required."""
+        self.on()
+        self.set_mode(self.RESET)
 
-        #time.sleep_ms(1000)
+    def set_mode(self, mode):
+        """Set sensor mode."""
+        self.mode = mode
+        self.bus.writeto(self.addr, bytes([self.mode]))
+
+    def luminance(self, mode):
+        """Sample luminance (in lux), using specified sensor mode."""
+        # continuous modes
+        if mode & 0x10 and mode != self.mode:
+            self.set_mode(mode)
+        # one shot modes
+        if mode & 0x20:
+            self.set_mode(mode)
+        # earlier measurements return previous reading
+        #sleep_ms(24 if mode in (0x13, 0x23) else 180)
+        data = self.bus.readfrom(self.addr, 2)
+        #factor = 2.0 if mode in (0x11, 0x23) else 1.0
+        return (data[0]<<8 | data[1]) / (1.2 * 2.0)
+    
+    
+    def readLightSensor(self, mode):
+       # time = utime.ticks_ms()
+        #print(i2c.scan())
+        i2c = machine.I2C(scl=machine.Pin(22), sda=machine.Pin(21))
+        s = BH1750(i2c)
+       
+        while True :
+            lightData = s.luminance(BH1750.CONT_LOWRES)
+            time.sleep_ms(500)
+            print(lightData," lx")
+        return lightData
+

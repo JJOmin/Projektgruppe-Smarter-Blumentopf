@@ -1,37 +1,27 @@
-#lightsensor
-
 import machine
-import math, time
-from machine import SoftI2C, Pin
-#from Controller import Controller
+import time
+from bh1750 import BH1750
 
-class LightSensor:
-    def __init__(self, lightData):
-        self.scl = Pin(lightData['scl'], Pin.OUT)
-        self.sda = Pin(lightData['sda'], Pin.OUT)
-        self.scl_pin = machine.Pin(self.scl)
-        self.sda_pin = machine.Pin(self.sda)
-        self.i2c = SoftI2C(scl=Pin(self.scl), sda=Pin(self.sda))
-        
-        
-    def readValues(self):# Convert raw data to make it readible for esp
-        data = self.sda_pin.readfrom(0x23, 2)
-        light_level = (data[0] << 8 | data[1]) / 1.2 #data vom sensor
-        #time.sleep_ms(1000)
-        return light_level
+i2c = machine.I2C(scl=machine.Pin(22), sda=machine.Pin(21))
+
+#class LightSensor:
+    #def __init__(self):
+        #self.i2c = i2c
+        #self.running = False
     
-        
-    def readLightSensor(self):
-        analog_value = self.readValues
-        voltage = analog_value / 1024 * 5
-        resistance = 2000.0 * voltage / (1 - voltage / 5)
-        lux = (50.0 * 1e3 * pow(10.0, 0.7) / resistance) ** (1.0 / 0.7) #standard umrechnung lt 
+   #def readLightSensor(self):
+       # time = utime.ticks_ms()
+        #test = print(i2c.scan())#kontrolle ob i2c erkannt wird -> 35 = jep
+       # return test
+    
+print(i2c.scan())
+s = BH1750(i2c)
 
-        print(analog_value, lux)
+while True :
+    #time.sleep_ms(500)
+    lightData=s.luminance(BH1750.CONT_LOWRES)
+    
+    print(lightData," lx")
+    
 
-        if math.isfinite(lux):
-            return("The brightness is {:.2f} lx".format(lux))
-        else:
-            return("Too bright to measure")
 
-        time.sleep_ms(1000)
