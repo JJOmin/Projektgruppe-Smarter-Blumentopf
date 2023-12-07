@@ -36,20 +36,16 @@ class Control:
     def sensorSoilTest(self): #method to test the readings of SoilSensor
         self.allSensors.readSoilSensor() #setzt neuen wert in var der Classe AllSensors alle measureDuration im abstand
         if self.allSensors.soilSensorValue != None:#wenn nicht None returnt wird (passiert wenn die letzte Messung nicht mindestens measureDuration (z.b. 5000 ms) her ist)
-            #self.allSensors.readSoilSensor()
             #print("Auslesen des Sensores alle", self.model.soilData['measureDuration'], "ms")
             print("Bodenfeuchtigkeit: ",self.allSensors.soilSensorValue)
             
-#     def sensorSoilTest(self):
-#         self.allSensors.readSoilSensor()
-#        # time.sleep(5)  # Wartezeit in Sekunden
-#         if self.allSensors.soilSensorValue is not None:
-#             self.allSensors.readSoilSensor()
-#             print(self.allSensors.soilSensorValue)
             
     def improvmentPump(self):
-        #if
-        pass
+        if self.allSesors.SoilSensorsValue <= 100:
+            self.activatePump()
+        if self.allSesors.SoilSensorsValue >= 0:
+            deactivatePump(self)
+            pass
         
         
     def startByPress(self): # die schleife wird ausgeführt wenn der taster gedrückt wird
