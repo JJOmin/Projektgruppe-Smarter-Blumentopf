@@ -11,16 +11,29 @@ class Control:
         self.model = Model()
         self.allSensors = AllSensors(self.model.soilData, self.model.tempData, self.model.lightData) # Instanzierung der Atribute von den jeweili
         self.view = View(self.allSensors)
-        self.server = Server(self.model.ssid, self.model.wifiPw, self.model.remoteUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
+        self.server = Server(self.model.ssid, self.model.wifiPw, self.model.uploadUrl, self.model.webUser, self.model.webPw)
         self.running = False # brauchen wir nur für deu methode startByPress()
         self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN)
         #self.btnpress = 
          
-    def serverTest(self): #method to send Test Data to server and pulls data from the server
+    def setupWifi(self): #method to send Test Data to server and pulls data from the server
         self.server.connectWifi()
         print(self.server.getRemote())
         print(self.server.setTestDataToServer())
-        print(self.server.getRemote())
+        print(self.server.getRemote())     
+        
+        
+    def setupServerData(self):
+        print(self.server.getRemote(self.model.prototypUrl))
+        print(self.server.getRemote(self.model.profileUrl))
+         
+         
+         
+         
+         
+         
+         
+
         
     def sensorTemperatureTest(self): #method to test the readings of TemperatureSensor
         print("Angeschlossen an: ",self.model.tempData)
