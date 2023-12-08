@@ -12,13 +12,18 @@ running = True
 #loop
 while running:
     #print(utime.ticks_ms())
+    #sensorData = control.allSensors.readAll()
+    #print(sensorData)
     
-    if utime.ticks_ms() > startTime+6000: #Auslesen der Sensoren
+    if utime.ticks_ms() > startTime+60: #Auslesen der Sensoren
         sensorData = control.allSensors.readAll()
-        control.model.lightLog.append(sensorData[0])
-        control.model.temperatureLog.append(sensorData[1])
-        control.model.soilLog.append(sensorData[2])
-        print(control.model.lightLog, control.model.temperatureLog,  control.model.soilLog)
+        sensorData = control.allSensors.readAll()
+        print(sensorData)
+        control.model.lightLog.append(sensorData)
+        print(control.model.lightLog)
+        #control.model.temperatureLog.append(sensorData[1])
+        #control.model.soilLog.append(sensorData[2])
+        #print(control.model.lightLog, control.model.temperatureLog,  control.model.soilLog)
         
         
         startTime = utime.ticks_ms()
