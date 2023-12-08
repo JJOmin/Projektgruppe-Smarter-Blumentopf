@@ -54,10 +54,9 @@ class Control:
     def startByPress(self): # die schleife wird ausgeführt wenn der taster gedrückt wird
         #self.running = True # Start variable die abgefragt wird um start_by_press zu beenden.
             if self.btnColor.value() == 1: #Wenn sich der Wert vom knopf ändert
-                 self.view.printAllData()
                  self.allSensors.readTemperatureSensor()
                  self.sensorSoilTest() # rufe die Mehtode oben zum lesen auf (zwischenlösung)
                  self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
-                 #print(self.running)
+                 self.view.printAllData()
                  #self.running = False #Setze die Prüf variable auf false damit die funktion start_by_press nicht mehr ausgeführt wird
                  #break
