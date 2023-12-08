@@ -2,7 +2,7 @@
 from AllSensors import AllSensors
 from Display import Display
 
-class View:
+lass View:
     def __init__(self, allSensors):
         self.allSensors = allSensors
         self.display = Display()

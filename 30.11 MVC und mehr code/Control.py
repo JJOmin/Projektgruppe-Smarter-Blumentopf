@@ -18,14 +18,17 @@ class Control:
          
     def setupWifi(self): #method to send Test Data to server and pulls data from the server
         self.server.connectWifi()
-        print(self.server.getRemote())
-        print(self.server.setTestDataToServer())
-        print(self.server.getRemote())     
+        #print(self.server.getRemote())
+        #print(self.server.setTestDataToServer())
+        #print(self.server.getRemote())     
         
         
     def setupServerData(self):
-        print(self.server.getRemote(self.model.prototypUrl))
-        print(self.server.getRemote(self.model.profileUrl))
+        self.model.prototypData = self.server.getRemote(self.model.prototypUrl)
+        print(self.model.prototypData)
+        
+        self.model.profileData = self.server.getRemote(self.model.profileUrl)
+        print(self.model.profileData)
          
          
          

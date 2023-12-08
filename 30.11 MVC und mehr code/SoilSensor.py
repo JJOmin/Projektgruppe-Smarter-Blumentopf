@@ -76,7 +76,7 @@ class SoilSensor:
         #print(self.last_measure_time)
         current_time = utime.ticks_ms()
         #print(current_time)
-        if current_time - self.last_measure_time >= self.measureDuration:
+        #if current_time - self.last_measure_time >= self.measureDuration:
             for _ in range(self.numValuesAvg):
                 sensor_value = self.adc.read()
                 self.moisture_percentage.append(self.map_range(sensor_value, self.wet, self.dry, 0, 100))
@@ -87,4 +87,4 @@ class SoilSensor:
             self.moisture_percentage.clear()
             self.last_measure_time = current_time
             return avg_percentage, avg_sensor_value
-        return None
+        #return None

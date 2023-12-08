@@ -1,12 +1,35 @@
 #main
-rom Control import Control
+from Control import Control
+import utime
 
 #setup
 control = Control() #Initialisierung des MVC
 control.setupWifi() #wifi setup
 control.setupServerData() #server setup
+startTime = utime.ticks_ms()
+running = True
 
-while True:
+#loop
+while running:
+    #print(utime.ticks_ms())
+    
+    if utime.ticks_ms() > startTime+6000: #Auslesen der Sensoren
+        sensorData = control.allSensors.readAll()
+        control.model.lightLog.append(sensorData[0])
+        control.model.temperatureLog.append(sensorData[1])
+        control.model.soilLog.append(sensorData[2])
+        print(control.model.lightLog, control.model.temperatureLog,  control.model.soilLog)
+        
+        
+        startTime = utime.ticks_ms()
+        running = False
+        
+print("Saved the day")
+#Sensoren Intervall (alle 5-10 sekunden)
+
+
+
+
     
     
     
