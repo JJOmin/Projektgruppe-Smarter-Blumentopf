@@ -1,11 +1,13 @@
 from Server import Server
 from Model import Model
+from View import View
 from AllSensors import AllSensors
 from Pump import Pump 
 import machine 
 
 class Control:
     def __init__(self):
+        self.view = View()
         self.model = Model()
         self.allSensors = AllSensors(self.model.soilData, self.model.tempData, self.model.lightData) # Instanzierung der Atribute von den jeweili
         self.server = Server(self.model.ssid, self.model.wifiPw, self.model.remoteUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
@@ -49,11 +51,12 @@ class Control:
         
         
     def startByPress(self): # die schleife wird ausgeführt wenn der taster gedrückt wird
-        self.running = True # Start variable die abgefragt wird um start_by_press zu beenden.
-        while self.running: # endloschschleife solange 
+        #self.running = True # Start variable die abgefragt wird um start_by_press zu beenden.
             if self.btnColor.value() == 1: #Wenn sich der Wert vom knopf ändert
+                 self.view.printAllData()
                  self.allSensors.readTemperatureSensor()
                  self.sensorSoilTest() # rufe die Mehtode oben zum lesen auf (zwischenlösung)
-                 #self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
-            self.running = False # Setze die Prüf variable auf false damit die funktion start_by_press nicht mehr ausgeführt wird
+                 self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
+                 #print(self.running)
+                 #self.running = False #Setze die Prüf variable auf false damit die funktion start_by_press nicht mehr ausgeführt wird
                  #break
