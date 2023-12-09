@@ -1,7 +1,8 @@
 # setup
+    - MVC initialisierung(JSON Data)
     - wifi connection
     - JSON Data from server
-    - MVC initialisierung(JSON Data)
+    
     - (set starttime)
 
 # loop (60 mal die Sekunde)
