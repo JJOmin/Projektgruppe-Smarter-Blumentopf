@@ -150,8 +150,8 @@ class Display:
                 # Ihre eigene Timing-Logik hier implementieren (ohne sleep)
                 start_time = utime.ticks_ms()
                 # Solange warten, bis die festgelegte Scroll-Geschwindigkeit erreicht ist
-                while utime.ticks_diff(utime.ticks_ms(), start_time) < scroll_speed:
-                    pass
+                #while utime.ticks_diff(utime.ticks_ms(), start_time) < scroll_speed:
+                    #pass
         except Exception as e:
             # Fehlermeldung ausgeben, falls ein Fehler auftritt
             print("Fehler beim Schreiben auf das LCD(Scrollen):", e)
