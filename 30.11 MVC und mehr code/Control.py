@@ -39,13 +39,16 @@ class Control:
             #print("Auslesen des Sensores alle", self.model.soilData['measureDuration'], "ms")
             print("Bodenfeuchtigkeit: ",self.allSensors.soilSensorValue)
             
+        
+    def improvementPump(self): #Die Methode dürfete von der Logik her funktionieren aber muss noch an die werte vom soil sensor angeglichen werden!
+        if self.allSensors.SoilSensorsValue == 0: # wenn der wert 0 ist ist kein wasser in dem Topf drin
+            self.activatePump() # Starte die Pumpe
+            print("Pumpe läuft")
+        if self.allSensors.SoilSensorsValue >= 1: # Wenn genug wasser im Topf ist soll die pumpe aufhören. 
+            self.deactivatePump() # Stopp Pumpe
             
-    def improvmentPump(self):
-        if self.allSesors.SoilSensorsValue <= 100:
-            self.activatePump()
-        if self.allSesors.SoilSensorsValue >= 0:
-            deactivatePump(self)
-            pass
+    def ledCheck(self):
+        pass
         
         
     def startByPress(self): # die schleife wird ausgeführt wenn der taster gedrückt wird
