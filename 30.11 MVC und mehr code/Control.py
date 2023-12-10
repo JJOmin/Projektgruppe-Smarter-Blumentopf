@@ -30,13 +30,6 @@ class Control:
         self.model.profileData = self.server.getRemote(self.model.profileUrl)
         print(self.model.profileData)
          
-         
-         
-         
-         
-         
-         
-
         
     def sensorTemperatureTest(self): #method to test the readings of TemperatureSensor
         print("Angeschlossen an: ",self.model.tempData)

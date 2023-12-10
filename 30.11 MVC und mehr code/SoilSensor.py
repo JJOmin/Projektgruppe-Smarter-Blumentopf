@@ -77,10 +77,10 @@ class SoilSensor:
         current_time = utime.ticks_ms()
         #print(current_time)
         #if current_time - self.last_measure_time >= self.measureDuration:
-            for _ in range(self.numValuesAvg):
-                sensor_value = self.adc.read()
-                self.moisture_percentage.append(self.map_range(sensor_value, self.wet, self.dry, 0, 100))
-                self.sensor_values.append(sensor_value)
+        for _ in range(self.numValuesAvg):
+            sensor_value = self.adc.read()
+            self.moisture_percentage.append(self.map_range(sensor_value, self.wet, self.dry, 0, 100))
+            self.sensor_values.append(sensor_value)
             avg_percentage = sum( self.moisture_percentage) / len( self.moisture_percentage)
             avg_sensor_value = sum(self.sensor_values) / len(self.sensor_values)
             self.sensor_values.clear()

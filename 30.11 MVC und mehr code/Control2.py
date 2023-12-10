@@ -3,7 +3,7 @@ from Model import Model
 from AllSensors import AllSensors
 import machine 
 
-lass Control:
+class Control:
     def __init__(self):
         self.model = Model()
         self.allSensors = AllSensors(self.model.soilData, self.model.tempData, self.model.lightData) # Instanzierung der Atribute von den jeweili
