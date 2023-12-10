@@ -1,23 +1,42 @@
 from Server import Server
 from Model import Model
+from View import View
 from AllSensors import AllSensors
 from Pump import Pump 
 import machine 
 
 class Control:
     def __init__(self):
+        
         self.model = Model()
         self.allSensors = AllSensors(self.model.soilData, self.model.tempData, self.model.lightData) # Instanzierung der Atribute von den jeweili
-        self.server = Server(self.model.ssid, self.model.wifiPw, self.model.remoteUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
+        self.view = View(self.allSensors)
+        self.server = Server(self.model.ssid, self.model.wifiPw, self.model.uploadUrl, self.model.webUser, self.model.webPw)
         self.running = False # brauchen wir nur für deu methode startByPress()
         self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN)
         #self.btnpress = 
          
-    def serverTest(self): #method to send Test Data to server and pulls data from the server
+    def setupWifi(self): #method to send Test Data to server and pulls data from the server
         self.server.connectWifi()
-        print(self.server.getRemote())
-        print(self.server.setTestDataToServer())
-        print(self.server.getRemote())
+        #print(self.server.getRemote())
+        #print(self.server.setTestDataToServer())
+        #print(self.server.getRemote())     
+        
+        
+    def setupServerData(self):
+        self.model.prototypData = self.server.getRemote(self.model.prototypUrl)
+        print(self.model.prototypData)
+        
+        self.model.profileData = self.server.getRemote(self.model.profileUrl)
+        print(self.model.profileData)
+         
+         
+         
+         
+         
+         
+         
+
         
     def sensorTemperatureTest(self): #method to test the readings of TemperatureSensor
         print("Angeschlossen an: ",self.model.tempData)
@@ -52,11 +71,11 @@ class Control:
         
         
     def startByPress(self): # die schleife wird ausgeführt wenn der taster gedrückt wird
-        self.running = True # Start variable die abgefragt wird um start_by_press zu beenden.
-        while self.running: # endloschschleife solange 
+        #self.running = True # Start variable die abgefragt wird um start_by_press zu beenden.
             if self.btnColor.value() == 1: #Wenn sich der Wert vom knopf ändert
                  self.allSensors.readTemperatureSensor()
                  self.sensorSoilTest() # rufe die Mehtode oben zum lesen auf (zwischenlösung)
-                 #self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
-            self.running = False # Setze die Prüf variable auf false damit die funktion start_by_press nicht mehr ausgeführt wird
+                 self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
+                 self.view.printAllData()
+                 #self.running = False #Setze die Prüf variable auf false damit die funktion start_by_press nicht mehr ausgeführt wird
                  #break

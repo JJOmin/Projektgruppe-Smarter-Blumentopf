@@ -1,6 +1,6 @@
 from SoilSensor import SoilSensor
 from TemperatureSensor import TemperatureSensor
-#from LightSensor import LightSensor
+from LightSensor import LightSensor
 
 
 class AllSensors: #Class that holds instances of every sensor to get measurments
@@ -12,12 +12,17 @@ class AllSensors: #Class that holds instances of every sensor to get measurments
         #Instanzierung der Klassen???
         self.soilSensor = SoilSensor(soilData)
         self.temperatureSensor = TemperatureSensor(tempData)
-        #self.lightSensor = LightSensor(lightData) 
+        self.lightSensor = LightSensor(lightData) 
         
         self.soilSensorValue = 'no data' # Die Variable soll einfach keine daten haben damit die später überschireben werden können mit den Sensor daten? 
         self.lightSensorValue = 'no data'
         self.temperaturSensorValue = 'no data'
         
+        
+    def readAll(self):
+        self.soilSensorValue = self.soilSensor.readMoisture()
+        self.temperaturSensorValue = self.temperatureSensor.readTemperature() #Hier auslese der read klasse also ne methode die inszanziert in dieser klasse
+        self.lightSensorValue = self.lightSensor.readLightSensor(0x20)
         
     def readSoilSensor(self):
         self.soilSensorValue = self.soilSensor.readMoisture()
@@ -26,4 +31,9 @@ class AllSensors: #Class that holds instances of every sensor to get measurments
         self.temperaturSensorValue = self.temperatureSensor.readTemperature() #Hier auslese der read klasse also ne methode die inszanziert in dieser klasse
         
     def readLightSensor(self):
-        self.lightSensorValue = self.lightSensor.readLightSensor()
+        self.lightSensorValue = self.lightSensor.readLightSensor(0x20)
+        
+        
+        
+        
+        

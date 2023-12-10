@@ -9,10 +9,9 @@ from machine import RTC
 
 
 class Server:
-    def __init__(self, ssid, wifiPw, remoteUrl, uploadUrl, webUser, webPw):
+    def __init__(self, ssid, wifiPw, uploadUrl, webUser, webPw):
         self.ssid = ssid
         self.password = wifiPw
-        self.remote_url = remoteUrl
         self.upload_url = uploadUrl
         self.username = webUser
         self.password_b = webPw
@@ -27,11 +26,11 @@ class Server:
             time.sleep(0.1)
         print(" Connected!")
     
-    def getRemote(self): #Returns content of RemoteURL
+    def getRemote(self, url): #Returns content of RemoteURL
         auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')
         headers = {'Authorization': auth}
         
-        response = urequests.get(self.remote_url, headers=headers)
+        response = urequests.get(url, headers=headers)
         if response.status_code == 200:
             content = response.text
             response.close()
