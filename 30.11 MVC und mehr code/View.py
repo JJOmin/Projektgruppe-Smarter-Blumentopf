@@ -1,12 +1,12 @@
 #View
-from AllSensors import AllSensors
-from Model import Model
+#from AllSensors import AllSensors
+#from Model import Model
 from Display import Display
 
 class View:
-    def __init__(self, allSensors):
-        self.allSensors = allSensors
-        self.model = Model()
+    def __init__(self, model):
+       # self.allSensors = allSensors
+        self.model = model
         self.display = Display()
         
     

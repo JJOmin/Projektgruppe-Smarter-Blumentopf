@@ -20,6 +20,7 @@ while running:
     #print(utime.ticks_ms())
     #sensorData = control.allSensors.readAll()
     #print(sensorData)
+    control.startByPress() # führt die startByPress() methode aus. Sensoren auf Knopfdruck
     
     if utime.ticks_ms() > sensorTime: #Auslesen der Sensoren
         #sensorData = control.allSensors.readAll()
