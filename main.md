@@ -1,18 +1,18 @@
 # setup
-    - MVC initialisierung(JSON Data)
-    - wifi connection
+    - MVC initialisierung(JSON Data) X
+    - wifi connection X
     - JSON Data from server
     
-    - (set starttime)
+    - (set starttime) X
 
-# loop (60 mal die Sekunde)
+# loop (60 mal die Sekunde) X
 
 
-## Sensoren Intervall (alle 5-10 sekunden)
-    - Lesen der Sensoren
+## Sensoren Intervall (alle 5-10 sekunden) X
+    - Lesen der Sensoren X
     - Prüfen grenzwerte
         - Falls Kritisch -> Pumpe & Status Change
-    - Schreiben werte in Model (in ZyklusArray)
+    - Schreiben werte in Model (in ZyklusArray) X
         
 ## Server Intervall (alle 90 Sek für demo sonst 15-30 Minuten)
     - Json Lesen Server -> in Model (prototyp.json)
