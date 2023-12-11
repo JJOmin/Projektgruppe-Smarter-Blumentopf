@@ -9,14 +9,22 @@ from machine import RTC
 
 
 class Server:
-    def __init__(self, ssid, wifiPw, uploadUrl, webUser, webPw):
-        self.ssid = ssid
-        self.password = wifiPw
-        self.upload_url = uploadUrl
+    def __init__(self, ssid, wifiPw, profileUrl, prototypUrl, uploadUrl, webUser, webPw):
+        self.ssid = ssid #Wlan name
+        self.password = wifiPw 
+        self.uploadUrl = uploadUrl
+        self.profileUrl = profileUrl
+        self.prototypUrl = prototypUrl
         self.username = webUser
         self.password_b = webPw
         self.sta_if = network.WLAN(network.STA_IF)
-        
+
+        #Muss ins Model
+        self.profileName = ""  #beinhaltet den namen des Aktuellen Pflanzenprofiels
+        self.profileBoundaries = "" #beinhaltet alle grenzwerte für die aktuelle Planze
+        self.currentPrototyp = "" #beinhaltet das gesamte Daten Log einer Pflanze um weitere daten anzuhängen
+
+    #funtkion zur verbindung mit dem Internet
     def connectWifi(self):
         print("Connecting to WiFi", end="")
         self.sta_if.active(True)
@@ -25,54 +33,55 @@ class Server:
             print(".", end="")
             time.sleep(0.1)
         print(" Connected!")
-    
-    def getRemote(self, url): #Returns content of RemoteURL
+
+
+    #methode die auf prototyp.json zugreift
+    def getPrototype(self):
         auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')
         headers = {'Authorization': auth}
         
-        response = urequests.get(url, headers=headers)
+        response = urequests.get(self.prototypUrl, headers=headers)
         if response.status_code == 200:
             content = response.text
             response.close()
-            return content
+            self.currentPrototyp = json.loads(content)
+            self.profileName = json.loads(content)['profile']
+            #return content
         else:
             response.close()
             return None
     
-    def get_date(self): #Returns Date and Time
-        rtc = RTC()
-        datetime = rtc.datetime()
-        year, month, day, _, hour, minute, second, _ = datetime
-        date_str = "{0:04d}-{1:02d}-{2:02d}".format(year, month, day)
-        time_str = "{0:02d}:{1:02d}:{2:02d}".format(hour, minute, second)
-        return [date_str, time_str]
-    
-    def setTestDataToServer(self): #Sets a Test value into the json File on upload path
-        date_time = self.get_date()
-        data = {
-            "TEST-DATA": "Data Test",
-            "Datum": date_time[0],
-            "Uhrzeit": date_time[1],
-            
-        }
-        response = requests.post(self.upload_url, json=data)
-        if response.status_code == 200:
-            return "Daten erfolgreich gesendet und gespeichert."
-        else:
-            return f"Fehler beim Senden der Daten: {response.status_code}"
+    #funktion die alle Profile auf dem Server herrunterläd
+    def getProfile(self): #returns only the profileUrl content
+        auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')
+        headers = {'Authorization': auth}
         
-    def setUpload(self, content):
-        date_time = self.get_date()
-        data = {
-            "Temperatur": content[0],
-            "Bodenfeuchtigkeit": content[1],
-            "Helligkeit": content[2],
-            "Datum": date_time[0],
-            "Uhrzeit": date_time[1],
-            
-        }
-        response = requests.post(self.upload_url, json=data)
+        response = urequests.get(self.profileUrl, headers=headers)
         if response.status_code == 200:
-            return "Daten erfolgreich gesendet und gespeichert."
+            content = response.text
+            response.close()
+            self.profileBoundaries = json.loads(content)[self.profileName]
+            #return content
         else:
-            return f"Fehler beim Senden der Daten: {response.status_code}"
+            response.close()
+            return None
+
+    #methode zum hinzufügen neuer messwerte zum array
+    def addMeasurement(self, temperature, light, moisture):
+        # Füge die neuen Messwerte zum Prototyp hinzu
+        self.currentPrototyp['sensors']['temperature']['log'].append(temperature)
+        self.currentPrototyp['sensors']['light']['log'].append(light)
+        self.currentPrototyp['sensors']['moisture']['log'].append(moisture)
+
+        print("Write to server...")
+        json_data = json.dumps(self.currentPrototyp) #json.dumps(data_to_send)
+
+        # Versuchen, die Daten an den Server zu senden
+        try:
+            response = requests.post(self.uploadUrl, data=json_data)
+            if response.status_code == 200:
+                print("Daten erfolgreich gesendet")
+            else:
+                print("Fehler beim Senden der Daten:", response.status_code)
+        except Exception as e:
+            print("Fehler:", e)
