@@ -1,7 +1,7 @@
 # setup
     - MVC initialisierung(JSON Data) X
     - wifi connection X
-    - JSON Data from server
+    - JSON Data from server X
     
     - (set starttime) X
 
@@ -18,17 +18,17 @@
     - Json Lesen Server -> in Model (prototyp.json)
         - Name & Profiel Änderungen übernehmen (db.json)
             - Neues Profiel, neue Grenzwerte ziehen wenn ängerung (triggert 2. lesen)
-    - "Aktuelle Sensorwerte" Reduzieren (ø) -> Model
+    - "Aktuelle Sensorwerte" Reduzieren (ø) -> Model X
     - Werte Log aus "prototyp.JSON" im Model anfügen -> Model
     - "prototyp.json" auf Server (über)schreiben
-    - "Aktuelle Sensorwerte" im Model zurücksetzen
+    - "Aktuelle Sensorwerte" im Model zurücksetzen X
         
     
     
 ## Button Pressed?
         - Display Ausgabe der Aktuellen werte aus Model
 
-## Punpe Aktivieren (funktion in Control)
+## Pumpe Aktivieren (funktion in Control)
     - Pumpe wird für x ms aktiviert
     
 ## Status Change (funk in Control)
