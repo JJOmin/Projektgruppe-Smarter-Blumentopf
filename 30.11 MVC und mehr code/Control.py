@@ -13,8 +13,7 @@ class Control:
         self.view = View(self.allSensors)
         self.server = Server(self.model.ssid, self.model.wifiPw, self.model.uploadUrl, self.model.webUser, self.model.webPw)
         self.running = False # brauchen wir nur für deu methode startByPress()
-        self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN)
-        #self.btnpress = 
+        self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN) 
          
     def setupWifi(self): #method to send Test Data to server and pulls data from the server
         self.server.connectWifi()
@@ -57,6 +56,17 @@ class Control:
     def ledCheck(self):
         pass
         
+    def calcAverage(self, values, newLength):
+        result = []
+        total = 0
+        i = 0
+        for value in values:
+            total += value
+            i += 1
+            if i % newLength == 0:
+                result.append(total / newLength)
+                total = 0
+        return result
         
     def startByPress(self): # die schleife wird ausgeführt wenn der taster gedrückt wird
             if self.btnColor.value() == 1: #Wenn sich der Wert vom knopf ändert

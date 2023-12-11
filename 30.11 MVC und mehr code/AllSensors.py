@@ -21,8 +21,13 @@ class AllSensors: #Class that holds instances of every sensor to get measurments
         
     def readAll(self):
         self.soilSensorValue = self.soilSensor.readMoisture()
+        if self.soilSensorValue != None:#wenn nicht None returnt wird (passiert wenn die letzte Messung nicht mindestens measureDuration (z.b. 5000 ms) her ist)
+            print("Bodenfeuchtigkeit:", self.soilSensorValue)
         self.temperaturSensorValue = self.temperatureSensor.readTemperature() #Hier auslese der read klasse also ne methode die inszanziert in dieser klasse
         self.lightSensorValue = self.lightSensor.readLightSensor(0x20)
+        print("Light:", self.lightSensorValue)
+        return [self.soilSensorValue, self.temperaturSensorValue, self.lightSensorValue]
+        
         
     def readSoilSensor(self):
         self.soilSensorValue = self.soilSensor.readMoisture()

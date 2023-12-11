@@ -15,6 +15,6 @@ class LightSensor():
         #print(i2c.scan())
         lightData = self.s.luminance(mode)
             #time.sleep_ms(500)
-        print(lightData," lx")
+        #print(lightData," lx")
         return lightData
 
