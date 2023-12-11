@@ -24,10 +24,12 @@ class Control:
         
         
     def setupServerData(self):
-        self.model.prototypData = self.server.getRemote(self.model.prototypUrl)
+        self.server.getPrototype() #download der prototype.json vom Server
+        self.server.getProfile() #download der db.json vom server für Grenzwerte der Pflanze
+        self.model.prototypData = self.server.currentPrototyp
         print(self.model.prototypData)
         
-        self.model.profileData = self.server.getRemote(self.model.profileUrl)
+        self.model.profileData = self.server.profileBoundaries
         print(self.model.profileData)
          
         
