@@ -15,9 +15,6 @@ serverTime = startTime + serverInterval
 endTime= startTime + 300000
 running = True
 
-test = [3, 7, 5, 2, 8, 4, 6, 6, 4, 5]
-print(control.calcAverage(test, 5))
-
 #loop
 while running:
     #print(utime.ticks_ms())
@@ -39,7 +36,13 @@ while running:
         
     if utime.ticks_ms() > serverTime:
         
+        newLength = 3
+        averageLightLog = control.calcAverage(control.model.lightLog, newLength)
+        averageTemperatureLog = control.calcAverage(control.model.temperatureLog, newLength)
+        averageSoilLog = control.calcAverage(control.model.soilLog, newLength)
+        
         print("Server Upload!")
+        print("Uploaded", [averageLightLog, averageTemperatureLog, averageSoilLog], "to Server!")
         
         control.model.lightLog = []
         control.model.temperatureLog = []

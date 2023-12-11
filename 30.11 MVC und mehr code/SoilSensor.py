@@ -86,5 +86,5 @@ class SoilSensor:
             self.sensor_values.clear()
             self.moisture_percentage.clear()
             self.last_measure_time = current_time
-            return avg_percentage, avg_sensor_value
+            return avg_percentage #, avg_sensor_value
         #return None
