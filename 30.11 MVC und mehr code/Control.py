@@ -16,10 +16,11 @@ class Control:
         self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN) 
          
     def setupWifi(self): #method to send Test Data to server and pulls data from the server
-        self.server.connectWifi()
-        #print(self.server.getRemote())
-        #print(self.server.setTestDataToServer())
-        #print(self.server.getRemote())     
+        self.server.connectWifi() #stellt wifi verbindung her
+        self.server.getPrototype() #download der prototype.json vom Server
+        self.server.getProfile() #download der db.json vom server für Grenzwerte der Pflanze
+        #Das hier ist die Methode zum hinzufügen neuer Messdaten
+        self.server.addMeasurement(1,2,3) #temperature, light, moisture to add to the server
         
         
     def setupServerData(self):
