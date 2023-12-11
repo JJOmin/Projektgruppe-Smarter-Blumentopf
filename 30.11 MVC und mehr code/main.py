@@ -28,8 +28,10 @@ while running:
         control.model.lightLog.append(sensorData[2])
         control.model.temperatureLog.append(sensorData[1])
         control.model.soilLog.append(sensorData[0])
-        print(len(control.model.lightLog))
-        print(control.model.lightLog, control.model.temperatureLog,  control.model.soilLog)
+        #print(len(control.model.lightLog))
+        #print(control.model.lightLog, control.model.temperatureLog,  control.model.soilLog)
+        
+        control.setCurrentValues()
         
         
         sensorTime = utime.ticks_ms() + sensorInterval
@@ -47,8 +49,6 @@ while running:
         control.model.lightLog = []
         control.model.temperatureLog = []
         control.model.soilLog = []
-        
-        print(control.model.lightLog, control.model.temperatureLog,  control.model.soilLog)
         
         serverTime = utime.ticks_ms() + serverInterval
         

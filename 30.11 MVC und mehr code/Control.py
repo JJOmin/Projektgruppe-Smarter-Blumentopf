@@ -67,6 +67,12 @@ class Control:
                 result.append(total / newLength)
                 total = 0
         return result
+    
+    def setCurrentValues(self):
+        self.model.currentValues['light'] = self.model.lightLog[-1]
+        self.model.currentValues['soil'] = self.model.soilLog[-1]
+        self.model.currentValues['temperature'] = self.model.temperatureLog[-1]
+        print('Current Values:', self.model.currentValues)
         
     def startByPress(self): # die schleife wird ausgeführt wenn der taster gedrückt wird
             if self.btnColor.value() == 1: #Wenn sich der Wert vom knopf ändert

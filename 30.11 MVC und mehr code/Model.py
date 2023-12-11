@@ -25,6 +25,7 @@ class Model:
         self.lightLog = []
         self.temperatureLog = []
         self.soilLog = []
+        self.currentValues = {'light': 'not defined', 'soil': 'not defined', 'temperature': 'not defined'}
         
         
         
