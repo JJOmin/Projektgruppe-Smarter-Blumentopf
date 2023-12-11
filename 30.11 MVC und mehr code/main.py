@@ -5,7 +5,8 @@ import utime
 #setup
 control = Control() #Initialisierung des MVC
 control.setupWifi() #wifi setup
-#control.setupServerData() #server setup
+control.setupServerData() #server setup
+
 startTime = utime.ticks_ms()
 sensorInterval = 5000
 sensorTime = startTime + sensorInterval

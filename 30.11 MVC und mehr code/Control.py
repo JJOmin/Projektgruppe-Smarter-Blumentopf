@@ -11,25 +11,22 @@ class Control:
         self.model = Model()
         self.allSensors = AllSensors(self.model.soilData, self.model.tempData, self.model.lightData) # Instanzierung der Atribute von den jeweili
         self.view = View(self.allSensors)
-        self.server = Server(self.model.ssid, self.model.wifiPw, self.model.uploadUrl, self.model.webUser, self.model.webPw)
+        self.server = Server(self.model.ssid, self.model.wifiPw, self.model.profileUrl, self.model.prototypUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
         self.running = False # brauchen wir nur für deu methode startByPress()
         self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN) 
          
     def setupWifi(self): #method to send Test Data to server and pulls data from the server
-        self.server.connectWifi() #stellt wifi verbindung her
-        self.server.getPrototype() #download der prototype.json vom Server
-        self.server.getProfile() #download der db.json vom server für Grenzwerte der Pflanze
-        #Das hier ist die Methode zum hinzufügen neuer Messdaten
-        self.server.addMeasurement(1,2,3) #temperature, light, moisture to add to the server
+        self.server.connectWifi()
+        #print(self.server.getRemote())
+        #print(self.server.setTestDataToServer())
+        #print(self.server.getRemote())     
         
         
     def setupServerData(self):
-        self.server.getPrototype() #download der prototype.json vom Server
-        self.server.getProfile() #download der db.json vom server für Grenzwerte der Pflanze
-        self.model.prototypData = self.server.currentPrototyp
+        self.model.prototypData = self.server.getPrototype()
         print(self.model.prototypData)
         
-        self.model.profileData = self.server.profileBoundaries
+        self.model.profileData = self.server.getProfile()
         print(self.model.profileData)
          
         

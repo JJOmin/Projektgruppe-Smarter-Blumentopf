@@ -46,7 +46,7 @@ class Server:
             response.close()
             self.currentPrototyp = json.loads(content)
             self.profileName = json.loads(content)['profile']
-            #return content
+            return [self.currentPrototyp, self.profileName]
         else:
             response.close()
             return None
@@ -61,7 +61,7 @@ class Server:
             content = response.text
             response.close()
             self.profileBoundaries = json.loads(content)[self.profileName]
-            #return content
+            return self.profileBoundaries
         else:
             response.close()
             return None
