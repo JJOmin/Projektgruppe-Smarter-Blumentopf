@@ -33,22 +33,17 @@ class Control:
         
     def sensorTemperatureTest(self): #method to test the readings of TemperatureSensor
         print("Angeschlossen an: ",self.model.tempData)
-        #self.allSensors = AllSensors(self.model.soilData, self.model.tempData, self.model.lightData)
-        print(self.allSensors.lightSensorValue)
         self.allSensors.readTemperatureSensor() #fuehrt die auslesung über die vererbung aus 
-        print(self.allSensors.lightSensorValue)
+        print("Temperature", self.allSensors.temperaturSensorValue)
         
     def sensorLightTest(self): #method to test the readings of LightSensor
         print("Angeschlossen an: ",self.model.lightData)
-        #self.allSensors = AllSensors(self.model.soilData, self.model.tempData, self.model.lightData)
-        print(self.allSensors.lightSensorValue)
         self.allSensors.readLightSensor()
-        print(self.allSensors.lightSensorValue)
+        print("Light:", self.allSensors.lightSensorValue)
         
     def sensorSoilTest(self): #method to test the readings of SoilSensor
         self.allSensors.readSoilSensor() #setzt neuen wert in var der Classe AllSensors alle measureDuration im abstand
         if self.allSensors.soilSensorValue != None:#wenn nicht None returnt wird (passiert wenn die letzte Messung nicht mindestens measureDuration (z.b. 5000 ms) her ist)
-            #print("Auslesen des Sensores alle", self.model.soilData['measureDuration'], "ms")
             print("Bodenfeuchtigkeit: ",self.allSensors.soilSensorValue)
             
         
@@ -64,11 +59,9 @@ class Control:
         
         
     def startByPress(self): # die schleife wird ausgeführt wenn der taster gedrückt wird
-        #self.running = True # Start variable die abgefragt wird um start_by_press zu beenden.
             if self.btnColor.value() == 1: #Wenn sich der Wert vom knopf ändert
                  self.allSensors.readTemperatureSensor()
                  self.sensorSoilTest() # rufe die Mehtode oben zum lesen auf (zwischenlösung)
                  self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
                  self.view.printAllData()
-                 #self.running = False #Setze die Prüf variable auf false damit die funktion start_by_press nicht mehr ausgeführt wird
                  #break

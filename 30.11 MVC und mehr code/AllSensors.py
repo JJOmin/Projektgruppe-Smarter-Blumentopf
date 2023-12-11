@@ -15,7 +15,7 @@ class AllSensors: #Class that holds instances of every sensor to get measurments
         self.lightSensor = LightSensor(lightData) 
         
         self.soilSensorValue = 'no data' # Die Variable soll einfach keine daten haben damit die später überschireben werden können mit den Sensor daten? 
-        self.lightSensorValue = 'no data'
+        self.lightSensorValue = 'no no no no data'
         self.temperaturSensorValue = 'no data'
         
         
@@ -32,8 +32,6 @@ class AllSensors: #Class that holds instances of every sensor to get measurments
         
     def readLightSensor(self):
         self.lightSensorValue = self.lightSensor.readLightSensor(0x20)
-        
-        
         
         
         
