@@ -72,8 +72,9 @@ class Server:
         self.currentPrototyp['sensors']['temperature']['log'].append(temperature)
         self.currentPrototyp['sensors']['light']['log'].append(light)
         self.currentPrototyp['sensors']['moisture']['log'].append(moisture)
-        print(self.currentPrototyp)
-        print("Write to server...")
+        self.sendData() 
+        
+    def sendData(self): 
         json_data = json.dumps(self.currentPrototyp) + "}" #json.dumps(data_to_send)
         print(json_data)
         # Versuchen, die Daten an den Server zu senden
@@ -85,3 +86,13 @@ class Server:
                 print("Fehler beim Senden der Daten:", response.status_code)
         except Exception as e:
             print("Fehler:", e)
+
+    
+    def statusPush(self, status):
+        print(self.currentPrototyp)
+        for key, value in status.items():
+            self.currentPrototyp['sensors'][key]['status'] = status[key]
+        sendData() #senden von daten wenn grenzwerte überschritten wurden 
+            
+       
+            
