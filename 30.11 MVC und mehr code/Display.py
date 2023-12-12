@@ -12,11 +12,14 @@ class Display:
         self.totalRows = 2
         self.totalColumns = 16
         self.current_display_text = ""  # Hinzufügen dieser Zeile zur Initialisierung
+        self.grad = bytearray([0x07,0x05,0x07,0x00,0x00,0x00,0x00,0x00])
+        
 
         try:
             # Initialisiere den I2C-Bus und das LCD
             self.i2c = SoftI2C(scl=Pin(22), sda=Pin(21), freq=10000)  # I2C für ESP32
             self.lcd = I2cLcd(self.i2c, self.I2C_ADDR, self.totalRows, self.totalColumns)
+            self.lcd.custom_char(0, self.grad)
         except Exception as e:
             # Fehlerausgabe, falls die Initialisierung fehlschlägt
             print("Fehler beim Initialisieren des LCDs:", e)
