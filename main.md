@@ -10,7 +10,7 @@
 
 ## Sensoren Intervall (alle 5-10 sekunden) X
     - Lesen der Sensoren X
-    - Prüfen grenzwerte
+    - Prüfen grenzwerte X
         - Falls Kritisch -> Pumpe & Status Change
     - Schreiben werte in Model (in ZyklusArray) X
         
@@ -19,8 +19,8 @@
         - Name & Profiel Änderungen übernehmen (db.json)
             - Neues Profiel, neue Grenzwerte ziehen wenn ängerung (triggert 2. lesen)
     - "Aktuelle Sensorwerte" Reduzieren (ø) -> Model X
-    - Werte Log aus "prototyp.JSON" im Model anfügen -> Model
-    - "prototyp.json" auf Server (über)schreiben
+    - Werte Log aus "prototyp.JSON" im Model anfügen -> Model X
+    - "prototyp.json" auf Server (über)schreiben X
     - "Aktuelle Sensorwerte" im Model zurücksetzen X
         
     
