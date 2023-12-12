@@ -15,9 +15,9 @@ class View:
 #        self.allSensors.readSoilSensor()
 #        self.allSensors.readLightSensor() # der sensor geht noch nicht
 #        self.avg_percentage = self.allSensors.soilSensorValue[0]  # toupel auseinander nehmen
-        display_text = "Bodenfreuchtigkeit:" + str(self.model.currentValues['soil']) + "%:Temperatur:" + str(self.model.currentValues['temperature']) + "°C:Licht:" + str(self.model.currentValues['light'])+"lux:"
+        display_text = "Bodenfreuchtigkeit:" + str(self.model.currentValues['moisture']) + "%:Temperatur:" + str(self.model.currentValues['temperature']) + "\u00b0C:Licht:" + str(self.model.currentValues['light'])+"lux:"
         print(display_text)
-        self.display.update_display_text(self.display_text)
+        self.display.update_display_text(display_text)
         self.display.display_updated_text() 
     
     

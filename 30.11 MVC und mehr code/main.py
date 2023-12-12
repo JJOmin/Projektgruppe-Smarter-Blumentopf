@@ -26,7 +26,8 @@ while running:
     #control.startByPress() # führt die startByPress() methode aus. Sensoren auf Knopfdruck
     
     #print(testPin.value())
-    
+    if control.btnColor.value():
+        control.view.printAllData()
     #control.checkBtn()
     
     if utime.ticks_ms() > sensorTime: #Auslesen der Sensoren
@@ -41,6 +42,7 @@ while running:
         
         control.setCurrentValues() # dictionary das für bessere auslesen ist?
         control.compareData()
+        
         
         sensorTime = utime.ticks_ms() + sensorInterval #
         

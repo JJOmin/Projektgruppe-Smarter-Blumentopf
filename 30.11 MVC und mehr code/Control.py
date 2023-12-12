@@ -16,6 +16,11 @@ class Control:
         self.running = False # brauchen wir nur für deu methode startByPress()
         self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN)
         self.btnStat = False
+        self.leds = {
+            "light": machine.Pin(self.model.ledPins["light"], machine.Pin.OUT),
+            "temperature": machine.Pin(self.model.ledPins["temperature"], machine.Pin.OUT),
+            "moisture": machine.Pin(self.model.ledPins["moisture"], machine.Pin.OUT)
+            }
         
          
     def setupWifi(self): #method to send Test Data to server and pulls data from the server
@@ -130,3 +135,9 @@ class Control:
     def statusChange(self):
         print("status Change!")
         
+    def updateLeds(stats):
+        for key, value in stats.items():
+            if value == "Okay":
+                self.leds[key].on()
+            elif value == "Warning":
+                self.leds[key].off()
