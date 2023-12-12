@@ -1,16 +1,17 @@
 <template>
   <div v-if="showSettings">
-    <SettingsComponent @closeSettings="toggleSettings" @updatePlant="updatePlant" :plant="selectedPlant"></SettingsComponent>
+    <SettingsComponent @closeSettings="toggleSettings" @updatePlant="updatePlant" @updateName="updateName"
+    :plant="selectedPlant" :potName="this.potData.name" :profiles="profiles"></SettingsComponent>
   </div>
 
-  <div v-else-if="potData && profile">
-    <HeaderComponent @openSettings="toggleSettings" :title="profile ? profile.name : ''" type="pageHeader" />
+  <div v-else-if="potData && activeProfile">
+    <HeaderComponent @openSettings="toggleSettings" :title="activeProfile ? activeProfile.name : ''" type="pageHeader" />
 
     <CardComponent>
       <HeaderComponent title="Aktuelle Werte:" type="cardHeader" />
       <ul>
         <li v-for="(sensor, index) in potData.sensors" :key="index">
-          <SliderComponent :title="sensor.name" :value="sensor.log[sensor.log.length - 1]" :unit="sensor.unit" :boundaries="profile.boundaries[index]"></SliderComponent>
+          <SliderComponent :title="sensor.name" :value="sensor.log[sensor.log.length - 1]" :unit="sensor.unit" :boundaries="activeProfile.boundaries[index]"></SliderComponent>
         </li>
       </ul>
     </CardComponent>
@@ -42,11 +43,13 @@ export default {
   data() {
     return {
       showSettings: false,
-      profile: null,
+      profiles: null,
       potData: null,
-      selectedPlant: 'basil',
+      selectedPlant: null,
+      activeProfile: null,
       dbUrl: "https://cloudleo.duckdns.org/Blumentopf/Database/db.json",
-      potUrl: "https://cloudleo.duckdns.org/Blumentopf/Database/prototyp.json"
+      potUrl: "https://cloudleo.duckdns.org/Blumentopf/Database/prototyp.json",
+      apiUrl: "https://cloudleo.duckdns.org/Blumentopf/Database/api.php",
     }
   },
   methods: {
@@ -55,43 +58,85 @@ export default {
     },
     updatePlant(newPlant) {
       this.selectedPlant = newPlant
-      this.setProfile()
+      this.setActiveProfile()
+      this.potData.profile = this.selectedPlant
+      this.writeToJson(this.potData)
     },
-    setProfile() {
+    updateName(newName) {
+      this.potData.name = newName
+      this.writeToJson(this.potData)
+    },
+    writeToJson(data) {
+
+      console.log("Updating Json...")
+      data = JSON.stringify(data)
+
+      fetch(this.apiUrl, {
+        method: "POST",
+        body: data
+      })
+      .then(res => res.json())
+      .then(data => console.log(data.message))
+      .catch(err => console.log(err.message))
+
+    },
+    setProfiles() {
       fetch(this.dbUrl)
         .then(res => res.json())
-        .then(data => this.profile = data[this.selectedPlant])
+        .then(data => {
+          this.profiles = data
+          this.setActiveProfile()
+        })
         .catch(err => console.log(err.message))
+    },
+    setActiveProfile() {
+      this.activeProfile = this.profiles[this.selectedPlant]
     }
   },
   mounted() {
     fetch(this.potUrl)
       .then(res => res.json())
-      .then(data => this.potData = data)
+      .then(data => {
+        this.potData = data
+        this.selectedPlant = this.potData.profile
+        this.setProfiles()
+      })
       .catch(err => console.log(err.message))
-    this.setProfile()
   }
 }
 </script>
 
 <style>
 #app {
+  --white: #ffffff;
   --lightGrey: #cccccc;
   --defaultGrey: #888888;
   --darkGrey: #444444;
   --black: #000000;
-  --white: #ffffff;
-  --primary: #7da0d1;
-  --secondary: #d1ae7d;
+  --primary: var(--pal10);
+  --primaryAlt: var(--pal8);
+  --secondary: var(--pal1);
+  --secondaryAlt: var(--pal3);
   --statGood: #50d025;
   --statOkay: #f0ed11;
   --statAlert: #f57913;
   --statWarning: #d82816;
 
+  --pal1: #582F0E;
+  --pal2: #7F4F24;
+  --pal3: #936639;
+  --pal4: #A68A64;
+  --pal5: #B6AD90;
+  --pal6: #C2C5AA;
+  --pal7: #A4AC86;
+  --pal8: #656D4A;
+  --pal9: #414833;
+  --pal10: #333D29;
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--black);
+  color: var(--pal6);
 }
 
 ul {

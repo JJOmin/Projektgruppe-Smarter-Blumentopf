@@ -12,7 +12,7 @@
 
 <style scoped>
     .card {
-        background-color: var(--defaultGrey);
+        background-color: var(--secondary);
         width: 100%;
         border-radius: 15px;
         margin: 10px 0;

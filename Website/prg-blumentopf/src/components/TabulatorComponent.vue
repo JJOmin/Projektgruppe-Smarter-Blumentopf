@@ -49,7 +49,7 @@
     .tabulator {
         margin: 0 10px;
         border-radius: 5px;
-        box-shadow: 0px 5px 5px var(--darkGrey);
+        box-shadow: 0px 5px 5px var(--primaryAlt);
     }
 
     .tabHeaders {
@@ -61,7 +61,7 @@
     .tabHeader {
         border: 1px solid var(--black);
         border-radius: 5px 5px 0 0;
-        background-color: var(--lightGrey);
+        background-color: var(--primaryAlt);
         width: 33.33%;
         box-sizing: border-box;
         text-align: center;
@@ -86,7 +86,7 @@
         margin: 0;
         padding: 50px 10px;
         text-align: center;
-        background-color: var(--secondary);
+        background-color: var(--secondaryAlt);
         border-radius: 5px;
     }
 </style>

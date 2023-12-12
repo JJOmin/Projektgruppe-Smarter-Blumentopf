@@ -24,7 +24,7 @@
 
 <style scoped>
   .header {
-    background-color: var(--defaultGrey);
+    background-color: var(--primary);
     border: 2px solid var(--black);
     border-radius: 7px;
     text-align: center;
@@ -34,12 +34,12 @@
   }
 
   .cardHeader {
-    box-shadow: 0px 5px 5px var(--darkGrey);
+    box-shadow: 0px 5px 5px var(--primaryAlt);
     margin-bottom: 10px;
   }
 
   .icon {
-    background-color: var(--primary);
+    background-color: var(--secondaryAlt);
     margin-left: 10px;
   }
 </style>
