@@ -17,7 +17,7 @@ class Model:
         self.soilData = {'dpin':35, 'wet': 3842.04, 'dry': 4095, 'numValuesAvg': 2, 'measureDuration': 5000, 'numCalibrations':  4}
         self.tempData = {'dpin':22}
         self.lightData = {'scl':22, 'sda': 21}
-        self.btnData = {'dpin':2} 
+        self.btnData = {'dpin':25} 
         
         self.prototypData = {}
         self.profileData = {}
@@ -25,7 +25,8 @@ class Model:
         self.lightLog = []
         self.temperatureLog = []
         self.soilLog = []
-        self.currentValues = {'light': 'not defined', 'soil': 'not defined', 'temperature': 'not defined'}
+        self.currentValues = {'light': 'not defined', 'moisture': 'not defined', 'temperature': 'not defined'}
+        self.status = {'light': 'Okay', 'moisture': 'Okay', 'temperature': 'Okay'}
         
         
         

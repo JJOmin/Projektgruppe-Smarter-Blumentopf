@@ -72,13 +72,13 @@ class Server:
         self.currentPrototyp['sensors']['temperature']['log'].append(temperature)
         self.currentPrototyp['sensors']['light']['log'].append(light)
         self.currentPrototyp['sensors']['moisture']['log'].append(moisture)
-
+        print(self.currentPrototyp)
         print("Write to server...")
-        json_data = json.dumps(self.currentPrototyp) #json.dumps(data_to_send)
-
+        json_data = json.dumps(self.currentPrototyp) + "}" #json.dumps(data_to_send)
+        print(json_data)
         # Versuchen, die Daten an den Server zu senden
         try:
-            response = requests.post(self.uploadUrl, data=json_data)
+            response = requests.post(self.uploadUrl, data = json_data)
             if response.status_code == 200:
                 print("Daten erfolgreich gesendet")
             else:

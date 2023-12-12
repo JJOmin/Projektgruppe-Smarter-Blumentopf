@@ -1,6 +1,7 @@
 #main
 from Control import Control
 import utime
+#from machine import Pin
 
 #setup
 control = Control() #Initialisierung des MVC
@@ -15,12 +16,18 @@ serverTime = startTime + serverInterval
 endTime= startTime + 300000 # um den if block zu beenden 
 running = True # startet den loop
 
+#testPin = Pin(18, Pin.IN)
+
 #loop
 while running:
     #print(utime.ticks_ms())
     #sensorData = control.allSensors.readAll()
     #print(sensorData)
     #control.startByPress() # führt die startByPress() methode aus. Sensoren auf Knopfdruck
+    
+    #print(testPin.value())
+    
+    #control.checkBtn()
     
     if utime.ticks_ms() > sensorTime: #Auslesen der Sensoren
         #sensorData = control.allSensors.readAll()
@@ -33,7 +40,7 @@ while running:
         #print(control.model.lightLog, control.model.temperatureLog,  control.model.soilLog)
         
         control.setCurrentValues() # dictionary das für bessere auslesen ist?
-        
+        control.compareData()
         
         sensorTime = utime.ticks_ms() + sensorInterval #
         
@@ -62,7 +69,6 @@ print("Saved the day")
 
 
 
-    
     
     
     #control.startByPress() # führt die startByPress() methode aus. Sensoren auf Knopfdruck

@@ -14,7 +14,9 @@ class Control:
         self.view = View(self.model)
         self.server = Server(self.model.ssid, self.model.wifiPw, self.model.profileUrl, self.model.prototypUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
         self.running = False # brauchen wir nur für deu methode startByPress()
-        self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN) 
+        self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN)
+        self.btnStat = False
+        
          
     def setupWifi(self): #method to send Test Data to server and pulls data from the server
         self.server.connectWifi()
@@ -29,6 +31,7 @@ class Control:
         
         self.model.profileData = self.server.getProfile()
         print(self.model.profileData)
+        self.server.addMeasurement(20, 5, 35)
          
         
     def sensorTemperatureTest(self): #method to test the readings of TemperatureSensor
@@ -58,10 +61,10 @@ class Control:
         pass
         
     def calcAverage(self, values, newLength):
-        result = [] # ergebniss der berechnug durchschnitt
+        result = []
         total = 0
         i = 0
-        for value in values: 
+        for value in values:
             total += value
             i += 1
             if i % newLength == 0:
@@ -71,7 +74,7 @@ class Control:
     
     def setCurrentValues(self):
         self.model.currentValues['light'] = self.model.lightLog[-1]
-        self.model.currentValues['soil'] = self.model.soilLog[-1]
+        self.model.currentValues['moisture'] = self.model.soilLog[-1]
         self.model.currentValues['temperature'] = self.model.temperatureLog[-1]
         print('Current Values:', self.model.currentValues)
         
@@ -80,5 +83,50 @@ class Control:
                  self.allSensors.readTemperatureSensor()
                  self.sensorSoilTest() # rufe die Mehtode oben zum lesen auf (zwischenlösung)
                  self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
-                 #self.view.printAllData()
+                 self.view.printAllData()
                  #break
+                 
+    def checkBtn(self):
+        print(self.btnColor.value()) #1
+        if self.btnColor.value() == 1 and self.btnStat == False: # 
+            self.btnStat = True
+        if self.btnColor.value() == 0 and self.btnStat == True:
+            print("gedrückt")
+      #      self.view.printAllData()
+            self.btnStat = False
+            
+    def compareData(self):
+        profile = self.model.profileData # alle profile
+        
+        if profile is not None: #conrol if profile is matched 
+            boundaries = self.model.profileData["boundaries"] #boundaries ausgeben
+            status = self.model.status
+            
+            logData = self.model.currentValues #currentValues ist dictionary mit aktuellen daten
+            newStatus = {}
+            for key, value in logData.items(): #vergleich und ausgabe
+                #print(value)
+                #print(data)
+                min = boundaries[key]['min']
+                max = boundaries[key]['max']
+                
+                
+                if value < min:
+                    print("Wert für " + key + " zu niedrig")
+                    newStatus[key] = "Warning"
+                    
+                elif value > max:
+                    print("Wert für " + key + " zu hoch")
+                    newStatus[key] = "Warning"
+                else:
+                    newStatus[key] = "Okay"
+                    print("Wert für " + key + " in Ordnung")
+                    
+            if newStatus != status:
+                self.model.status = newStatus
+                self.statusChange()
+        
+        
+    def statusChange(self):
+        print("status Change!")
+        
