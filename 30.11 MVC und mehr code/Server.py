@@ -34,7 +34,6 @@ class Server:
             time.sleep(0.1)
         print(" Connected!")
 
-
     #methode die auf prototyp.json zugreift
     def getPrototype(self):
         auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')
@@ -93,12 +92,8 @@ class Server:
         except Exception as e:
             print("Fehler:", e)
 
-    
     def statusPush(self, status):
         print(self.currentPrototyp)
         for key, value in status.items():
             self.currentPrototyp['sensors'][key]['status'] = status[key]
         self.sendData() #senden von daten wenn grenzwerte überschritten wurden 
-            
-       
-            
