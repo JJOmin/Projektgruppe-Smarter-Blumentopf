@@ -41,8 +41,8 @@ class Control:
                 logData = self.model.currentValues #currentValues ist dictionary mit aktuellen daten
              
                 if logData: 
-                    minValue = boundaries.get('min') #min und max von json kriegen
-                    maxValue = boundaries.get('max')
+                    minValue = boundaries['min'] #min und max von json kriegen
+                    maxValue = boundaries['max']
                     
                 for data in logData: #vergleich und ausgabe
                     if minValue is not None and maxValue is not None: #schauen ob es min/max gibt
