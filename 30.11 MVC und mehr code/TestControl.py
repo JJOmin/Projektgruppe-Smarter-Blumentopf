@@ -41,15 +41,29 @@ class Control:
                 logData = self.model.currentValues #currentValues ist dictionary mit aktuellen daten
              
                 if logData: 
-                    minValue = boundaries['min'] #min und max von json kriegen
-                    maxValue = boundaries['max']
+                    minValueTemp = boundaries['temperature']['min'] #min und max von json kriegen
+                    maxValueTemp = boundaries['temperature']['max']
+
+                    minValueMoisture = boundaries['moisture']['min']
+                    maxValueMoisture = boundaries['moisture']['max']
+
+                    minValueLight = boundaries['light']['min']
+                    maxValueLight = boundaries['light']['max']
                     
                 for data in logData: #vergleich und ausgabe
-                    if minValue is not None and maxValue is not None: #schauen ob es min/max gibt
-                        if data < minValue or data > maxValue: #später benachrichtigung hinzufügen
-                            print("Werte liegen außerhalb der range")
+                    if (minValueTemp & maxValueTemp & minValueMoisture & maxValueMoisture & minValueLight & maxValueLight) is not None : #schauen ob es min/max gibt
+                        if data{'temperature'} < minValueTemp or data{'temperature'} > maxValueTemp:
+                            print("1. Werte liegen außerhalb der range")
+                        
+                        if data{'light'} < minValueMoisture or data{'light'} > maxValueMoisture:
+                            print("2. Werte liegen außerhalb der range")
+                        
+                        if data{'moisture'} < minValueLight or data{'moisture'} > maxValueLight:
+                            print("3. Werte liegen außerhalb der range")
+                        
                         else:
                             print("Werte liegen innerhalb der range") 
+                            
                     else:
                         print("Werte nicht definiert") #wenn es keine min/max werte gibt -> fehlermeldung
 
