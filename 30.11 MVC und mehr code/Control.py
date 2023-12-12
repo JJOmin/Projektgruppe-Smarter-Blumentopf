@@ -134,10 +134,11 @@ class Control:
         
     def statusChange(self):
         print("status Change!")
+        self.updateLeds(self.model.status)
         
-    def updateLeds(stats):
+    def updateLeds(self, stats):
         for key, value in stats.items():
             if value == "Okay":
-                self.leds[key].on()
-            elif value == "Warning":
                 self.leds[key].off()
+            elif value == "Warning":
+                self.leds[key].on()
