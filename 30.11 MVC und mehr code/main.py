@@ -57,7 +57,7 @@ while running:
         control.model.lightLog = []
         control.model.temperatureLog = []
         control.model.soilLog = []
-        
+        control.setupServerData()
         serverTime = utime.ticks_ms() + serverInterval
         
     if utime.ticks_ms() > endTime:
