@@ -58,10 +58,10 @@ class Control:
         pass
         
     def calcAverage(self, values, newLength):
-        result = []
+        result = [] # ergebniss der berechnug durchschnitt
         total = 0
         i = 0
-        for value in values:
+        for value in values: 
             total += value
             i += 1
             if i % newLength == 0:
@@ -80,5 +80,5 @@ class Control:
                  self.allSensors.readTemperatureSensor()
                  self.sensorSoilTest() # rufe die Mehtode oben zum lesen auf (zwischenlösung)
                  self.allSensors.readLightSensor()# Starte die methode read_temperatur() Also ließ
-                 self.view.printAllData()
+                 #self.view.printAllData()
                  #break
