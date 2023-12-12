@@ -36,7 +36,6 @@ class Control:
         
         self.model.profileData = self.server.getProfile()
         print(self.model.profileData)
-        self.server.addMeasurement(20, 5, 35)
          
         
     def sensorTemperatureTest(self): #method to test the readings of TemperatureSensor
@@ -51,8 +50,8 @@ class Control:
         
     def sensorSoilTest(self): #method to test the readings of SoilSensor
         self.allSensors.readSoilSensor() #setzt neuen wert in var der Classe AllSensors alle measureDuration im abstand
-        if self.allSensors.soilSensorValue != None:#wenn nicht None returnt wird (passiert wenn die letzte Messung nicht mindestens measureDuration (z.b. 5000 ms) her ist)
-            print("Bodenfeuchtigkeit: ",self.allSensors.soilSensorValue)
+        #if self.allSensors.soilSensorValue != None:#wenn nicht None returnt wird (passiert wenn die letzte Messung nicht mindestens measureDuration (z.b. 5000 ms) her ist)
+            #print("Bodenfeuchtigkeit: ",self.allSensors.soilSensorValue)
             
         
     def improvementPump(self): #Die Methode dürfete von der Logik her funktionieren aber muss noch an die werte vom soil sensor angeglichen werden!
@@ -61,19 +60,17 @@ class Control:
             print("Pumpe läuft")
         if self.allSensors.SoilSensorsValue >= 1: # Wenn genug wasser im Topf ist soll die pumpe aufhören. 
             self.deactivatePump() # Stopp Pumpe
-            
-    def ledCheck(self):
-        pass
+
         
-    def calcAverage(self, values, newLength):
+    def calcAverage(self, values, packLen):
         result = []
         total = 0
         i = 0
         for value in values:
             total += value
             i += 1
-            if i % newLength == 0:
-                result.append(total / newLength)
+            if i % packLen == 0:
+                result.append(total / packLen)
                 total = 0
         return result
     
@@ -101,10 +98,10 @@ class Control:
             self.btnStat = False
             
     def compareData(self):
-        profile = self.model.profileData # alle profile
+        profile = self.model.profileData[0] # alle profile
         
         if profile is not None: #conrol if profile is matched 
-            boundaries = self.model.profileData["boundaries"] #boundaries ausgeben
+            boundaries = profile["boundaries"] #boundaries ausgeben
             status = self.model.status
             
             logData = self.model.currentValues #currentValues ist dictionary mit aktuellen daten
@@ -117,16 +114,14 @@ class Control:
                 
                 
                 if value < min:
-                    print("Wert für " + key + " zu niedrig")
                     newStatus[key] = "Warning"
                     
                 elif value > max:
-                    print("Wert für " + key + " zu hoch")
                     newStatus[key] = "Warning"
                 else:
                     newStatus[key] = "Okay"
-                    print("Wert für " + key + " in Ordnung")
                     
+            print("Status:", newStatus)
             if newStatus != status:
                 self.model.status = newStatus
                 self.statusChange()
@@ -135,6 +130,7 @@ class Control:
     def statusChange(self):
         print("status Change!")
         self.updateLeds(self.model.status)
+        self.server.statusPush(self.model.status)
         
     def updateLeds(self, stats):
         for key, value in stats.items():

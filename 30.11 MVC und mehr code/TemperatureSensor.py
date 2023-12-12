@@ -14,7 +14,7 @@ class TemperatureSensor:
         time.sleep_ms(750) #pause würde ich empfehlen 
         for rom in self.roms: # solange self.roms werte ließt
             temperature = self.ds_sensor.read_temp(rom) # temperatur = die gelesenen Koventierten werte
-            print("Temperatur: {:.2f}°C".format(temperature)) #Ausgabe der Temperatur + Formatierung
+            #print("Temperatur: {:.2f}°C".format(temperature)) #Ausgabe der Temperatur + Formatierung
             return temperature
 
 #     def start_by_press(self): # die schleife wird ausgeführt wenn der taster gedrückt wird

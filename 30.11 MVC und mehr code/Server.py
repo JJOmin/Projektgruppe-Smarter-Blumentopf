@@ -40,38 +40,44 @@ class Server:
         auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')
         headers = {'Authorization': auth}
         
-        response = urequests.get(self.prototypUrl, headers=headers)
-        if response.status_code == 200:
-            content = response.text
-            response.close()
-            self.currentPrototyp = json.loads(content)
-            self.profileName = json.loads(content)['profile']
-            return [self.currentPrototyp, self.profileName]
-        else:
-            response.close()
-            return None
+        try:
+            response = urequests.get(self.prototypUrl, headers=headers)
+            if response.status_code == 200:
+                content = response.text
+                response.close()
+                self.currentPrototyp = json.loads(content)
+                self.profileName = json.loads(content)['profile']
+                return [self.currentPrototyp, self.profileName]
+            else:
+                response.close()
+                return None
+        except Exception as e:
+            print("Fehler:", e)
     
     #funktion die alle Profile auf dem Server herrunterläd
     def getProfile(self): #returns only the profileUrl content
         auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')
         headers = {'Authorization': auth}
         
-        response = urequests.get(self.profileUrl, headers=headers)
-        if response.status_code == 200:
-            content = response.text
-            response.close()
-            self.profileBoundaries = json.loads(content)[self.profileName]
-            return self.profileBoundaries
-        else:
-            response.close()
-            return None
+        try:
+            response = urequests.get(self.profileUrl, headers=headers)
+            if response.status_code == 200:
+                content = response.text
+                response.close()
+                self.profileBoundaries = json.loads(content)[self.profileName]
+                return [self.profileBoundaries, self.profileName]
+            else:
+                response.close()
+                return None
+        except Exception as e:
+            print("Fehler:", e)
 
     #methode zum hinzufügen neuer messwerte zum array
     def addMeasurement(self, temperature, light, moisture):
         # Füge die neuen Messwerte zum Prototyp hinzu
-        self.currentPrototyp['sensors']['temperature']['log'].append(temperature)
-        self.currentPrototyp['sensors']['light']['log'].append(light)
-        self.currentPrototyp['sensors']['moisture']['log'].append(moisture)
+        self.currentPrototyp['sensors']['temperature']['log'].extend(temperature)
+        self.currentPrototyp['sensors']['light']['log'].extend(light)
+        self.currentPrototyp['sensors']['moisture']['log'].extend(moisture)
         self.sendData() 
         
     def sendData(self): 
@@ -92,7 +98,7 @@ class Server:
         print(self.currentPrototyp)
         for key, value in status.items():
             self.currentPrototyp['sensors'][key]['status'] = status[key]
-        sendData() #senden von daten wenn grenzwerte überschritten wurden 
+        self.sendData() #senden von daten wenn grenzwerte überschritten wurden 
             
        
             
