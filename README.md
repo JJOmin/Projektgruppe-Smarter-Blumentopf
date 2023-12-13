@@ -21,7 +21,7 @@
 ## Sensoren programmierung
   ### Simulation mit Wokwi
   - Temperatursensor DS18B20 ([@Enis](https://github.com/NisVison))
-  - Display ([@Anna](https://github.com/Discovery1701A) & )
+  - Display ([@Anna](https://github.com/Discovery1701A) & [@Enis](https://github.com/NisVison))
   - Helligkeit ([@Sam](https://github.com/hystics))
   - Bodenfeuchtigkeit ([@Anna](https://github.com/Discovery1701A) & [@Leo](https://github.com/JJOmin))
 
