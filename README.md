@@ -18,11 +18,11 @@
 - Wokwi Simulation des ESP32 [hier](https://wokwi.com/projects/334090875207418452)
 - Silicon Labs Treiber für USB to UART [hier](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads)
 
-### Simulation der Sensoren
-  - Temperatursensor DS18B20 (Leo)
-  - Display
-  - Helligkeit
-  - Bodenfeuchtigkeit (Hier wichtig, der Sensor MUSS Kalibriert werden.)
+## Sensoren
+  - Temperatursensor DS18B20 ()
+  - Display ()
+  - Helligkeit ()
+  - Bodenfeuchtigkeit ([@Anna](https://github.com/Discovery1701A), [@Leo](https://github.com/JJOmin))
 
 
 
