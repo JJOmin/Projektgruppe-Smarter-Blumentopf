@@ -10,7 +10,7 @@
 - [@Sam](https://github.com/hystics)
   
 ## Guides
-- ESP32 in betrieb nehmen [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/c79d338f0dc577e0411f519bfa427959de9283d4/Guides)
+- ESP32 Inbetriebnahmen [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/c79d338f0dc577e0411f519bfa427959de9283d4/Guides)
 - weiter Folgen
   
 ## Programme
