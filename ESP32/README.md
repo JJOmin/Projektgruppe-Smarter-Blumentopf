@@ -15,7 +15,7 @@
         - Falls Kritisch -> Status Change X
     - Schreiben werte in Model (in ZyklusArray) X
         
-### Server Intervall (alle 90 Sek für demo sonst 15-30 Minuten)
+### Server Intervall (nach 10 gemessenen Werte (für Demo, final mehr))
     - Json Lesen Server -> in Model (prototyp.json) X
         - Name & Profiel Änderungen übernehmen (db.json) X
             - Neues Profiel, neue Grenzwerte ziehen wenn ängerung (triggert 2. lesen) X
