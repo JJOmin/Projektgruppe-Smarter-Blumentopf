@@ -11,7 +11,7 @@ control.setupServerData()   # Server setup
 startTime = utime.ticks_ms()            # Var fürs speichern der Startzeit vom Programm 
 sensorInterval = 5000                   # Gibt an in welchem Interval Sensoren ausgelesen werden sollen 
 sensorTime = startTime + sensorInterval # Timet den zeitpunkt fürs erneute auslesen der Sensoren 
-serverThreshold = 6                     # Anzahl wie oft Werte gelesen werden sollen, vor Durschnittsbrechnung und Uploaud 
+serverThreshold = 10                     # Anzahl wie oft Werte gelesen werden sollen, vor Durschnittsbrechnung und Uploaud 
 #serverInterval = 90000
 #serverTime = startTime + serverInterval
 endTime= startTime + 300000             # um das Programm zu beenden, in dem fall nach 5min
@@ -42,7 +42,7 @@ while running:
 
     if logSize == serverThreshold: # Prüft ob anzahl der werte auch serverThreshold = 6 enspricht.
     #if utime.ticks_ms() > serverTime:
-        packLen = 2
+        packLen = 10
         averageLightLog = control.calcAverage(control.model.lightLog, packLen)              # Brechnung Durchschnittswert für lightLog
         averageTemperatureLog = control.calcAverage(control.model.temperatureLog, packLen)  # Brechnung Durchschnittswert für temperatureLog
         averageSoilLog = control.calcAverage(control.model.soilLog, packLen)                # Brechnung Durchschnittswert für soilLog
