@@ -1,13 +1,9 @@
 # Projektgruppe-Smarter-Blumentopf
 
-**Projektbeschreibung:** Dieses Projekt konzentriert sich auf die Entwicklung eines intelligenten Blumentopfes, der durch eine Begleit-App gesteuert wird. Das Ziel ist es, eine nachhaltige und effiziente Bewässerung für Pflanzen zu ermöglichen, während gleichzeitig verschiedene Sensoren die Bedingungen der Pflanze überwachen.
+**Projektbeschreibung:** Dieses Projekt konzentriert sich auf die Entwicklung eines intelligenten Blumentopfes, der durch eine Begleit-App gesteuert wird. Das Ziel ist es, eine nachhaltige und effiziente Bewässerung für Pflanzen zu ermöglichen, während gleichzeitig verschiedene Sensoren die Bedingungen der Pflanze überwachen. Programmablauf [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/blob/44800ab2f6299ea2662f18130984cc1ef9804382/ESP32/README.md)
 
 **Gruppenmitglieder:** 
-- [@Leo](https://github.com/JJOmin)
-- [@Anna](https://github.com/Discovery1701A)
-- [@Enis](https://github.com/NisVison)
-- [@David](https://github.com/DaveBue)
-- [@Sam](https://github.com/hystics)
+[@Leo](https://github.com/JJOmin) [@Anna](https://github.com/Discovery1701A) [@Enis](https://github.com/NisVison) [@David](https://github.com/DaveBue) [@Sam](https://github.com/hystics)
   
 ## Guides
 - ESP32 Inbetriebnahmen [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/c79d338f0dc577e0411f519bfa427959de9283d4/Guides)
