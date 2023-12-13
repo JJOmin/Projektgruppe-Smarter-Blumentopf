@@ -19,7 +19,7 @@
 - Silicon Labs Treiber für USB to UART [hier](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads)
 
 ## Sensoren programmierung
-  ### Simulation mit Wokwi
+  **Simulation mit Wokwi [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/fa86ac6914044866652e3fb7bb85e3baa563d3ce/ESP32/Wokwi%20Simulation%20von%20Sensoren)**
   - Temperatursensor DS18B20 ([@Enis](https://github.com/NisVison))
   - Display ([@Anna](https://github.com/Discovery1701A) & [@Enis](https://github.com/NisVison))
   - Helligkeit ([@Sam](https://github.com/hystics))
