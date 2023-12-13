@@ -9,8 +9,9 @@
 - [@David](https://github.com/DaveBue)
 - [@Sam](https://github.com/hystics)
   
-## Anleitungen
-- ESP32 in betrieb nehmen [hier](ESP32-Code/README.md)
+## Guides
+- ESP32 in betrieb nehmen [hier](https://github.com/JJOmin/Projektgruppe-Smarter-Blumentopf/tree/c79d338f0dc577e0411f519bfa427959de9283d4/Guides)
+- weiter Folgen
   
 ## Programme
 - Thonny IDE für mycroPython und ESP32 [hier](https://thonny.org/)
