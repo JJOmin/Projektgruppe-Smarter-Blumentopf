@@ -6,8 +6,8 @@
 - [@Leo](https://github.com/JJOmin)
 - [@Anna](https://github.com/Discovery1701A)
 - [@Enis](https://github.com/NisVison)
-- [@David](https://github.com/)
-- [@Sam](https://github.com/)
+- [@David](https://github.com/DaveBue)
+- [@Sam](https://github.com/hystics)
   
 ## Anleitungen
 - ESP32 in betrieb nehmen [hier](ESP32-Code/README.md)
