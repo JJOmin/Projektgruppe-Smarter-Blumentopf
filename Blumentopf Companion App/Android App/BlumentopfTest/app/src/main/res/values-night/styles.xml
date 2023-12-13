@@ -1,9 +1,0 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Dark-Mode-Theme -->
-    <style name="DarkTheme" parent="Theme.AppCompat">
-        <!-- Farben für den Dark-Mode -->
-        <item name="colorPrimary">@color/colorPrimaryDark</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-</resources>
