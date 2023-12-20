@@ -23,7 +23,7 @@
     - Messwerte des Sensor Intervalls im Model zurücksetzen
     
 ### Button Pressed?
-        - Wenn der Button gedrückt wird: Ausgabe der Aktuellen werte auf dem Display
+    - Wenn der Button gedrückt wird: Ausgabe der Aktuellen werte auf dem Display
     
 ### Status Change
     - LEDs Aktivieren/Deaktivieren
