@@ -5,8 +5,10 @@ import utime
 
 #setup
 control = Control()         # Initialisierung des MVC
-control.setupWifi()         # Wifi setup
-control.setupServerData()   # Server setup
+
+# Auskommentiert für Standalone Demo HIT
+# control.setupWifi()         # Wifi setup
+# control.setupServerData()   # Server setup
 
 startTime = utime.ticks_ms()            # Var fürs speichern der Startzeit vom Programm 
 sensorInterval = 5000                   # Gibt an in welchem Interval Sensoren ausgelesen werden sollen 
@@ -40,33 +42,34 @@ while running:
         sensorTime = utime.ticks_ms() + sensorInterval      # Aktuallisierung SensorTime für den nächsten Zeitpunkt für Auslesung 
     logSize = len(control.model.lightLog)                   # gibt logSize die Anzahl der bisher im Licht-Log gespeicherten Datenpunkte an
 
-    if logSize == serverThreshold: # Prüft ob anzahl der werte auch serverThreshold = 6 enspricht.
-    #if utime.ticks_ms() > serverTime:
-        packLen = 5
-        averageLightLog = control.calcAverage(control.model.lightLog, packLen)              # Brechnung Durchschnittswert für lightLog
-        averageTemperatureLog = control.calcAverage(control.model.temperatureLog, packLen)  # Brechnung Durchschnittswert für temperatureLog
-        averageSoilLog = control.calcAverage(control.model.soilLog, packLen)                # Brechnung Durchschnittswert für soilLog
-        
-        print("Server Upload!")
-        print("Uploaded", [averageLightLog, averageTemperatureLog, averageSoilLog], "to Server!") # ausgabe server 
-        
-        newPrototype = control.server.getPrototype()   # Ruft das Prototyp-Objekt vom Server ab
-        if newPrototype:                               # aktualisier interne Variablen mit den erhaltenen Daten und gibt eine Liste mit diesen Daten zurück.
-            control.model.prototypData = newPrototype  # Füllt aktuallisierte daten in model.prototypData
-        
-        print(control.model.profileData[1], control.model.prototypData[1]) # Ausgabe der Vergleichsdaten profiel und Proto 
-        
-        if control.model.profileData[1] != control.model.prototypData[1]:   # wenn die daten vom Profiel nicht = die vom Proto sind
-            control.model.profileData = control.server.getProfile()         # Dann übernimm die werte vom Server!
-            print("Neues Profil:", control.model.profileData[0]["name"])    # Ausgabe neues Profiel wurde Geladen
-            
-        control.server.addMeasurement(averageTemperatureLog, averageLightLog, averageSoilLog) #Fügt die durchschnittlichen Messwerte dem Server hinzu
-        
-        control.model.lightLog = []         # Leerung des Arrays 
-        control.model.temperatureLog = []   # Leerung des Arrays 
-        control.model.soilLog = []          # Leerung des Arrays 
-        
-        #serverTime = utime.ticks_ms() + serverInterval
+# HIT Demo
+#     if logSize == serverThreshold: # Prüft ob anzahl der werte auch serverThreshold = 6 enspricht.
+#     #if utime.ticks_ms() > serverTime:
+#         packLen = 5
+#         averageLightLog = control.calcAverage(control.model.lightLog, packLen)              # Brechnung Durchschnittswert für lightLog
+#         averageTemperatureLog = control.calcAverage(control.model.temperatureLog, packLen)  # Brechnung Durchschnittswert für temperatureLog
+#         averageSoilLog = control.calcAverage(control.model.soilLog, packLen)                # Brechnung Durchschnittswert für soilLog
+#         
+#         print("Server Upload!")
+#         print("Uploaded", [averageLightLog, averageTemperatureLog, averageSoilLog], "to Server!") # ausgabe server 
+#         
+#         newPrototype = control.server.getPrototype()   # Ruft das Prototyp-Objekt vom Server ab
+#         if newPrototype:                               # aktualisier interne Variablen mit den erhaltenen Daten und gibt eine Liste mit diesen Daten zurück.
+#             control.model.prototypData = newPrototype  # Füllt aktuallisierte daten in model.prototypData
+#         
+#         print(control.model.profileData[1], control.model.prototypData[1]) # Ausgabe der Vergleichsdaten profiel und Proto 
+#         
+#         if control.model.profileData[1] != control.model.prototypData[1]:   # wenn die daten vom Profiel nicht = die vom Proto sind
+#             control.model.profileData = control.server.getProfile()         # Dann übernimm die werte vom Server!
+#             print("Neues Profil:", control.model.profileData[0]["name"])    # Ausgabe neues Profiel wurde Geladen
+#             
+#         control.server.addMeasurement(averageTemperatureLog, averageLightLog, averageSoilLog) #Fügt die durchschnittlichen Messwerte dem Server hinzu
+#         
+#         control.model.lightLog = []         # Leerung des Arrays 
+#         control.model.temperatureLog = []   # Leerung des Arrays 
+#         control.model.soilLog = []          # Leerung des Arrays 
+#         
+#         #serverTime = utime.ticks_ms() + serverInterval
         
     if utime.ticks_ms() > endTime: # wenn der timer bei der entTime angekommen ist stoppe den Loop
         running = False
