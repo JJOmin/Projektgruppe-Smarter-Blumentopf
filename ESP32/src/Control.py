@@ -32,6 +32,16 @@ class Control:
         print(self.model.prototypData)
         
         self.model.profileData = self.server.getProfile()
+        
+        if self.model.profileData != self.model.load_json(self.model.localFileName):
+            self.model.save_json_if_changed(self.model.localFileName, self.model.profileData)
+        
+        if self.model.profileData == False :
+            if self.model.load_json(self.model.localFileName) is not None:
+                self.model.profileData = self.model.load_json(self.model.localFileName)
+            else :
+                self.model.profileData = [None,'None']
+            
         print(self.model.profileData)
            
     def sensorTemperatureTest(self):                                # method to test the readings of TemperatureSensor

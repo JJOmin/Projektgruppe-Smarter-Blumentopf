@@ -12,6 +12,7 @@ class Model:
         self.uploadUrl = 'https://blumentopfupload.tilly.cloud/Blumentopf/upload_data' # falls fehler auftreten auf "http://31.19.90.130:5000/Blumentopf/upload_data" setzen
         self.webUser = b'Blumentopf'
         self.webPw = b'Blumentopf_123'
+        self.localFileName = 'profileData.json'
         
         
         self.soilData = {'dpin':35, 'wet': 3842.04, 'dry': 4095, 'numValuesAvg': 2, 'measureDuration': 5000, 'numCalibrations':  4}

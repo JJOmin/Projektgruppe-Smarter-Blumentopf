@@ -70,6 +70,7 @@ class Server:
                 return None
         except Exception as e:
             print("Fehler:", e)
+            return False  # Hier wird False zurückgegeben, wenn eine Ausnahme auftritt
 
     #methode zum hinzufügen neuer messwerte zum array
     def addMeasurement(self, temperature, light, moisture):
