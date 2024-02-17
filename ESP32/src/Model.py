@@ -1,6 +1,5 @@
 # Modell
 
-#from Controller import Controller
 
 class Model:
     def __init__(self):
@@ -28,6 +27,7 @@ class Model:
         self.soilLog = []
         self.currentValues = {'light': 'not defined', 'moisture': 'not defined', 'temperature': 'not defined'}
         self.status = {'light': 'Okay', 'moisture': 'Okay', 'temperature': 'Okay'}
+        #self.demoStatus = {'light': 'Okay', 'moisture': 'Okay', 'temperature': 'Okay'} # HIT Demo
         
         
         
