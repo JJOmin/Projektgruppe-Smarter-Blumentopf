@@ -1,5 +1,6 @@
 # Modell
-
+import ujson
+#from Controller import Controller
 
 class Model:
     def __init__(self):
@@ -11,6 +12,7 @@ class Model:
         self.uploadUrl = 'https://blumentopfupload.tilly.cloud/Blumentopf/upload_data' # falls fehler auftreten auf "http://31.19.90.130:5000/Blumentopf/upload_data" setzen
         self.webUser = b'Blumentopf'
         self.webPw = b'Blumentopf_123'
+        self.localFileName = 'profileData.json'
         
         
         self.soilData = {'dpin':35, 'wet': 3842.04, 'dry': 4095, 'numValuesAvg': 2, 'measureDuration': 5000, 'numCalibrations':  4}
@@ -37,4 +39,43 @@ class Model:
         
     def get(self, attr_name): #Etwas überflüssig, aber eventuell wegen vererbung noch notwendig
         return getattr(self, attr_name)
+    
+    def save_json_if_changed(filename, data):
+      # Überprüfe, ob die Datei existiert, und erstelle sie, wenn nicht
+        try:
+            with open(filename, 'r'):
+                pass
+        except OSError:
+    # Datei existiert nicht, erstelle eine leere Datei
+            with open(filename, 'w') as file:
+                ujson.dump({}, file)
+                print("Leere Datei erstellt.")
+        try:
+        # Versuche, die vorhandene Datei zu öffnen und deren Inhalt zu lesen
+            with open(filename, 'r') as file:
+                current_data = ujson.load(file)
+        except (OSError, ValueError):
+        # Wenn die Datei nicht vorhanden oder nicht lesbar ist, setze den aktuellen Inhalt auf None
+            current_data = None
+  
+
+    # Vergleiche den aktuellen Inhalt mit dem neuen Inhalt
+        if current_data != data:
+        # Wenn sich die Daten unterscheiden, speichere die neue JSON-Datei
+            with open(filename, 'w') as file:
+                ujson.dump(data, file)
+            print("Daten wurden aktualisiert.")
+        else:
+            print("Daten sind bereits aktuell.")
+        
+    def load_json(filename):
+        try:
+            with open(filename, 'r') as file:
+                data = ujson.load(file)
+            return data
+        except (OSError, ValueError):
+            print(f"Fehler beim Laden der Datei '{filename}'.")
+            return None
+
+
 
