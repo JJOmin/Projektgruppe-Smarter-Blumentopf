@@ -1,0 +1,2 @@
+Quellen:
+Einbindung des Soil I2C Sensors mit hilfe von: Dinculescu, Mihai. "micropython-adafruit-drivers" GitHub (Stand 22.02.2024). https://github.com/mihai-dinculescu/micropython-adafruit-drivers/blob/master/seesaw/README.md (29.12.2019).
