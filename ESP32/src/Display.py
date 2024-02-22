@@ -20,6 +20,8 @@ class Display:
             self.i2c = SoftI2C(scl=Pin(22), sda=Pin(21), freq=10000)  # I2C für ESP32
             self.lcd = I2cLcd(self.i2c, self.I2C_ADDR, self.totalRows, self.totalColumns)
             self.lcd.custom_char(0, self.grad)
+            self.lcd.display_off()
+            self.lcd.backlight_off()
         except Exception as e:
             # Fehlerausgabe, falls die Initialisierung fehlschlägt
             print("Fehler beim Initialisieren des LCDs:", e)
@@ -132,10 +134,16 @@ class Display:
 
 
     def update_display_text(self, new_text):
+       
         self.current_display_text = new_text
+        
 
     def display_updated_text(self):
+        self.lcd.display_on()
+        self.lcd.backlight_on()
         self.display_centered_text(self.current_display_text)
+        self.lcd.display_off()
+        self.lcd.backlight_off()
         
 
     def scroll_text(self, text, scroll_speed=100):
@@ -160,14 +168,15 @@ class Display:
             print("Fehler beim Schreiben auf das LCD(Scrollen):", e)
 
 # Beispielaufruf
-# display = Display()
-# x = 0
-# current_time = utime.ticks_ms()
-# 
-# while True:
-#     print(x)
-#     display_text = "Bodenfreuchtigkeit:" + str(x) + "%:Temperatur:" + str(x) + ":Licht:" + str(x)+":"
-#     display.scroll_text(display_text, 500)
-#     display.update_display_text(display_text)
-#     display.display_updated_text()
-#     x += 1      
+display = Display()
+x = 0
+current_time = utime.ticks_ms()
+ 
+while True:
+    print(x)
+    display_text = "Bodenfreuchtigkeit:" + str(x) + "%:Temperatur:" + str(x) + ":Licht:" + str(x)+":"
+    #display.scroll_text(display_text, 500)
+    display.update_display_text(display_text)
+    display.display_updated_text()
+    x += 1      
+
