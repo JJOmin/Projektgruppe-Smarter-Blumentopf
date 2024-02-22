@@ -15,6 +15,7 @@ class Control:
         self.server = Server(self.model.ssid, self.model.wifiPw, self.model.profileUrl, self.model.prototypUrl, self.model.uploadUrl, self.model.webUser, self.model.webPw)
         self.running = False # brauchen wir nur für deu methode startByPress()
         self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN)
+        self.btnWater = machine.Pin(34, machine.Pin.IN)
         self.btnStat = False
         self.leds = {
             "light": machine.Pin(self.model.ledPins["light"], machine.Pin.OUT),
@@ -211,3 +212,4 @@ class Control:
                 self.leds[key].off()
             elif value == "Warning":
                 self.leds[key].on()
+

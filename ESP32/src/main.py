@@ -28,13 +28,14 @@ running = True                          # startet den loop
 while running:
     #sensorData = control.allSensors.readAll()
     #control.startByPress() # führt die startByPress() methode aus. Sensoren auf Knopfdruck
-      
+    
     #print(testPin.value())
     if control.btnColor.value():        # Button Prüfung Ob 0 oder 1
         control.view.printAllData()     # gieb Alle Sensor daten aus 
     #control.checkBtn()
     
-    if utime.ticks_ms() > sensorTime:                       # Auslesen der Sensoren
+    if utime.ticks_ms() > sensorTime:						# Auslesen der Sensoren
+        print(control.btnWater.value())
         control.setupWifi()
         print('Measuring...')
         sensorData = control.allSensors.readAll()           # Ließt die methode fürs auslesen der sensoren 

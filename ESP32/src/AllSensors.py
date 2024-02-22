@@ -1,6 +1,7 @@
-from SoilSensor import SoilSensor
+#from SoilSensor import SoilSensor
 from TemperatureSensor import TemperatureSensor
 from LightSensor import LightSensor
+from SoilSensor import SoilSensor
 
 
 class AllSensors: #Class that holds instances of every sensor to get measurments
@@ -20,7 +21,7 @@ class AllSensors: #Class that holds instances of every sensor to get measurments
         
         
     def readAll(self):
-        self.soilSensorValue = self.soilSensor.readMoisture()
+        self.soilSensorValue = self.soilSensor.readSoilSensor()
         #if self.soilSensorValue != None:#wenn nicht None returnt wird (passiert wenn die letzte Messung nicht mindestens measureDuration (z.b. 5000 ms) her ist)
             #print("Bodenfeuchtigkeit:", self.soilSensorValue)
         self.temperaturSensorValue = self.temperatureSensor.readTemperature() #Hier auslese der read klasse also ne methode die inszanziert in dieser klasse
@@ -30,7 +31,7 @@ class AllSensors: #Class that holds instances of every sensor to get measurments
         
         
     def readSoilSensor(self):
-        self.soilSensorValue = self.soilSensor.readMoisture()
+        self.soilSensorValue = self.soilSensor.readSoilSensor()
         
     def readTemperatureSensor(self):
         self.temperaturSensorValue = self.temperatureSensor.readTemperature() #Hier auslese der read klasse also ne methode die inszanziert in dieser klasse
