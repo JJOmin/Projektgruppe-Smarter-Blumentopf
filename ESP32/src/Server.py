@@ -29,16 +29,21 @@ class Server:
         
         try:
             print("Connecting to WiFi", end="")
+            point = 0
             self.sta_if.active(True)
             self.sta_if.connect(self.ssid, self.password)
-            while not self.sta_if.isconnected():
+            while not self.sta_if.isconnected() and point < 10:
                 print(".", end="")
                 time.sleep(0.1)
-            print(" Connected!")
+                point += 1
+            if self.sta_if.isconnected():
+                print(" Connected!")
+            else:
+                print(" Failed! No WiFi connection!")
         
         
-        except(OSError,ValueError):
-            print("Keine wifi Bruuuudaaaa was da los")
+        except Exception as e:
+            print("Fehler:", e)
     #methode die auf prototyp.json zugreift
     def getPrototype(self):
         auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')

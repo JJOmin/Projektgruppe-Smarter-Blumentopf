@@ -28,7 +28,7 @@ running = True                          # startet den loop
 while running:
     #sensorData = control.allSensors.readAll()
     #control.startByPress() # führt die startByPress() methode aus. Sensoren auf Knopfdruck
-    
+    control.setupWifi()  
     #print(testPin.value())
     if control.btnColor.value():        # Button Prüfung Ob 0 oder 1
         control.view.printAllData()     # gieb Alle Sensor daten aus 

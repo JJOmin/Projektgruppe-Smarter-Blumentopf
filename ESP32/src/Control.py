@@ -24,7 +24,9 @@ class Control:
         
          
     def setupWifi(self): #method to send Test Data to server and pulls data from the server
-        self.server.connectWifi()
+        if self.model.isWifiConnected == False:
+            self.server.connectWifi()
+        self.model.isWifiConnected = self.server.sta_if.isconnected()
         #print(self.server.getRemote())
         #print(self.server.setTestDataToServer())
         #print(self.server.getRemote())     
