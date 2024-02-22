@@ -6,9 +6,11 @@ import utime
 #setup
 control = Control()         # Initialisierung des MVC
 
-# Auskommentiert für Standalone Demo HIT
-# control.setupWifi()         # Wifi setup
-# control.setupServerData()   # Server setup
+#Auskommentiert für Standalone Demo HIT
+print('Setup Wifi')
+control.setupWifi()         # Wifi setup
+print('setup Server Data')
+control.setupServerData()   # Server setup
 
 startTime = utime.ticks_ms()            # Var fürs speichern der Startzeit vom Programm 
 sensorInterval = 5000                   # Gibt an in welchem Interval Sensoren ausgelesen werden sollen 
@@ -19,6 +21,8 @@ serverThreshold = 5                     # Anzahl wie oft Werte gelesen werden so
 endTime= startTime + 300000             # um das Programm zu beenden, in dem fall nach 5min
 running = True                          # startet den loop
 #testPin = Pin(18, Pin.IN)
+
+
 
 #___________Loop__________#
 while running:
@@ -31,6 +35,7 @@ while running:
     #control.checkBtn()
     
     if utime.ticks_ms() > sensorTime:                       # Auslesen der Sensoren
+        print('Measuring...')
         sensorData = control.allSensors.readAll()           # Ließt die methode fürs auslesen der sensoren 
         control.model.lightLog.append(sensorData[2])        # Hinzufügen des Lichtsensorwerts zum Log
         control.model.temperatureLog.append(sensorData[1])  # Hinzufügen des Temperaturewerts zum Log
@@ -43,33 +48,33 @@ while running:
     logSize = len(control.model.lightLog)                   # gibt logSize die Anzahl der bisher im Licht-Log gespeicherten Datenpunkte an
 
 # HIT Demo
-#     if logSize == serverThreshold: # Prüft ob anzahl der werte auch serverThreshold = 6 enspricht.
-#     #if utime.ticks_ms() > serverTime:
-#         packLen = 5
-#         averageLightLog = control.calcAverage(control.model.lightLog, packLen)              # Brechnung Durchschnittswert für lightLog
-#         averageTemperatureLog = control.calcAverage(control.model.temperatureLog, packLen)  # Brechnung Durchschnittswert für temperatureLog
-#         averageSoilLog = control.calcAverage(control.model.soilLog, packLen)                # Brechnung Durchschnittswert für soilLog
-#         
-#         print("Server Upload!")
-#         print("Uploaded", [averageLightLog, averageTemperatureLog, averageSoilLog], "to Server!") # ausgabe server 
-#         
-#         newPrototype = control.server.getPrototype()   # Ruft das Prototyp-Objekt vom Server ab
-#         if newPrototype:                               # aktualisier interne Variablen mit den erhaltenen Daten und gibt eine Liste mit diesen Daten zurück.
-#             control.model.prototypData = newPrototype  # Füllt aktuallisierte daten in model.prototypData
-#         
-#         print(control.model.profileData[1], control.model.prototypData[1]) # Ausgabe der Vergleichsdaten profiel und Proto 
-#         
-#         if control.model.profileData[1] != control.model.prototypData[1]:   # wenn die daten vom Profiel nicht = die vom Proto sind
-#             control.model.profileData = control.server.getProfile()         # Dann übernimm die werte vom Server!
-#             print("Neues Profil:", control.model.profileData[0]["name"])    # Ausgabe neues Profiel wurde Geladen
-#             
-#         control.server.addMeasurement(averageTemperatureLog, averageLightLog, averageSoilLog) #Fügt die durchschnittlichen Messwerte dem Server hinzu
-#         
-#         control.model.lightLog = []         # Leerung des Arrays 
-#         control.model.temperatureLog = []   # Leerung des Arrays 
-#         control.model.soilLog = []          # Leerung des Arrays 
-#         
-#         #serverTime = utime.ticks_ms() + serverInterval
+    if logSize == serverThreshold: # Prüft ob anzahl der werte auch serverThreshold = 6 enspricht.
+    #if utime.ticks_ms() > serverTime:
+        packLen = 5
+        averageLightLog = control.calcAverage(control.model.lightLog, packLen)              # Brechnung Durchschnittswert für lightLog
+        averageTemperatureLog = control.calcAverage(control.model.temperatureLog, packLen)  # Brechnung Durchschnittswert für temperatureLog
+        averageSoilLog = control.calcAverage(control.model.soilLog, packLen)                # Brechnung Durchschnittswert für soilLog
+        
+        print("Server Upload steht an!")
+        print("Versuche, folgende Daten hochzuladen:", [averageLightLog, averageTemperatureLog, averageSoilLog]) # ausgabe server 
+        
+        newPrototype = control.server.getPrototype()   # Ruft das Prototyp-Objekt vom Server ab
+        if newPrototype:                               # aktualisier interne Variablen mit den erhaltenen Daten und gibt eine Liste mit diesen Daten zurück.
+            control.model.prototypData = newPrototype  # Füllt aktuallisierte daten in model.prototypData
+        
+        #print(control.model.profileData[1], control.model.prototypData[1]) # Ausgabe der Vergleichsdaten profiel und Proto 
+        
+        if control.model.profileData[1] != control.model.prototypData[1]:   # wenn die daten vom Profil nicht = die vom Proto sind
+            control.model.profileData = control.server.getProfile()         # Dann übernimm die werte vom Server!
+            print("Neues Profil:", control.model.profileData[0]["name"])    # Ausgabe neues Profiel wurde Geladen
+            
+        control.server.addMeasurement(averageTemperatureLog, averageLightLog, averageSoilLog) #Fügt die durchschnittlichen Messwerte dem Server hinzu
+        
+        control.model.lightLog = []         # Leerung des Arrays 
+        control.model.temperatureLog = []   # Leerung des Arrays 
+        control.model.soilLog = []          # Leerung des Arrays 
+        
+        #serverTime = utime.ticks_ms() + serverInterval
         
     if utime.ticks_ms() > endTime: # wenn der timer bei der entTime angekommen ist stoppe den Loop
         running = False
