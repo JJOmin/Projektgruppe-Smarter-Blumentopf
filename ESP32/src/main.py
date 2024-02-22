@@ -36,6 +36,7 @@ while running:
     
     if utime.ticks_ms() > sensorTime:						# Auslesen der Sensoren
         print(control.btnWater.value())
+        #control.pump.on()
         control.setupWifi()
         print('Measuring...')
         sensorData = control.allSensors.readAll()           # Ließt die methode fürs auslesen der sensoren 

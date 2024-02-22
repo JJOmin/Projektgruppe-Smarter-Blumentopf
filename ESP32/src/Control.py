@@ -16,6 +16,7 @@ class Control:
         self.running = False # brauchen wir nur für deu methode startByPress()
         self.btnColor = machine.Pin(self.model.btnData["dpin"], machine.Pin.IN)
         self.btnWater = machine.Pin(34, machine.Pin.IN)
+        self.pump = machine.Pin(32, machine.Pin.OUT)
         self.btnStat = False
         self.leds = {
             "light": machine.Pin(self.model.ledPins["light"], machine.Pin.OUT),
