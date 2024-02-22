@@ -26,14 +26,19 @@ class Server:
 
     #funtkion zur verbindung mit dem Internet
     def connectWifi(self):
-        print("Connecting to WiFi", end="")
-        self.sta_if.active(True)
-        self.sta_if.connect(self.ssid, self.password)
-        while not self.sta_if.isconnected():
-            print(".", end="")
-            time.sleep(0.1)
-        print(" Connected!")
-
+        
+        try:
+            print("Connecting to WiFi", end="")
+            self.sta_if.active(True)
+            self.sta_if.connect(self.ssid, self.password)
+            while not self.sta_if.isconnected():
+                print(".", end="")
+                time.sleep(0.1)
+            print(" Connected!")
+        
+        
+        except(OSError,ValueError):
+            print("Keine wifi Bruuuudaaaa was da los")
     #methode die auf prototyp.json zugreift
     def getPrototype(self):
         auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')
@@ -45,7 +50,7 @@ class Server:
                 content = response.text
                 response.close()
                 self.currentPrototyp = json.loads(content)
-                self.profileName = json.loads(content)['profile']
+                self.profileName = json.loads(content)['selectedPlant']
                 return [self.currentPrototyp, self.profileName]
             else:
                 response.close()
@@ -53,7 +58,7 @@ class Server:
         except Exception as e:
             print("Fehler:", e)
     
-    #funktion die alle Profile auf dem Server herrunterläd
+    #funktion die alle Profile auf dem Server herrunterlaed
     def getProfile(self): #returns only the profileUrl content
         auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')
         headers = {'Authorization': auth}
@@ -63,8 +68,12 @@ class Server:
             if response.status_code == 200:
                 content = response.text
                 response.close()
-                self.profileBoundaries = json.loads(content)[self.profileName]
-                return [self.profileBoundaries, self.profileName]
+                if self.profileName in json.loads(content)["profiles"].keys():
+                    self.profileBoundaries = json.loads(content)["profiles"][self.profileName]
+                    return [self.profileBoundaries, self.profileName]
+                else:
+                    self.profileBoundaries = self.currentPrototyp["profiles"][self.profileName]
+                    return [self.profileBoundaries, self.profileName]
             else:
                 response.close()
                 return None
@@ -78,14 +87,34 @@ class Server:
         self.currentPrototyp['sensors']['temperature']['log'].extend(temperature)
         self.currentPrototyp['sensors']['light']['log'].extend(light)
         self.currentPrototyp['sensors']['moisture']['log'].extend(moisture)
+        
+        date = time.localtime()
+        
+        year = date[0]
+        month = date[1]
+        day = date[2]
+        hour = date[3]
+        minute = date[4]
+        
+        timeStamp = {'year': year,
+                     'month': month,
+                     'day': day,
+                     'hour': hour,
+                     'minute': minute}
+        
+        self.currentPrototyp['timeStamps'].extend(timeStamp)
+        
         self.sendData() 
         
-    def sendData(self): 
+    def sendData(self):
+        auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')
+        headers = {'Authorization': auth}
+        
         json_data = json.dumps(self.currentPrototyp) + "}" #json.dumps(data_to_send)
-        print(json_data)
+        #print(json_data)
         # Versuchen, die Daten an den Server zu senden
         try:
-            response = requests.post(self.uploadUrl, data = json_data)
+            response = requests.post(self.uploadUrl, data = json_data, headers = headers)
             if response.status_code == 200:
                 print("Daten erfolgreich gesendet")
             else:
@@ -94,7 +123,11 @@ class Server:
             print("Fehler:", e)
 
     def statusPush(self, status):
-        print(self.currentPrototyp)
-        for key, value in status.items():
-            self.currentPrototyp['sensors'][key]['status'] = status[key]
-        self.sendData() #senden von daten wenn grenzwerte überschritten wurden 
+        try:
+            #print(self.currentPrototyp)
+            for key, value in status.items():
+                self.currentPrototyp['sensors'][key]['status'] = status[key]
+            self.sendData() #senden von daten wenn grenzwerte überschritten wurden
+            
+        except Exception as e:
+            print("Fehlerrrrrr:", e)
