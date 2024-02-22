@@ -34,9 +34,13 @@ class Control:
         
     def setupServerData(self): # Abruf Proto daten und Speicher im Model
         self.model.prototypData = self.server.getPrototype()
-        self.model.status = {'light': self.model.prototypData[0]['sensors']['light']['status'],
-                             'moisture': self.model.prototypData[0]['sensors']['moisture']['status'],
-                             'temperature': self.model.prototypData[0]['sensors']['temperature']['status']}
+        if self.model.isWifiConnected:
+            self.model.status = {'light': self.model.prototypData[0]['sensors']['light']['status'],
+                                 'moisture': self.model.prototypData[0]['sensors']['moisture']['status'],
+                                 'temperature': self.model.prototypData[0]['sensors']['temperature']['status']}
+        else:
+            print("Not Connected to Wifi")
+        
         #print(self.model.prototypData)
         print(self.model.status)
         

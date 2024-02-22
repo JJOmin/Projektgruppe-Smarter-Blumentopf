@@ -28,13 +28,14 @@ running = True                          # startet den loop
 while running:
     #sensorData = control.allSensors.readAll()
     #control.startByPress() # führt die startByPress() methode aus. Sensoren auf Knopfdruck
-    control.setupWifi()  
+      
     #print(testPin.value())
     if control.btnColor.value():        # Button Prüfung Ob 0 oder 1
         control.view.printAllData()     # gieb Alle Sensor daten aus 
     #control.checkBtn()
     
     if utime.ticks_ms() > sensorTime:                       # Auslesen der Sensoren
+        control.setupWifi()
         print('Measuring...')
         sensorData = control.allSensors.readAll()           # Ließt die methode fürs auslesen der sensoren 
         control.model.lightLog.append(sensorData[2])        # Hinzufügen des Lichtsensorwerts zum Log

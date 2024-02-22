@@ -32,7 +32,7 @@ class Server:
             point = 0
             self.sta_if.active(True)
             self.sta_if.connect(self.ssid, self.password)
-            while not self.sta_if.isconnected() and point < 10:
+            while not self.sta_if.isconnected() and point < 20:
                 print(".", end="")
                 time.sleep(0.1)
                 point += 1
