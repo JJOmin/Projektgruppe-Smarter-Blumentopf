@@ -166,17 +166,5 @@ class Display:
         except Exception as e:
             # Fehlermeldung ausgeben, falls ein Fehler auftritt
             print("Fehler beim Schreiben auf das LCD(Scrollen):", e)
-
-# Beispielaufruf
-display = Display()
-x = 0
-current_time = utime.ticks_ms()
- 
-while True:
-    print(x)
-    display_text = "Bodenfreuchtigkeit:" + str(x) + "%:Temperatur:" + str(x) + ":Licht:" + str(x)+":"
-    #display.scroll_text(display_text, 500)
-    display.update_display_text(display_text)
-    display.display_updated_text()
-    x += 1      
+    
 

@@ -19,7 +19,7 @@ class Model:
         self.tempData = {'dpin':22}
         self.lightData = {'scl':22, 'sda': 21}
         self.btnData = {'dpin':25}
-        self.ledPins = {"light": 4, "moisture": 16, "temperature": 17}
+        self.ledPins = {"light": 17, "moisture": 16, "temperature": 4}
         
         self.prototypData = {}
         self.profileData = {}

@@ -36,7 +36,10 @@ while running:
     
     if utime.ticks_ms() > sensorTime:						# Auslesen der Sensoren
         print(control.btnWater.value())
-        #control.pump.on()
+        if control.pump.value() == 0:
+            control.pump.on()
+        else:
+            control.pump.off()
         control.setupWifi()
         print('Measuring...')
         sensorData = control.allSensors.readAll()           # Ließt die methode fürs auslesen der sensoren 
@@ -51,7 +54,7 @@ while running:
     logSize = len(control.model.lightLog)                   # gibt logSize die Anzahl der bisher im Licht-Log gespeicherten Datenpunkte an
 
 # HIT Demo
-    if logSize == serverThreshold: # Prüft ob anzahl der werte auch serverThreshold = 6 enspricht.
+    if logSize == serverThreshold and control.model.isWifiConnected: # Prüft ob anzahl der werte auch serverThreshold = 6 enspricht.
     #if utime.ticks_ms() > serverTime:
         packLen = 5
         averageLightLog = control.calcAverage(control.model.lightLog, packLen)              # Brechnung Durchschnittswert für lightLog
