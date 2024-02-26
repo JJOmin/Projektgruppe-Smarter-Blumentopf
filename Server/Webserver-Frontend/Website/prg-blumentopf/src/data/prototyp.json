@@ -1,27 +1,55 @@
 {
     "name": "Prototyp 1.0",
-    "profile": "basil",
+    "selectedPlant": "basil",
+    "profiles": {
+        "dragonTree": {
+            "name": "Drachenbaum",
+            "boundaries": {
+                "temperature": {
+                    "min": 15,
+                    "max": 40
+                },
+                "light": {
+                    "min": 1000,
+                    "max": 8000
+                },
+                "moisture": {
+                    "min": 10,
+                    "max": 50
+                }
+            }
+        }
+    },
+    "timeStamps": [
+        {"year": 2024, "month": 2, "day": 5, "hour": 13, "minute": 43},
+        {"year": 2024, "month": 2, "day": 6, "hour": 7, "minute": 25},
+        {"year": 2024, "month": 2, "day": 7, "hour": 14, "minute": 47},
+        {"year": 2024, "month": 2, "day": 8, "hour": 12, "minute": 11},
+        {"year": 2024, "month": 2, "day": 9, "hour": 18, "minute": 8},
+        {"year": 2024, "month": 2, "day": 11, "hour": 15, "minute": 56},
+        {"year": 2024, "month": 2, "day": 13, "hour": 20, "minute": 37},
+        {"year": 2024, "month": 2, "day": 15, "hour": 6, "minute": 52},
+        {"year": 2024, "month": 2, "day": 18, "hour": 21, "minute": 31},
+        {"year": 2024, "month": 2, "day": 20, "hour": 17, "minute": 33}
+    ],
     "sensors": {
         "temperature": {
             "name": "Temperatur",
             "unit": "°C",
-            "status": "Okay",
-            "log": [18, 12, 22, 18, 25, 18, 10, 17, 13, 12,
-            28, 23, 16, 23, 26, 11, 23, 15, 19, 21]
+            "status": "Warning",
+            "log": [31, 20, 12, 20, 19, 34, 27, 34, 10, 14]
         },
         "light": {
             "name": "Licht",
             "unit": "lx",
             "status": "Okay",
-            "log": [5374, 1554, 6339, 1886, 2886, 3701, 3132, 824, 5514, 3663,
-            5523, 4335, 5462, 5583, 5788, 5543, 2659, 4815, 2407, 4944]
+            "log": [810, 1849, 1813, 1069, 440, 1377, 787, 488, 531, 1581]
         },
         "moisture": {
             "name": "Bodenfeuchtigkeit",
             "unit": "%",
             "status": "Okay",
-            "log": [61, 75, 61, 97, 68, 41, 64, 78, 73, 89,
-            86, 49, 58, 94, 68, 39, 78, 80, 62, 94]
+            "log": [44, 50, 53, 55, 49, 84, 74, 61, 54, 74]
         }
     }
 }
