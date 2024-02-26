@@ -55,7 +55,7 @@ class BH1750():
         if mode & 0x20:
             self.set_mode(mode)
         # earlier measurements return previous reading
-        #sleep_ms(24 if mode in (0x13, 0x23) else 180)
+        sleep_ms(24 if mode in (0x13, 0x23) else 180)
         data = self.bus.readfrom(self.addr, 2)
         #factor = 2.0 if mode in (0x11, 0x23) else 1.0
         return (data[0]<<8 | data[1]) / (1.2 * 2.0)
