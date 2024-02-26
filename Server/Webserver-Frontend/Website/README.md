@@ -1,6 +1,6 @@
 # Vue.js Website (genutztes JS Framework):
   - https://vuejs.org/
-  - 
+
 # Vue.js Tutorial für Visual Studio Code:
   - https://code.visualstudio.com/docs/nodejs/vuejs-tutorial
 
