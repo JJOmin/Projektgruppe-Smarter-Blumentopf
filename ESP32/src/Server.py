@@ -107,7 +107,7 @@ class Server:
                      'hour': hour,
                      'minute': minute}
         
-        self.currentPrototyp['timeStamps'].extend(timeStamp)
+        self.currentPrototyp['timeStamps'].append(timeStamp)
         
         self.sendData() 
         

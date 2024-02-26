@@ -3,7 +3,8 @@ from Model import Model
 from View import View
 from AllSensors import AllSensors
 from Pump import Pump 
-import machine 
+import machine
+import utime
 
 class Control:
     def __init__(self):
@@ -23,6 +24,8 @@ class Control:
             "temperature": machine.Pin(self.model.ledPins["temperature"], machine.Pin.OUT),
             "moisture": machine.Pin(self.model.ledPins["moisture"], machine.Pin.OUT)
             }
+        self.blink_speed_ms = 500
+        
         
          
     def setupWifi(self): #method to send Test Data to server and pulls data from the server
@@ -215,38 +218,38 @@ class Control:
             elif value == "Warning":
                 self.leds[key].on()
                 
-    def blinkLEDs(self, led):
-        # Blinken der LED für eine bestimmte Anzahl von Malen
-        for _ in range(3):  #Hier den Interval eingeben Empfehe 3-5
-            led.on()
-            self.delay_ms(self.blink_speed_ms)  # Benutzerdefinierte Verzögerungsmethode aufrufen
-            led.off()
-            self.delay_ms(self.blink_speed_ms)  # Benutzerdefinierte Verzögerungsmethode aufrufen
-    
-    def delay_ms(self, milliseconds):
-        # Benutzerdefinierte Methode für Verzögerung in Millisekunden
-        start_time = utime.ticks_ms()  # Startzeit erfassen
-        while utime.ticks_diff(utime.ticks_ms(), start_time) < milliseconds:
-            pass  # Warten, bis die gewünschte Zeit vergangen ist
-    
-    def compareData(self):
-        profile = self.model.profileData[0]
-        if profile is not None:
-            boundaries = profile["boundaries"]
-            logData = self.model.currentValues
-            newStatus = {}
-            for key, value in logData.items():
-                min = boundaries[key]['min']
-                max = boundaries[key]['max']
-                if value < min or value > max:
-                    newStatus[key] = "Warning"
-                    # Wenn Grenzwert überschritten, blinke die entsprechende LED
-                    self.blinkLEDs(self.leds[key])
-                else:
-                    newStatus[key] = "Okay"
-                        
-            print("Status:", newStatus)
-            if newStatus != self.model.status:
-                self.model.status = newStatus
-                self.statusChange()
-
+#     def blinkLEDs(self, led):
+#         # Blinken der LED für eine bestimmte Anzahl von Malen
+#         for _ in range(3):  #Hier den Interval eingeben Empfehe 3-5
+#             led.on()
+#             self.delay_ms(self.blink_speed_ms)  # Benutzerdefinierte Verzögerungsmethode aufrufen
+#             led.off()
+#             self.delay_ms(self.blink_speed_ms)  # Benutzerdefinierte Verzögerungsmethode aufrufen
+#     
+#     def delay_ms(self, milliseconds):
+#         # Benutzerdefinierte Methode für Verzögerung in Millisekunden
+#         start_time = utime.ticks_ms()  # Startzeit erfassen
+#         while utime.ticks_diff(utime.ticks_ms(), start_time) < milliseconds:
+#             pass  # Warten, bis die gewünschte Zeit vergangen ist
+#     
+#     def compareData(self):
+#         profile = self.model.profileData[0]
+#         if profile is not None:
+#             boundaries = profile["boundaries"]
+#             logData = self.model.currentValues
+#             newStatus = {}
+#             for key, value in logData.items():
+#                 min = boundaries[key]['min']
+#                 max = boundaries[key]['max']
+#                 if value < min or value > max:
+#                     newStatus[key] = "Warning"
+#                     # Wenn Grenzwert überschritten, blinke die entsprechende LED
+#                     self.blinkLEDs(self.leds[key])
+#                 else:
+#                     newStatus[key] = "Okay"
+#                         
+#             print("Status:", newStatus)
+#             if newStatus != self.model.status:
+#                 self.model.status = newStatus
+#                 self.statusChange()
+# 
