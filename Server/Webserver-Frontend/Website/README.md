@@ -13,6 +13,8 @@
 # Gute Vue.js Tutorials:
   - https://www.youtube.com/watch?v=YrxBCBibVo0&list=PL4cUxeGkcC9hYYGbV60Vq3IXYNfDk8At1
 
+# Kurzanleitung:
+
 Vue.js, Vue Router und Chart.js wie auf der jeweiligen Website beschrieben mit dem
 Node Package Manager (NPM) installieren.
 Anschließend einmal "npm install" ausführen!
