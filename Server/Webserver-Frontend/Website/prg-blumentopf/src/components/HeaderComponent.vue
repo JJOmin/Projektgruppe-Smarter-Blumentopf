@@ -1,7 +1,7 @@
 <template>
-    <div class="header" :class="{ cardHeader: type === 'cardHeader'}">
-        <span> {{ title }} </span>
-        <span v-if="type === 'pageHeader'" class="icon" @click="openSettings">X</span>
+    <div class="header" :class="{ cardHeader: cardHeader, navHeader: navHeader}">
+      <slot v-if="navHeader" />
+      <h1 v-else> {{ title }} </h1>
     </div>
 </template>
 
@@ -11,12 +11,8 @@
     name: 'HeaderComponent',
     props: {
       title: String,
-      type: String
-    },
-    methods: {
-      openSettings() {
-        this.$emit('openSettings')
-      }
+      cardHeader: Boolean,
+      navHeader: Boolean
     }
   }
 
@@ -33,13 +29,16 @@
     box-sizing: border-box;
   }
 
+  h1 {
+    margin: 0;
+  }
+
   .cardHeader {
-    box-shadow: 0px 5px 5px var(--primaryAlt);
+    box-shadow: 0px 5px 5px var(--secondaryAlt);
     margin-bottom: 10px;
   }
 
-  .icon {
-    background-color: var(--secondaryAlt);
-    margin-left: 10px;
+  .navHeader {
+    padding: 10px;
   }
 </style>
