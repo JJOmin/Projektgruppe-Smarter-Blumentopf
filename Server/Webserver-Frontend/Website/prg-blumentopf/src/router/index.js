@@ -1,3 +1,6 @@
+// Vue router settings
+
+// Imports
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import DetailsPage from '../views/DetailsPage.vue'
@@ -5,6 +8,7 @@ import ProfilesPage from '../views/ProfilesPage.vue'
 import SettingsPage from '../views/SettingsPage.vue'
 import NotFound from '../views/NotFound.vue'
 
+// Routes
 const routes = [
     {
         path: '/',
@@ -16,7 +20,7 @@ const routes = [
         path: '/Details',
         name: 'Details',
         component: DetailsPage,
-        props: {sensorData: Object}
+        props: {sensorData: Object, timeStamps: Object}
     },
     {
         path: '/Profiles',
@@ -27,9 +31,10 @@ const routes = [
     {
         path: '/Settings',
         name: 'Settings',
-        component: SettingsPage
+        component: SettingsPage,
+        props: {potName: Object}
     },
-    // CatchAll
+    // CatchAll (error 404)
     {
         path: '/:catchAll(.*)',
         name: 'NotFound',
@@ -37,6 +42,7 @@ const routes = [
     }
 ]
 
+// Initialize router
 const router = createRouter({
     base: process.env.BASE_URL,
     history: createWebHashHistory(process.env.BASE_URL),

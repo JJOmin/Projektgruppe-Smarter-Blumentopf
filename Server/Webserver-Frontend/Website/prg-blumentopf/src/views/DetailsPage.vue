@@ -3,11 +3,7 @@
     <div class="graphs">
         <CardComponent v-for="sensor in sensorData" :key="sensor.name" class="graph-card">
             <HeaderComponent :title="sensor.name" cardHeader=True />
-            <GraphComponent :log="sensor.log" />
-        </CardComponent>
-        <CardComponent class="graph-card">
-            <HeaderComponent title="Pumpe" cardHeader=True />
-            <GraphComponent :log="[30, 0, 0, 0, 80, 0, 0, 0, 65, 0]" />
+            <GraphComponent :log="sensor.log" :timeStamps="timeStamps" />
         </CardComponent>
     </div>
 
@@ -26,7 +22,7 @@ export default {
         HeaderComponent,
         GraphComponent
     },
-    props: ['sensorData']
+    props: ['sensorData', 'timeStamps']
 }
 </script>
 
@@ -41,13 +37,11 @@ export default {
 
 .graph-card {
   margin: 10px;
-  width: 75%;
 }
 
 @media only screen and (min-width: 576px) {
   .graphs {
     flex-direction: row;
-    flex-wrap: wrap;
   }
 
   .graph-card {
