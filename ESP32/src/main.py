@@ -9,8 +9,8 @@ control = Control()         # Initialisierung des MVC
 #Auskommentiert für Standalone Demo HIT
 print('Setup Wifi')
 control.setupWifi()         # Wifi setup
-print('setup Server Data')
-control.setupServerData()   # Server setup
+#print('setup Server Data')
+#control.setupServerData()   # Server setup
 
 startTime = utime.ticks_ms()            # Var fürs speichern der Startzeit vom Programm 
 sensorInterval = 5000                   # Gibt an in welchem Interval Sensoren ausgelesen werden sollen 
@@ -40,7 +40,7 @@ while running:
         control.pump.off()
         #else:
          #   control.pump.off()
-        control.setupWifi()
+        #control.setupWifi() # TestMemo
         print('Measuring...')
         sensorData = control.allSensors.readAll()           # Ließt die methode fürs auslesen der sensoren 
         control.model.lightLog.append(sensorData[2])        # Hinzufügen des Lichtsensorwerts zum Log
@@ -72,6 +72,7 @@ while running:
         
         if control.model.profileData[1] != control.model.prototypData[1]:   # wenn die daten vom Profil nicht = die vom Proto sind
             control.model.profileData = control.server.getProfile()         # Dann übernimm die werte vom Server!
+            print(control.model.profileData)
             print("Neues Profil:", control.model.profileData[0]["name"])    # Ausgabe neues Profiel wurde Geladen
             
         control.server.addMeasurement(averageTemperatureLog, averageLightLog, averageSoilLog) #Fügt die durchschnittlichen Messwerte dem Server hinzu

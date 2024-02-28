@@ -29,9 +29,11 @@ class Control:
         
          
     def setupWifi(self): #method to send Test Data to server and pulls data from the server
-        if self.model.isWifiConnected == False:
-            self.server.connectWifi()
-        self.model.isWifiConnected = self.server.sta_if.isconnected()
+       # if self.model.isWifiConnected == False: #TestMemo
+        self.server.connectWifi() #TestMemo
+        self.model.isWifiConnected = True #TestMemo (komplett weg)
+        self.setupServerData() #TestMemo
+        #self.model.isWifiConnected = self.server.sta_if.isconnected()#TestMemo
         #print(self.server.getRemote())
         #print(self.server.setTestDataToServer())
         #print(self.server.getRemote())     
@@ -39,29 +41,55 @@ class Control:
         
     def setupServerData(self): # Abruf Proto daten und Speicher im Model
         
+#         if self.model.isWifiConnected:
+#             print("Jahuga")
+#             print(self.server.getPrototype())
+#             print(self.server.getProfile())
+#             self.model.prototypData = self.server.getPrototype()
+#             self.model.status = {'light': self.model.prototypData[0]['sensors']['light']['status'],
+#                                  'moisture': self.model.prototypData[0]['sensors']['moisture']['status'],
+#                                  'temperature': self.model.prototypData[0]['sensors']['temperature']['status']}
+#         else:
+#             print("Not Connected to Wifi")
+
+
         if self.model.isWifiConnected:
-            self.model.prototypData = self.server.getPrototype()
-            self.model.status = {'light': self.model.prototypData[0]['sensors']['light']['status'],
-                                 'moisture': self.model.prototypData[0]['sensors']['moisture']['status'],
-                                 'temperature': self.model.prototypData[0]['sensors']['temperature']['status']}
+            print("Jahuga")
+            prototype_data = self.server.getPrototype()
+            profile_data = self.server.getProfile()
+            print(profile_data)
+            print(prototype_data)
+            if prototype_data is not None and profile_data is not None:
+                self.model.profileData = profile_data #TestMemo (komplett weg)
+                self.model.prototypData = prototype_data
+                self.model.status = {
+                    'light': self.model.prototypData[0]['sensors']['light']['status'],
+                    'moisture': self.model.prototypData[0]['sensors']['moisture']['status'],
+                    'temperature': self.model.prototypData[0]['sensors']['temperature']['status']
+                }
+            else:
+                print("Error: Failed to retrieve server data.")
         else:
-            print("Not Connected to Wifi")
+            print("Error: Not Connected to Wifi")
         
         #print(self.model.prototypData)
-        print(self.model.status)
+        print(self.model.status) # nur zum test
         
-        self.model.profileData = self.server.getProfile()
-        
-        if self.model.profileData != self.model.load_json(self.model.localFileName) and self.model.profileData != False and self.model.profileData is not None :
-            self.model.save_json_if_changed(self.model.localFileName, self.model.profileData)
-        
-        if self.model.profileData == False :
-            if self.model.load_json(self.model.localFileName) is not None:
-                self.model.profileData = self.model.load_json(self.model.localFileName)
-            else :
-                self.model.profileData = [None,'None']
-            
-        #print(self.model.profileData)
+        #TestMemo
+#         self.model.profileData = self.server.getProfile()
+#         print(self.model.profileData)
+#         if self.model.profileData != self.model.load_json(self.model.localFileName) and self.model.profileData != False and self.model.profileData is not None :
+#             self.model.save_json_if_changed(self.model.localFileName, self.model.profileData)
+#         
+#         if self.model.profileData == False :
+#             if self.model.load_json(self.model.localFileName) is not None:
+#                 self.model.profileData = self.model.load_json(self.model.localFileName)
+#                 print("if")
+#             else :
+#                 self.model.profileData = [None,'None']
+#                 print("else")
+#             
+#         print(self.model.profileData)
          
         
     def sensorTemperatureTest(self): #method to test the readings of TemperatureSensor
@@ -79,7 +107,7 @@ class Control:
         #if self.allSensors.soilSensorValue != None:#wenn nicht None returnt wird (passiert wenn die letzte Messung nicht mindestens measureDuration (z.b. 5000 ms) her ist)
             #print("Bodenfeuchtigkeit: ",self.allSensors.soilSensorValue)
             
-        
+#------------------- Haben wir nicht eine klasse dafür? -------------------------  
     def improvementPump(self): #Die Methode dürfete von der Logik her funktionieren aber muss noch an die werte vom soil sensor angeglichen werden!
         if self.allSensors.SoilSensorsValue == 0: # wenn der wert 0 ist ist kein wasser in dem Topf drin
             self.activatePump() # Starte die Pumpe
@@ -217,6 +245,7 @@ class Control:
                 self.leds[key].off()
             elif value == "Warning":
                 self.leds[key].on()
+            
                 
 #     def blinkLEDs(self, led):
 #         # Blinken der LED für eine bestimmte Anzahl von Malen
