@@ -54,7 +54,8 @@ while running:
         control.setCurrentValues()                          # Aktualliersierung der Log Daten! 
         control.compareData()                               # Die Methode vergleicht die aktuellen Sensorwerte mit den Grenzwerten aus der json
         
-        sensorTime = utime.ticks_ms() + sensorInterval      # Aktuallisierung SensorTime für den nächsten Zeitpunkt für Auslesung 
+        sensorTime = utime.ticks_ms() + sensorInterval      # Aktuallisierung SensorTime für den nächsten Zeitpunkt für Auslesung
+        gc.collect()
     logSize = len(control.model.lightLog)                   # gibt logSize die Anzahl der bisher im Licht-Log gespeicherten Datenpunkte an
 
 # HIT Demo
