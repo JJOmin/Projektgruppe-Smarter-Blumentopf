@@ -7,15 +7,6 @@
     </CardComponent>
   </div>
 
-  <CardComponent>
-    <HeaderComponent title="Extra Infos" cardHeader=True />
-    <ul>
-      <li>Pumpe zuletzt aktiviert am:</li>
-      <li>Der Pflanze gehts Supi</li>
-      <li>genieß deinen Urlaub!</li>
-    </ul>
-  </CardComponent>
-
 </template>
 
 <script>
@@ -53,8 +44,8 @@ export default {
 }
 
 .indicator-card {
-  margin: 10px;
-  max-width: 250px;
+  margin: 16px;
+  max-width: 400px;
 }
 
 @media only screen and (min-width: 576px) {
