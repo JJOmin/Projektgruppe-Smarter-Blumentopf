@@ -1,5 +1,7 @@
+<!-- Vue component for headers on website -->
+
 <template>
-    <div class="header" :class="{ cardHeader: cardHeader, navHeader: navHeader}">
+    <div class="header" :class="{ cardHeader: cardHeader, navHeader: navHeader}"> <!-- dynamically assigning classes -->
       <slot v-if="navHeader" />
       <h1 v-else> {{ title }} </h1>
     </div>
@@ -30,15 +32,16 @@
   }
 
   h1 {
-    margin: 0;
+    font-size: 1.6rem;
   }
 
   .cardHeader {
-    box-shadow: 0px 5px 5px var(--secondaryAlt);
+    box-shadow: 0px 5px 5px var(--darkGreen);
     margin-bottom: 10px;
   }
 
   .navHeader {
     padding: 10px;
+    margin-bottom: 16px;
   }
 </style>

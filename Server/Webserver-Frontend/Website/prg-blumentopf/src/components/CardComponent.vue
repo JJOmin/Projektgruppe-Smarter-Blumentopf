@@ -1,3 +1,5 @@
+<!-- Vue component for cards on website -->
+
 <template>
     <div class="card">
         <slot />
@@ -12,7 +14,7 @@
 
 <style scoped>
     .card {
-        background-color: var(--secondary);
+        background-color: var(--altGreen);
         width: 100%;
         border-radius: 15px;
         margin: 10px 0;
