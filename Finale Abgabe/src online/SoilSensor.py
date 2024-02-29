@@ -9,9 +9,7 @@ class SoilSensor():
         
     def readSoilSensor(self):
         soilData = self.s.get_moisture()
-        print (soilData)
         tempData = self.s.get_temp()
-        print(tempData)
         return soilData
             
 

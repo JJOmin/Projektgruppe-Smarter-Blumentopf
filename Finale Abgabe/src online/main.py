@@ -35,7 +35,8 @@ while running:
     
     #print(testPin.value())
     if control.btnColor.value():        # Button Prüfung Ob 0 oder 1
-        control.view.printAllData()     # gieb Alle Sensor daten aus 
+        control.view.printAllData()     # gieb Alle Sensor daten aus
+        gc.collect()
     #control.checkBtn()
     
     if utime.ticks_ms() > sensorTime:						# Auslesen der Sensoren
@@ -73,7 +74,7 @@ while running:
         if newPrototype:                               # aktualisier interne Variablen mit den erhaltenen Daten und gibt eine Liste mit diesen Daten zurück.
             control.model.prototypData = newPrototype  # Füllt aktuallisierte daten in model.prototypData
         
-        print(control.model.profileData[1], control.model.prototypData[1]) # Ausgabe der Vergleichsdaten profiel und Proto 
+        #print(control.model.profileData[1], control.model.prototypData[1]) # Ausgabe der Vergleichsdaten profiel und Proto 
         
         if control.model.profileData[1] != control.model.prototypData[1]:   # wenn die daten vom Profil nicht = die vom Proto sind
             #control.model.profileData = control.server.getProfile()         # Dann übernimm die werte vom Server!
