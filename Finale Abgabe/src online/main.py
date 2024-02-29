@@ -19,7 +19,7 @@ startTime = utime.ticks_ms()            # Var fürs speichern der Startzeit vom 
 sensorInterval = 5000                   # Gibt an in welchem Interval Sensoren ausgelesen werden sollen 
 sensorTime = startTime + sensorInterval # Timet den zeitpunkt fürs erneute auslesen der Sensoren 
 serverThreshold = 5                     # Anzahl wie oft Werte gelesen werden sollen, vor Durschnittsbrechnung und Uploaud 
-endTime= startTime + 300000             # um das Programm zu beenden, in dem fall nach 5min
+endTime= startTime + 600000             # um das Programm zu beenden, in dem fall nach 5min
 running = True                          # startet den loop
 
 
@@ -54,11 +54,9 @@ while running:
 
     elif utime.ticks_ms() > pumpTime and control.btnWater.value() == 1:                         #Überprüfen ob Pumpe aktiviert werden soll                          #wenn ESP Offline, aber average array voll ist, dann mach average und Clear log
         packLen = 5
-        print(control.model.currentValues)
-        averageSoilLog = control.calcAverage(control.model.soilLog, packLen)               # Brechnung Durchschnittswert für soilLogprofile = self.model.profileData[0] # aktives profil
-        minSoil = control.model.profileData["moisture"]["min"]               # mindest Wert an Moisture bis Pumpe Aktiviert wird
-        print("MinSOIL WERT", minSoil)
-        if averageSoilLog <= minSoil:
+        averageSoilLog = control.model.currentValues["moisture"] 							# Brechnung Durchschnittswert für soilLogprofile = self.model.profileData[0] # aktives profil
+        minSoil = control.model.profileData[0]["boundaries"]["moisture"]["min"]               # mindest Wert an Moisture bis Pumpe Aktiviert wird
+        if averageSoilLog <= int(minSoil):
             control.pump.on()
             pumpStatus = True
             pumpTime2 = utime.ticks_ms() + pumpInterval2
@@ -97,8 +95,8 @@ while running:
         control.model.soilLog = []          # Leerung des Arrays 
 
         
-    if utime.ticks_ms() > endTime: # wenn der timer bei der entTime angekommen ist stoppe den Loop
-        running = False
+    #if utime.ticks_ms() > endTime: # wenn der timer bei der entTime angekommen ist stoppe den Loop
+        #running = False
         
-print("Saved the day")
+#print("Saved the day")
 #Sensoren Intervall (alle 5-10 sekunden)

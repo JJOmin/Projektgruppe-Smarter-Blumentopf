@@ -33,7 +33,7 @@ class Server:
             point = 0
             self.sta_if.active(True)
             self.sta_if.connect(self.ssid, self.password)
-            while not self.sta_if.isconnected() and point < 20: #TestMemo ab dem and
+            while not self.sta_if.isconnected() and point < 40: #TestMemo ab dem and
                 print(".", end="")
                 time.sleep(0.1)
                 point += 1
@@ -122,7 +122,6 @@ class Server:
             response = requests.post(self.uploadUrl, data = json_data, headers = headers)
             if response.status_code == 200:
                 print("Daten erfolgreich gesendet")
-                print(json.loads(response.text)["message"])
             else:
                 print("Fehler beim Senden der Daten:", response.status_code)
         except Exception as e:
