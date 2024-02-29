@@ -26,7 +26,7 @@ endTime= startTime + 300000             # um das Programm zu beenden, in dem fal
 running = True                          # startet den loop
 
 
-##Muss eingebaut werden
+##Variablen für Pumpensteuerung
 pumpCheckInterval = 10000 #Intervall in dem überprüft wird ob wasser benötigt wird
 pumpStatus = False #Pumpenstatus
 pumpTime = startTime + pumpCheckInterval
@@ -69,7 +69,7 @@ while running:
         #if logSize == serverThreshold: #control.model.isWifiConnected                           #wenn ESP Offline, aber average array voll ist, dann mach average und Clear log
         packLen = 5
         print(control.model.currentValues)
-        averageSoilLog = 500#control.calcAverage(control.model.soilLog, packLen)               # Brechnung Durchschnittswert für soilLogprofile = self.model.profileData[0] # aktives profil
+        averageSoilLog = 200#control.calcAverage(control.model.soilLog, packLen)               # Brechnung Durchschnittswert für soilLogprofile = self.model.profileData[0] # aktives profil
         minSoil = control.model.profileData[0]["boundaries"]["moisture"]["min"]               # mindest Wert an Moisture bis Pumpe Aktiviert wird
         #print("MinSOIL WERT", 200)
         if averageSoilLog <= 600:
