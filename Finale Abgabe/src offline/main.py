@@ -11,8 +11,8 @@ micropython.mem_info()
 control = Control()         # Initialisierung des MVC
 
 #Auskommentiert für Standalone Demo HIT
-print('Setup Wifi')
-control.setupWifi()         # Wifi setup
+#print('Setup Wifi')		#Raus für abgabe 
+#control.setupWifi()        # Wifi setup Raus für abgabe 
 #print('setup Server Data')
 #control.setupServerData()   # Server setup
 
