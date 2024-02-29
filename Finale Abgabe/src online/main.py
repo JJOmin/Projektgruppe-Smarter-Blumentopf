@@ -24,7 +24,14 @@ serverThreshold = 5                     # Anzahl wie oft Werte gelesen werden so
 #serverTime = startTime + serverInterval
 endTime= startTime + 300000             # um das Programm zu beenden, in dem fall nach 5min
 running = True                          # startet den loop
-#testPin = Pin(18, Pin.IN)
+
+
+##Muss eingebaut werden
+pumpCheckInterval = 10000 #Intervall in dem überprüft wird ob wasser benötigt wird
+pumpStatus = False #Pumpenstatus
+pumpTime = startTime + pumpCheckInterval
+pumpInterval2 = 2000 #Intervall in dem die Pumpe an ist
+pumpTime2 = 0
 
 
 
@@ -42,7 +49,7 @@ while running:
     if utime.ticks_ms() > sensorTime:						# Auslesen der Sensoren
         print(control.btnWater.value())
         #if control.pump.value() == 0:
-        control.pump.off()
+        
         #else:
          #   control.pump.off()
         #control.setupWifi() # TestMemo
@@ -57,6 +64,28 @@ while running:
         
         sensorTime = utime.ticks_ms() + sensorInterval      # Aktuallisierung SensorTime für den nächsten Zeitpunkt für Auslesung
         gc.collect()
+
+    elif utime.ticks_ms() > pumpTime and control.btnWater.value() == 1:                         #Überprüfen ob Pumpe aktiviert werden soll
+        #if logSize == serverThreshold: #control.model.isWifiConnected                           #wenn ESP Offline, aber average array voll ist, dann mach average und Clear log
+        packLen = 5
+        print(control.model.currentValues)
+        averageSoilLog = 500#control.calcAverage(control.model.soilLog, packLen)               # Brechnung Durchschnittswert für soilLogprofile = self.model.profileData[0] # aktives profil
+        minSoil = control.model.profileData[0]["boundaries"]["moisture"]["min"]               # mindest Wert an Moisture bis Pumpe Aktiviert wird
+        print("MinSOIL WERT", 200)
+        if averageSoilLog <= 600:
+            print("Pump ON")
+            control.pump.on()
+            pumpStatus = True
+            pumpTime2 = utime.ticks_ms() + pumpInterval2
+        pumpTime = utime.ticks_ms() + pumpCheckInterval
+
+
+    if pumpStatus == True and utime.ticks_ms() > pumpTime2 and control.btnWater.value() != 0:
+        print("Off")
+        control.pump.off()
+        pumpStatus = False
+        pumpTime2 = utime.ticks_ms() + pumpInterval2
+
     logSize = len(control.model.lightLog)                   # gibt logSize die Anzahl der bisher im Licht-Log gespeicherten Datenpunkte an
 
 # HIT Demo

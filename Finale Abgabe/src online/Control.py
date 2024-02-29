@@ -60,7 +60,9 @@ class Control:
             prototype_data = self.server.getPrototype()
             profile_data = self.server.getProfile()
             print(profile_data)
-            print(prototype_data)
+            print("123123123")
+            #print("")
+            #print(prototype_data)
             if prototype_data is not None and profile_data is not None:
                 self.model.profileData = profile_data #TestMemo (komplett weg)
                 self.model.prototypData = prototype_data
