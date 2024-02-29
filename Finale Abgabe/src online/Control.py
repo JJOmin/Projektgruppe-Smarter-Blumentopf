@@ -5,6 +5,7 @@ from AllSensors import AllSensors
 from Pump import Pump 
 import machine
 import utime
+import gc
 
 class Control:
     def __init__(self):
@@ -25,6 +26,7 @@ class Control:
             "moisture": machine.Pin(self.model.ledPins["moisture"], machine.Pin.OUT)
             }
         self.blink_speed_ms = 500
+        self.model.profileData = self.model.load_json(self.model.localFileName)
         
         
          
@@ -58,7 +60,9 @@ class Control:
             prototype_data = self.server.getPrototype()
             profile_data = self.server.getProfile()
             print(profile_data)
-            print(prototype_data)
+            print("123123123")
+            #print("")
+            #print(prototype_data)
             if prototype_data is not None and profile_data is not None:
                 self.model.profileData = profile_data #TestMemo (komplett weg)
                 self.model.prototypData = prototype_data
@@ -152,6 +156,7 @@ class Control:
             self.btnStat = False
             
     def compareData(self):
+        gc.collect()
         
         #self.compareDataDemo()
         #return
@@ -237,7 +242,7 @@ class Control:
         
         # HIT Demo
         self.updateLeds(self.model.status)
-        self.server.statusPush(self.model.status)
+        #self.server.statusPush(self.model.status)
         
     def updateLeds(self, stats):
         for key, value in stats.items():
@@ -245,40 +250,3 @@ class Control:
                 self.leds[key].off()
             elif value == "Warning":
                 self.leds[key].on()
-            
-                
-#     def blinkLEDs(self, led):
-#         # Blinken der LED für eine bestimmte Anzahl von Malen
-#         for _ in range(3):  #Hier den Interval eingeben Empfehe 3-5
-#             led.on()
-#             self.delay_ms(self.blink_speed_ms)  # Benutzerdefinierte Verzögerungsmethode aufrufen
-#             led.off()
-#             self.delay_ms(self.blink_speed_ms)  # Benutzerdefinierte Verzögerungsmethode aufrufen
-#     
-#     def delay_ms(self, milliseconds):
-#         # Benutzerdefinierte Methode für Verzögerung in Millisekunden
-#         start_time = utime.ticks_ms()  # Startzeit erfassen
-#         while utime.ticks_diff(utime.ticks_ms(), start_time) < milliseconds:
-#             pass  # Warten, bis die gewünschte Zeit vergangen ist
-#     
-#     def compareData(self):
-#         profile = self.model.profileData[0]
-#         if profile is not None:
-#             boundaries = profile["boundaries"]
-#             logData = self.model.currentValues
-#             newStatus = {}
-#             for key, value in logData.items():
-#                 min = boundaries[key]['min']
-#                 max = boundaries[key]['max']
-#                 if value < min or value > max:
-#                     newStatus[key] = "Warning"
-#                     # Wenn Grenzwert überschritten, blinke die entsprechende LED
-#                     self.blinkLEDs(self.leds[key])
-#                 else:
-#                     newStatus[key] = "Okay"
-#                         
-#             print("Status:", newStatus)
-#             if newStatus != self.model.status:
-#                 self.model.status = newStatus
-#                 self.statusChange()
-# 
