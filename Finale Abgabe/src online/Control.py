@@ -31,36 +31,19 @@ class Control:
         
          
     def setupWifi(self): #method to send Test Data to server and pulls data from the server
-       # if self.model.isWifiConnected == False: #TestMemo
-        self.server.connectWifi() #TestMemo
-        self.model.isWifiConnected = True #TestMemo (komplett weg)
-        self.setupServerData() #TestMemo
-        #self.model.isWifiConnected = self.server.sta_if.isconnected()#TestMemo
-        #print(self.server.getRemote())
-        #print(self.server.setTestDataToServer())
-        #print(self.server.getRemote())     
+        if self.model.isWifiConnected == False: #TestMemo
+            self.server.connectWifi() #TestMemo
+        #self.model.isWifiConnected = True #TestMemo (komplett weg)
+            self.setupServerData() #TestMemo
+        self.model.isWifiConnected = self.server.sta_if.isconnected()#TestMemo
+            
         
         
     def setupServerData(self): # Abruf Proto daten und Speicher im Model
-        
-#         if self.model.isWifiConnected:
-#             print("Jahuga")
-#             print(self.server.getPrototype())
-#             print(self.server.getProfile())
-#             self.model.prototypData = self.server.getPrototype()
-#             self.model.status = {'light': self.model.prototypData[0]['sensors']['light']['status'],
-#                                  'moisture': self.model.prototypData[0]['sensors']['moisture']['status'],
-#                                  'temperature': self.model.prototypData[0]['sensors']['temperature']['status']}
-#         else:
-#             print("Not Connected to Wifi")
-
 
         if self.model.isWifiConnected:
-            #print("Jahuga")
             prototype_data = self.server.getPrototype()
             profile_data = self.server.getProfile()
-            #print(profile_data)
-            #print(prototype_data)
             if prototype_data is not None and profile_data is not None:
                 self.model.profileData = profile_data #TestMemo (komplett weg)
                 self.model.prototypData = prototype_data
@@ -78,14 +61,14 @@ class Control:
         print(self.model.status) # nur zum test
         
         #TestMemo
-#         self.model.profileData = self.server.getProfile()
-#         print(self.model.profileData)
-#         if self.model.profileData != self.model.load_json(self.model.localFileName) and self.model.profileData != False and self.model.profileData is not None :
-#             self.model.save_json_if_changed(self.model.localFileName, self.model.profileData)
-#         
-#         if self.model.profileData == False :
-#             if self.model.load_json(self.model.localFileName) is not None:
-#                 self.model.profileData = self.model.load_json(self.model.localFileName)
+        self.model.profileData = self.server.getProfile()
+        print(self.model.profileData)
+        if self.model.profileData != self.model.load_json(self.model.localFileName) and self.model.profileData != False and self.model.profileData is not None :
+             self.model.save_json_if_changed(self.model.localFileName, self.model.profileData)
+         
+        if self.model.profileData == False :
+             if self.model.load_json(self.model.localFileName) is not None:
+                 self.model.profileData = self.model.load_json(self.model.localFileName)
 #                 print("if")
 #             else :
 #                 self.model.profileData = [None,'None']

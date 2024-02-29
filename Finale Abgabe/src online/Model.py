@@ -29,7 +29,6 @@ class Model:
         self.soilLog = []
         self.currentValues = {'light': 'not defined', 'moisture': 'not defined', 'temperature': 'not defined'}
         self.status = {'light': 'Okay', 'moisture': 'Okay', 'temperature': 'Okay'}
-        #self.demoStatus = {'light': 'Okay', 'moisture': 'Okay', 'temperature': 'Okay'} # HIT Demo
         
     def set(self, **kwargs): #sets new values into attributes
         for key, value in kwargs.items():

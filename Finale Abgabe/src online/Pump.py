@@ -8,8 +8,6 @@ class Pump:
 
     def activatePump(self):
         self.pump.on()
-        print("Pump activated!")
         
     def deactivatePump(self):
         self.pump.off()
-        print("Pump deactivated!")

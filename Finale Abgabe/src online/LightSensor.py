@@ -11,10 +11,6 @@ class LightSensor():
     """Micropython BH1750 ambient light sensor driver."""
     
     def readLightSensor(self, mode):
-       # time = utime.ticks_ms()
-        #print(i2c.scan())
         lightData = self.s.luminance(mode)
-            #time.sleep_ms(500)
-        #print(lightData," lx")
         return lightData
 

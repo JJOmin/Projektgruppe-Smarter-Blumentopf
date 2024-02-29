@@ -33,7 +33,7 @@ class Server:
             point = 0
             self.sta_if.active(True)
             self.sta_if.connect(self.ssid, self.password)
-            while not self.sta_if.isconnected(): #and point < 20: #TestMemo ab dem and
+            while not self.sta_if.isconnected() and point < 20: #TestMemo ab dem and
                 print(".", end="")
                 time.sleep(0.1)
                 point += 1
@@ -77,12 +77,7 @@ class Server:
                 response.close()
                 self.profileBoundaries = json.loads(content)[self.profileName]
                 return [self.profileBoundaries, self.profileName]
-                #if self.profileName in json.loads(content)["profiles"].keys():
-                    #self.profileBoundaries = json.loads(content)["profiles"][self.profileName]
-                    #return [self.profileBoundaries, self.profileName]
-                #else:
-                    #self.profileBoundaries = self.currentPrototyp["profiles"][self.profileName]
-                    #return [self.profileBoundaries, self.profileName]
+                
             else:
                 response.close()
                 return None
@@ -93,10 +88,6 @@ class Server:
     #methode zum hinzufügen neuer messwerte zum array
     def addMeasurement(self, temperature, light, moisture):
         # Füge die neuen Messwerte zum Prototyp hinzu
-        #self.currentPrototyp['sensors']['temperature']['log'].extend(temperature)
-        #self.currentPrototyp['sensors']['light']['log'].extend(light)
-        #self.currentPrototyp['sensors']['moisture']['log'].extend(moisture)
-        
         self.currentData = {}
         self.currentData['temperature'] = temperature[0]
         self.currentData['light'] = light[0]
@@ -116,7 +107,6 @@ class Server:
                      'hour': hour,
                      'minute': minute}
         
-        #self.currentPrototyp['timeStamps'].append(timeStamp)
         
         self.currentData['timeStamp'] = timeStamp
         
@@ -126,8 +116,8 @@ class Server:
         auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')
         headers = {'Authorization': auth}
         
-        json_data = json.dumps(self.currentData)# + "}" #json.dumps(data_to_send)
-        #json_data = json.dumps(["data"])
+        json_data = json.dumps(self.currentData)
+        
         try:
             response = requests.post(self.uploadUrl, data = json_data, headers = headers)
             if response.status_code == 200:
@@ -140,10 +130,9 @@ class Server:
 
     def statusPush(self, status):
         try:
-            #print(self.currentPrototyp)
             for key, value in status.items():
                 self.currentPrototyp['sensors'][key]['status'] = status[key]
             self.sendData() #senden von daten wenn grenzwerte überschritten wurden
             
         except Exception as e:
-            print("Fehlerrrrrr:", e)
+            print("Fehler:", e)

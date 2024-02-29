@@ -2,7 +2,6 @@ import machine
 from machine import Pin, SoftI2C
 from lcd_api import LcdApi
 from i2c_lcd import I2cLcd
-from time import sleep
 import utime
 
 
@@ -95,7 +94,6 @@ class Display:
             while idx < len(centered_lines):
                 # Überprüfen, ob genügend Zeit seit dem letzten Update vergangen ist
                 if utime.ticks_ms() - current_time >= delay_ms:
-                    #print(lines)
                     
                     # LCD löschen, wenn eine neue Schlüsselzeile beginnt
                     if idx % 2 == 0:
@@ -160,9 +158,7 @@ class Display:
                 
                 # Ihre eigene Timing-Logik hier implementieren (ohne sleep)
                 start_time = utime.ticks_ms()
-                # Solange warten, bis die festgelegte Scroll-Geschwindigkeit erreicht ist
-                #while utime.ticks_diff(utime.ticks_ms(), start_time) < scroll_speed:
-                    #pass
+             
         except Exception as e:
             # Fehlermeldung ausgeben, falls ein Fehler auftritt
             print("Fehler beim Schreiben auf das LCD(Scrollen):", e)
