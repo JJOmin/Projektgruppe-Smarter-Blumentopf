@@ -7,8 +7,8 @@ class Model:
         self.wifiPw = "Blumentopf" #Wlan Passwort 
         self.remoteUrl = 'https://www.tilly.cloud/Blumentopf/Database/plantData.json'  # falls fehler auftrete auf "https://cloudleo.duckdns.org/Blumentopf/Database/daten.json" setzen
         self.prototypUrl = 'https://www.tilly.cloud/Blumentopf/Database/prototyp.json'
-        self.profileUrl = 'https://www.tilly.cloud/Blumentopf/Database/db.json'
-        self.uploadUrl = 'https://cloudleo.duckdns.org/Blumentopf/Database/api.php'
+        self.profileUrl = 'https://cloudleo.duckdns.org/Blumentopf/Database/profileApi.php'#'https://www.tilly.cloud/Blumentopf/Database/db.json'#
+        self.uploadUrl = 'https://cloudleo.duckdns.org/Blumentopf/Database/measureApi.php'#'https://cloudleo.duckdns.org/Blumentopf/Database/api.php'
         #self.uploadUrl = 'https://blumentopfupload.tilly.cloud/Blumentopf/upload_data' # falls fehler auftreten auf "http://31.19.90.130:5000/Blumentopf/upload_data" setzen
         self.webUser = b'Blumentopf'
         self.webPw = b'Blumentopf_123'

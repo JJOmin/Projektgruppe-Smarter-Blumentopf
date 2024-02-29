@@ -56,12 +56,10 @@ class Control:
 
 
         if self.model.isWifiConnected:
-            print("Jahuga")
+            #print("Jahuga")
             prototype_data = self.server.getPrototype()
             profile_data = self.server.getProfile()
-            print(profile_data)
-            print("123123123")
-            #print("")
+            #print(profile_data)
             #print(prototype_data)
             if prototype_data is not None and profile_data is not None:
                 self.model.profileData = profile_data #TestMemo (komplett weg)
@@ -160,7 +158,7 @@ class Control:
         
         #self.compareDataDemo()
         #return
-        #print(self.model.profileData)
+        print(self.model.profileData)
         profile = self.model.profileData[0] # aktives profil
         
         if profile is not None: #conrol if profile is matched 

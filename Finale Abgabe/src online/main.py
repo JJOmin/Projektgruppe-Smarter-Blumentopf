@@ -53,7 +53,7 @@ while running:
         #else:
          #   control.pump.off()
         #control.setupWifi() # TestMemo
-        print('Measuring...')
+        #print('Measuring...')
         sensorData = control.allSensors.readAll()           # Ließt die methode fürs auslesen der sensoren 
         control.model.lightLog.append(sensorData[2])        # Hinzufügen des Lichtsensorwerts zum Log
         control.model.temperatureLog.append(sensorData[1])  # Hinzufügen des Temperaturewerts zum Log
@@ -71,9 +71,9 @@ while running:
         print(control.model.currentValues)
         averageSoilLog = 500#control.calcAverage(control.model.soilLog, packLen)               # Brechnung Durchschnittswert für soilLogprofile = self.model.profileData[0] # aktives profil
         minSoil = control.model.profileData[0]["boundaries"]["moisture"]["min"]               # mindest Wert an Moisture bis Pumpe Aktiviert wird
-        print("MinSOIL WERT", 200)
+        #print("MinSOIL WERT", 200)
         if averageSoilLog <= 600:
-            print("Pump ON")
+            #print("Pump ON")
             control.pump.on()
             pumpStatus = True
             pumpTime2 = utime.ticks_ms() + pumpInterval2
@@ -81,7 +81,7 @@ while running:
 
 
     if pumpStatus == True and utime.ticks_ms() > pumpTime2 and control.btnWater.value() != 0:
-        print("Off")
+        #print("Off")
         control.pump.off()
         pumpStatus = False
         pumpTime2 = utime.ticks_ms() + pumpInterval2

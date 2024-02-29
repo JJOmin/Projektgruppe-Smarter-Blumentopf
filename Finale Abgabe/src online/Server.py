@@ -23,6 +23,7 @@ class Server:
         self.profileName = ""  #beinhaltet den namen des Aktuellen Pflanzenprofiels
         self.profileBoundaries = "" #beinhaltet alle grenzwerte für die aktuelle Planze
         self.currentPrototyp = "" #beinhaltet das gesamte Daten Log einer Pflanze um weitere daten anzuhängen
+        self.currentData = "" #beinhaltet die aktuell gemessenen werte und versendet diese
 
     #funtkion zur verbindung mit dem Internet
     def connectWifi(self):
@@ -70,15 +71,18 @@ class Server:
         
         try:
             response = urequests.get(self.profileUrl, headers=headers)
+            print(response.text)
             if response.status_code == 200:
                 content = response.text
                 response.close()
-                if self.profileName in json.loads(content)["profiles"].keys():
-                    self.profileBoundaries = json.loads(content)["profiles"][self.profileName]
-                    return [self.profileBoundaries, self.profileName]
-                else:
-                    self.profileBoundaries = self.currentPrototyp["profiles"][self.profileName]
-                    return [self.profileBoundaries, self.profileName]
+                self.profileBoundaries = json.loads(content)[self.profileName]
+                return [self.profileBoundaries, self.profileName]
+                #if self.profileName in json.loads(content)["profiles"].keys():
+                    #self.profileBoundaries = json.loads(content)["profiles"][self.profileName]
+                    #return [self.profileBoundaries, self.profileName]
+                #else:
+                    #self.profileBoundaries = self.currentPrototyp["profiles"][self.profileName]
+                    #return [self.profileBoundaries, self.profileName]
             else:
                 response.close()
                 return None
@@ -89,9 +93,14 @@ class Server:
     #methode zum hinzufügen neuer messwerte zum array
     def addMeasurement(self, temperature, light, moisture):
         # Füge die neuen Messwerte zum Prototyp hinzu
-        self.currentPrototyp['sensors']['temperature']['log'].extend(temperature)
-        self.currentPrototyp['sensors']['light']['log'].extend(light)
-        self.currentPrototyp['sensors']['moisture']['log'].extend(moisture)
+        #self.currentPrototyp['sensors']['temperature']['log'].extend(temperature)
+        #self.currentPrototyp['sensors']['light']['log'].extend(light)
+        #self.currentPrototyp['sensors']['moisture']['log'].extend(moisture)
+        
+        self.currentData = {}
+        self.currentData['temperature'] = temperature[0]
+        self.currentData['light'] = light[0]
+        self.currentData['moisture'] = moisture[0]
         
         date = time.localtime()
         
@@ -107,7 +116,9 @@ class Server:
                      'hour': hour,
                      'minute': minute}
         
-        self.currentPrototyp['timeStamps'].append(timeStamp)
+        #self.currentPrototyp['timeStamps'].append(timeStamp)
+        
+        self.currentData['timeStamp'] = timeStamp
         
         self.sendData() 
         
@@ -115,13 +126,13 @@ class Server:
         auth = 'Basic ' + ubinascii.b2a_base64(self.username + b":" + self.password_b).strip().decode('utf-8')
         headers = {'Authorization': auth}
         
-        json_data = json.dumps(self.currentPrototyp) + "}" #json.dumps(data_to_send)
-        #print(json_data)
-        # Versuchen, die Daten an den Server zu senden
+        json_data = json.dumps(self.currentData)# + "}" #json.dumps(data_to_send)
+        #json_data = json.dumps(["data"])
         try:
             response = requests.post(self.uploadUrl, data = json_data, headers = headers)
             if response.status_code == 200:
                 print("Daten erfolgreich gesendet")
+                print(json.loads(response.text)["message"])
             else:
                 print("Fehler beim Senden der Daten:", response.status_code)
         except Exception as e:
