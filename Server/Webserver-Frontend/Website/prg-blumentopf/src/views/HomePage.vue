@@ -1,6 +1,9 @@
+<!-- Vue component for home page -->
+
 <template>
 
   <div class="indicators">
+    <!-- create a card with indicator for every sensor -->
     <CardComponent v-for="(sensor, index) in sensorData" :key="sensor.name" class="indicator-card">
       <HeaderComponent :title="sensor.name" cardHeader=True />
       <IndicatorComponent :data="sensor" :boundaries="profileData.boundaries[index]" :url="urls[index]" />
@@ -25,6 +28,7 @@ export default {
   props: ['sensorData', 'profileData'],
   data() {
     return {
+      // Links to Indicator Icons
       urls: {
         temperature: "https://cloudleo.duckdns.org/Blumentopf/Assets/Temp-Icon.png",
         light: "https://cloudleo.duckdns.org/Blumentopf/Assets/Light-Icon.png",
@@ -36,6 +40,7 @@ export default {
 </script>
 
 <style scoped>
+
 .indicators {
   display: flex;
   justify-content: space-around;
@@ -44,13 +49,29 @@ export default {
 }
 
 .indicator-card {
-  margin: 16px;
   max-width: 400px;
 }
 
 @media only screen and (min-width: 576px) {
+  .indicator-card {
+    width: 75%;
+    max-width: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
   .indicators {
     flex-direction: row;
+  }
+
+  .indicator-card {
+    width: 30%
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .indicator-card {
+    max-width: 350px;
   }
 }
 

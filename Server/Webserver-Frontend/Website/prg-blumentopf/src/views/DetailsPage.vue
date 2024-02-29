@@ -1,8 +1,11 @@
+<!-- Vue component for details page -->
+
 <template>
 
     <div class="graphs">
+        <!-- create a Card with graph for every sensor -->
         <CardComponent v-for="sensor in sensorData" :key="sensor.name" class="graph-card">
-            <HeaderComponent :title="sensor.name" cardHeader=True />
+            <HeaderComponent :title="sensor.name + ' (' + sensor.unit + ')'" cardHeader=True />
             <GraphComponent :log="sensor.log" :timeStamps="timeStamps" />
         </CardComponent>
     </div>
@@ -24,6 +27,7 @@ export default {
     },
     props: ['sensorData', 'timeStamps']
 }
+
 </script>
 
 <style scoped>
@@ -35,17 +39,27 @@ export default {
   flex-direction: column;
 }
 
-.graph-card {
-  margin: 10px;
+@media only screen and (min-width: 576px) {
+  .graph-card {
+    width: 90%;
+  }
 }
 
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 768px) {
+  .graph-card {
+    width: 80%;
+    max-width: 750px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
   .graphs {
     flex-direction: row;
   }
 
   .graph-card {
-    width: 40%;
+    width: 30%;
+    max-width: none;
   }
 }
 

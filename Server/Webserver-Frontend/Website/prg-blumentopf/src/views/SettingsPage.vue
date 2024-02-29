@@ -1,24 +1,21 @@
+<!-- Vue component for settings page -->
+
 <template>
 
-    <CardComponent>
-        <HeaderComponent title="Settings" cardHeader=True />
-        <div class="settings">
-            <p><span>Topfnamen: <input type="text" v-model="newName"></span></p>
-            <p><span class="btn" @click="applyChanges">Änderungen übernehmen</span></p>
-            <p><span class="btn" @click="deleteLogs">Log zurücksetzen</span></p>
-            <p><span class="btn" @click="reset">Prototyp.json zurücksetzen // nur zum Testen ;-) </span></p>
-        </div>
-        <!--
-        <ul>
-            <li></li>
-            <li>Diagrammhintergrund</li>
-            <li>intervallzeit</li>
-            <li>serverintervall</li>
-            <li>nachtmodus start & endzeit</li>
-            <li>Log Anzahl Werte</li>
-        </ul>
-        -->
-    </CardComponent>
+    <div class="settings-wrapper">
+        <CardComponent class="settings-card">
+            <HeaderComponent title="Einstellungen" cardHeader=True />
+            <div class="settings">
+                <!-- change pot name -->
+                <p><span>Topfname: <br><input class="txt" type="text" v-model="newName"></span></p>
+                <p><span class="btn" @click="applyChanges">Änderungen übernehmen</span></p>
+                <!-- delete logs -->
+                <p><span class="btn" @click="deleteLogs">Log zurücksetzen</span></p>
+                <!-- reset prototype.json on server for testing and debugging -->
+                <p><span class="btn" @click="reset">Testdaten</span></p>
+            </div>
+        </CardComponent>
+    </div>
         
 </template>
 
@@ -40,12 +37,15 @@ export default {
         }
     },
     methods: {
+        // event for applying setting changes
         applyChanges() {
             this.$emit('applyChanges', this.newName)
         },
+        // event for deleting logs
         deleteLogs(){
             this.$emit('deleteLogs')
         },
+        // event for resetting prototyp.json
         reset() {
             this.$emit('reset')
         }
@@ -55,16 +55,50 @@ export default {
 
 <style scoped>
 
+.settings-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.settings-card {
+    max-width: 500px;
+}
+
 .settings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
     padding: 10px;
+    text-align: center;
 }
 
 .btn {
-    background-color: var(--darkGreen);
+    padding: 0.4em 0.6em;
+    background-color: var(--white);
+    border: 1px solid var(--darkGrey);
     border-radius: 3px;
-    padding: 5px;
+    box-shadow: 0px 2px 2px var(--darkGrey);
+    color: var(--darkGreen);
     font-weight: bold;
-    color: var(--white);
+}
+
+input {
+    margin-top: 10px;
+    background-color: var(--white);
+    border: 1px solid var(--darkGrey);
+    border-radius: 2px;
+}
+
+.txt {
+    width: 120px;
+}
+
+@media only screen and (min-width: 768px) {
+    .settings-card {
+        width: 70%;
+        max-width: 750px;
+    }
 }
 
 </style>
