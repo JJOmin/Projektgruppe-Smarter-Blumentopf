@@ -1,16 +1,15 @@
+<!-- Vue component for Error 404 page -->
+
 <template>
-    
-    <CardComponent>
-        <HeaderComponent title="ERROR 404" cardHeader=True />
-        <ul>
-            <li><h1>Page Not Found</h1></li>
-            <li><h2>Page Not Found</h2></li>
-            <li><h3>Page Not Found</h3></li>
-            <li><h4>Page Not Found</h4></li>
-            <li><h5>Page Not Found</h5></li>
-            <li><h6>Page Not Found</h6></li>
-        </ul>
-    </CardComponent>
+
+    <div class="error-wrapper">
+        <CardComponent class="error-card">
+            <HeaderComponent title="ERROR 404" cardHeader=True />
+            <div class="text-wrapper">
+                <h1>Sorry, this Page does not exist!</h1>
+            </div>
+        </CardComponent>
+    </div>
 
 </template>
 
@@ -29,5 +28,32 @@ export default {
 </script>
 
 <style scoped>
+
+.error-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.text-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .error-card {
+        width: 70%;
+        max-width: 850px;
+    }
+    .text-wrapper {
+        padding: 5rem 8rem;
+    }
+
+    h1 {
+        font-size: 200%;
+    }
+}
 
 </style>

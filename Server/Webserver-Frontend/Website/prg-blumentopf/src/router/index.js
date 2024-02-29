@@ -14,25 +14,25 @@ const routes = [
         path: '/',
         name: 'Home',
         component: HomePage,
-        props: {sensorData: Object, profileData: Object}
+        props: {sensorData: Object, profileData: Object} // data for route component
     },
     {
         path: '/Details',
         name: 'Details',
         component: DetailsPage,
-        props: {sensorData: Object, timeStamps: Object}
+        props: {sensorData: Object, timeStamps: Object} // data for route component
     },
     {
         path: '/Profiles',
         name: 'Profiles',
         component: ProfilesPage,
-        props: {defaultProfiles: Object, userProfiles: Object}
+        props: {defaultProfiles: Object, userProfiles: Object} // data for route component
     },
     {
         path: '/Settings',
         name: 'Settings',
         component: SettingsPage,
-        props: {potName: Object}
+        props: {potName: Object} // data for route component
     },
     // CatchAll (error 404)
     {

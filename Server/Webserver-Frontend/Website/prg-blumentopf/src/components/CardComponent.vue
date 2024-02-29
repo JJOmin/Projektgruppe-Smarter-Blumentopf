@@ -14,10 +14,17 @@
 
 <style scoped>
     .card {
-        background-color: var(--altGreen);
         width: 100%;
-        border-radius: 15px;
-        margin: 10px 0;
         padding-bottom: 10px;
+        margin: 1rem 0;
+        background-color: var(--lightGreen);
+        border-radius: 3px;
+        box-shadow: 0px 5px 5px var(--darkGrey);
+    }
+
+    @media only screen and (min-width: 576px) {
+        .card {
+            padding-bottom: 20px;
+        }
     }
 </style>

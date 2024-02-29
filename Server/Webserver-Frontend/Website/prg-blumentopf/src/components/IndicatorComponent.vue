@@ -4,13 +4,13 @@
     <div class="indicator-container">
         <!-- setting background color and image depending on sensor status and type -->
         <span class="indicator"
-        :class="{statGood: isGood(), statWarning: isWarning()}"
+        :class="{'stat-good': isGood(), 'stat-warning': isWarning()}"
         :style="{'background-image': 'url(' + url + ')'}"></span>
         <!-- Showing momentary value and profile boundaries, if there's data in log -->
         <div v-if="data.log.length > 0">
-            <p>Status: {{ getStatus() }}</p>
-            <p>Messwert: {{ data.log[data.log.length - 1] }} {{ data.unit }}</p>
-            <p>Sollwert: {{ boundaries.min }} {{ data.unit }} - {{ boundaries.max }} {{ data.unit }}</p>
+            <p>Status: <b>{{ getStatus() }}</b></p>
+            <p>Messwert: <b>{{ data.log[data.log.length - 1] }} {{ data.unit }}</b></p>
+            <p>Sollwert: <b>{{ boundaries.min }} {{ data.unit }} - {{ boundaries.max }} {{ data.unit }}</b></p>
         </div>
     </div>
 </template>
@@ -46,25 +46,44 @@
 <style scoped>
 
     .indicator-container {
-        text-align: center;
         padding-top: 10px;
+        text-align: center;
     }
 
     .indicator {
         display: inline-block;
-        height: 150px;
         width: 150px;
+        height: 150px;
         background-size: contain;
-        box-sizing: border-box;
         border: 2px solid var(--black);
         border-radius: 0.5rem;
+        box-sizing: border-box;
     }
 
-    .statGood {
+    .stat-good {
         background-color: var(--statGood);
     }
 
-    .statWarning {
+    .stat-warning {
         background-color: var(--statWarning);
     }
+
+    @media only screen and (min-width: 576px) {
+        .indicator {
+            width: 200px;
+            height: 200px;
+        }
+
+        .indicator-container {
+            padding-top: 20px;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        .indicator {
+            width: 150px;
+            height: 150px;
+        }
+    }
+
 </style>
