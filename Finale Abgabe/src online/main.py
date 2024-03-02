@@ -83,11 +83,15 @@ while running:
         if newPrototype:                               # aktualisier interne Variablen mit den erhaltenen Daten und gibt eine Liste mit diesen Daten zurück.
             control.model.prototypData = newPrototype  # Füllt aktuallisierte daten in model.prototypData
         
-        if control.model.profileData[1] != control.model.prototypData[1]:   # wenn die daten vom Profil nicht = die vom Proto sind
-            control.setupServerData() 
-            print(control.model.profileData)
-            print("Neues Profil:", control.model.profileData[0]["name"])    # Ausgabe neues Profiel wurde Geladen
-            
+        print(control.model.profileData)
+        print(control.model.prototypData)
+        
+        #if control.model.prototypData != "{}":
+          #  if control.model.profileData[1] != control.model.prototypData[1]:   # wenn die daten vom Profil nicht = die vom Proto sind
+        control.setupServerData() 
+        print(control.model.profileData)
+        print("Neues Profil:", control.model.profileData[0]["name"])    # Ausgabe neues Profiel wurde Geladen
+
         control.server.addMeasurement(averageTemperatureLog, averageLightLog, averageSoilLog) #Fügt die durchschnittlichen Messwerte dem Server hinzu
         
         control.model.lightLog = []         # Leerung des Arrays 

@@ -122,6 +122,7 @@ class Server:
             response = requests.post(self.uploadUrl, data = json_data, headers = headers)
             if response.status_code == 200:
                 print("Daten erfolgreich gesendet")
+                print(json.loads(response.text)["message"])
             else:
                 print("Fehler beim Senden der Daten:", response.status_code)
         except Exception as e:
