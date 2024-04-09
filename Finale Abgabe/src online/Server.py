@@ -33,7 +33,7 @@ class Server:
             point = 0
             self.sta_if.active(True)
             self.sta_if.connect(self.ssid, self.password)
-            while not self.sta_if.isconnected() and point < 40: #TestMemo ab dem and
+            while not self.sta_if.isconnected() and point < 80: #TestMemo ab dem and
                 print(".", end="")
                 time.sleep(0.1)
                 point += 1
@@ -57,6 +57,7 @@ class Server:
                 response.close()
                 self.currentPrototyp = json.loads(content)
                 self.profileName = json.loads(content)['selectedPlant']
+                print(self.profileName)
                 return [self.currentPrototyp, self.profileName]
             else:
                 response.close()

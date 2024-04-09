@@ -34,6 +34,7 @@ class Control:
         if self.model.isWifiConnected == False: #TestMemo
             self.server.connectWifi() #TestMemo
         #self.model.isWifiConnected = True #TestMemo (komplett weg)
+            self.model.isWifiConnected = self.server.sta_if.isconnected()#TestMemo
             self.setupServerData() #TestMemo
         self.model.isWifiConnected = self.server.sta_if.isconnected()#TestMemo
             
@@ -44,6 +45,8 @@ class Control:
         if self.model.isWifiConnected:
             prototype_data = self.server.getPrototype()
             profile_data = self.server.getProfile()
+            print(prototype_data)
+            print(profile_data)
             if prototype_data is not None and profile_data is not None:
                 self.model.profileData = profile_data #TestMemo (komplett weg)
                 self.model.prototypData = prototype_data
@@ -136,9 +139,11 @@ class Control:
                     newStatus[key] = "Okay"
                     
             print("Status:", newStatus)
+            print("alter Status:", status)
             if newStatus != status:
                 self.model.status = newStatus
                 self.statusChange()
+            self.statusChange()
         
     def statusChange(self):
         print("status Change!")
